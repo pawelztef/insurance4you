@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Insurance4You.Models;
+using System.Net.Mail;
 
 namespace Insurance4You.Account
 {
@@ -20,11 +21,11 @@ namespace Insurance4You.Account
             if (result.Succeeded)
             {
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
+               string code = manager.GenerateEmailConfirmationToken(user.Id);
+               string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
+                SendEmail(callbackUrl);
+                //signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
             else 
@@ -32,5 +33,28 @@ namespace Insurance4You.Account
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
         }
+        public void SendEmail(string callbackUrl)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("pawelztef@gmail.com");
+            msg.To.Add(Email.Text);
+            msg.Subject = "Insurance4You Account Activation";
+            msg.Body = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.";
+            msg.IsBodyHtml = true;
+
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            client.Credentials = new System.Net.NetworkCredential("pawelztef@gmail.com", "PierreBoulez1");
+            client.Send(msg);
+
+            
+
+
+        }
+
     }
 }
