@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Insurance4You.Models;
+using System.Net.Mail;
 
 namespace Insurance4You.Account
 {
@@ -27,14 +28,31 @@ namespace Insurance4You.Account
                     ErrorMessage.Visible = true;
                     return;
                 }
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send email with the code and the redirect to reset password page
-                //string code = manager.GeneratePasswordResetToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
-                //manager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.");
+               string code = manager.GeneratePasswordResetToken(user.Id);
+               string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
+                SendEmail(callbackUrl);
                 loginForm.Visible = false;
                 DisplayEmail.Visible = true;
             }
+        }
+        private void SendEmail(string callbackUrl)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("pawelztef@gmail.com");
+            msg.To.Add(Email.Text);
+            msg.Subject = "Insurance4You Reset Password";
+            msg.Body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.";
+            msg.IsBodyHtml = true;
+
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            client.Credentials = new System.Net.NetworkCredential("pawelztef@gmail.com", "PierreBoulez1");
+            client.Send(msg);
+                        
         }
     }
 }

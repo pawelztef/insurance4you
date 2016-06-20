@@ -25,15 +25,22 @@ namespace Insurance4You.Account
                string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
                 SendEmail(callbackUrl);
-                //signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                if (user.EmailConfirmed)
+                {
+                   // IdentityHelper.SignIn(manager, user, isPersistent: false);
+                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                }
+                else
+                {
+                    ErrorMessage.Text = "An email has been sent to your account. Please view the email and confirm your account to complete the registration process.";
+                }
             }
             else 
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
         }
-        public void SendEmail(string callbackUrl)
+        private void SendEmail(string callbackUrl)
         {
             SmtpClient client = new SmtpClient();
             client.Host = "smtp.gmail.com";
