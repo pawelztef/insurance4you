@@ -45,6 +45,7 @@ namespace Insurance4You.Logic
             {
                 UserName = "owner@owner.com",
                 Email = "owner@owner.com",
+                EmailConfirmed = true,
             };
             IdUserResult = userMgr.Create(appUser, "password");
 
