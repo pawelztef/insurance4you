@@ -1,4 +1,41 @@
 ﻿<%@ Page Title="Assigni Roles" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AssingRoles.aspx.cs" Inherits="Insurance4You.Admin.AssingRoles" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <b>Welcome to Owner!</b>
+    <div class="container">
+        <div class="row">
+            <b>Welcome to Owner</b>
+        </div>
+        <div class="row">
+            <asp:Label ID="FeedbackLabel1" runat="server"></asp:Label>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="RoleBox1" ErrorMessage="Role name required!" ForeColor="Red"></asp:RequiredFieldValidator>
+            <div class="col-md-4">
+                <asp:TextBox ID="RoleBox1" runat="server"></asp:TextBox>
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+                <br />
+                <br />
+                <asp:GridView ID="RoleList" runat="server" AutoGenerateColumns="False" OnRowDeleting="RoleList_RowDeleting">
+                    <Columns>
+                        <asp:CommandField DeleteText="Delete Role" ShowDeleteButton="True" />
+                        <asp:TemplateField HeaderText="Role">
+                            <ItemTemplate>    
+                                 <asp:Label runat="server" ID="RoleNameLabel" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' />    
+                             </ItemTemplate>    
+                        </asp:TemplateField>
+
+                    </Columns>
+                </asp:GridView>
+                
+                <br />
+                
+            </div>               
+        </div>
+   </div>
+
+
+
+
+
+
+
+
+
 </asp:Content>

@@ -8,9 +8,9 @@ using System.Web;
 
 namespace Insurance4You.Logic
 {
-    internal class RoleActions
+    public class RoleActions
     {
-        internal void AddUserAndRole()
+        public void AddUserAndRole()
         {
             // 1. Access the application context and create result variables.
             Models.ApplicationDbContext context = new ApplicationDbContext();
