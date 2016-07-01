@@ -17,6 +17,9 @@ namespace Insurance4You.Admin
             if (!Page.IsPostBack)
             {
                 DisplayRoles();
+                BindUsersToUserList();
+                BindRolesToList();
+                CheckRolesForSelectedUser();
                 RoleBox1.Text = string.Empty;
             }
         }
@@ -27,10 +30,10 @@ namespace Insurance4You.Admin
             CreateRole(name);
             // Refresh RoleList
             DisplayRoles();
+            BindRolesToList();
             RoleBox1.Text = string.Empty;
         }
-
-
+        
         private void CreateRole(string name)
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -63,9 +66,7 @@ namespace Insurance4You.Admin
 
             // Get the RoleNameLabel
             Label RoleNameLabel = RoleList.Rows[e.RowIndex].FindControl("RoleNameLabel") as Label;
-
-
-
+            
             Models.ApplicationDbContext context = new ApplicationDbContext();
 
             var roleStore = new RoleStore<IdentityRole>(context);
@@ -73,8 +74,89 @@ namespace Insurance4You.Admin
 
             var role = roleMgr.FindByName(RoleNameLabel.Text);
             roleMgr.Delete(role);
-
+            BindRolesToList();
             DisplayRoles();
+        }
+
+
+        private void BindUsersToUserList()
+        {
+
+            Models.ApplicationDbContext context = new ApplicationDbContext();
+            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            UserList1.DataSource = userMgr.Users.ToList();
+            UserList1.DataBind();
+        }
+
+        private void BindRolesToList()
+        {
+            Models.ApplicationDbContext context = new ApplicationDbContext();
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            UserRoleList.DataSource = roleMngr.Roles.ToList();
+            UserRoleList.DataBind();
+        }
+
+        private void CheckRolesForSelectedUser()
+        {
+            Models.ApplicationDbContext context = new ApplicationDbContext();
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            string selectedUserName = UserList1.SelectedValue;
+            IdentityUser user = userMgr.FindByName(selectedUserName);
+            var UsersRoleList = userMgr.GetRoles(user.Id);
+          
+            foreach (RepeaterItem ri in UserRoleList.Items)
+            {
+                // Programmatically reference the CheckBox 
+                CheckBox RoleCheckBox = ri.FindControl("RoleCheckBox") as CheckBox;
+                // See if RoleCheckBox.Text is in selectedUsersRoles 
+                if (UsersRoleList.Contains<string>(RoleCheckBox.Text))
+                    RoleCheckBox.Checked = true;
+                else
+                    RoleCheckBox.Checked = false;
+            }
+        }
+
+        protected void UserList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckRolesForSelectedUser();
+        }
+
+        protected void RoleCheckBox_CheckChanged(object sender, EventArgs e)
+        {
+            Models.ApplicationDbContext context = new ApplicationDbContext();
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+           
+            // Get the currently selected user and role 
+            // Reference the CheckBox that raised this event 
+            CheckBox RoleCheckBox = sender as CheckBox;
+            string roleName = RoleCheckBox.Text;
+            string selectedUserName = UserList1.SelectedValue;
+            IdentityUser user = userMgr.FindByName(selectedUserName);
+
+
+            if (RoleCheckBox.Checked)
+            {
+                userMgr.AddToRole(user.Id, roleName);
+                  
+                //ActionStatus.Text = string.Format("User {0} was added to role {1}.", selectedUserName, roleName);
+            }
+            else
+            {
+                userMgr.RemoveFromRole(user.Id, roleName);
+               
+                // ActionStatus.Text = string.Format("User {0} was removed from role {1}.", selectedUserName, roleName);
+
+            }
+
+
+
         }
     }
 }

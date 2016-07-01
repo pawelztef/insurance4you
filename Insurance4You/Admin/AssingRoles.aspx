@@ -7,7 +7,7 @@
         <div class="row">
             <asp:Label ID="FeedbackLabel1" runat="server"></asp:Label>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="RoleBox1" ErrorMessage="Role name required!" ForeColor="Red"></asp:RequiredFieldValidator>
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <asp:TextBox ID="RoleBox1" runat="server"></asp:TextBox>
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
                 <br />
@@ -23,6 +23,19 @@
 
                     </Columns>
                 </asp:GridView>
+                
+                <br />
+
+                <div>
+                    <b>Select a User:</b>
+                    <asp:DropDownList ID="UserList1" runat="server" AutoPostBack="true" DataTextField="UserName" DataValueField="UserName" OnSelectedIndexChanged="UserList1_SelectedIndexChanged">
+                    </asp:DropDownList>
+                    <asp:Repeater ID="UserRoleList" runat="server">
+                        <ItemTemplate> 
+                            <asp:CheckBox runat="server" ID="RoleCheckBox" AutoPostBack="true" OnCheckedChanged="RoleCheckBox_CheckChanged" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' />
+                        </ItemTemplate> 
+                    </asp:Repeater>
+                </div>
                 
                 <br />
                 
