@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Insurance4You.Logic;
+using Microsoft.AspNet.Identity.Owin;
+using System.Net.Mail;
 
 namespace Insurance4You.Admin
 {
@@ -154,6 +157,55 @@ namespace Insurance4You.Admin
                 // ActionStatus.Text = string.Format("User {0} was removed from role {1}.", selectedUserName, roleName);
 
             }
+
+
+
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string name = EmailTextBox.Text;
+            string email = EmailTextBox.Text;
+
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+            //var user = new ApplicationUser() { UserName = name, Email = email};
+            //IdentityResult result = manager.Create(user, "password");
+
+            //string code = manager.GenerateEmailConfirmationToken(user.Id);
+            //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
+            //SendEmail(callbackUrl);
+            //FeedbackLabel1.Text = "An email has been sent to your account. Please view the email and confirm your account to complete the registration process.";
+           // Models.ApplicationDbContext context = new ApplicationDbContext();
+           // var userStore = new UserStore<ApplicationUser>(context);
+           // var userManager = new UserManager<ApplicationUser>(userStore);
+            var userToInsert = new ApplicationUser { UserName = email, Email = email, EmailConfirmed = true };
+
+            manager.Create(userToInsert, "1");
+            NameTextBox.Text = string.Empty;
+            SurnameTextBox.Text = string.Empty;
+            EmailTextBox.Text = string.Empty;
+            BindUsersToUserList();
+
+    }
+        private void SendEmail(string callbackUrl)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("pawelztef@gmail.com");
+            msg.To.Add(EmailTextBox.Text);
+            msg.Subject = "Insurance4You Account Activation";
+            msg.Body = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.";
+            msg.IsBodyHtml = true;
+
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            client.Credentials = new System.Net.NetworkCredential("pawelztef@gmail.com", "PierreBoulez1");
+            client.Send(msg);
+
 
 
 
