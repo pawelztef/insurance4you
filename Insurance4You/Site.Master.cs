@@ -74,8 +74,12 @@ namespace Insurance4You
             {
                 HtmlAnchor div = this.FindControl("ownerLink1") as HtmlAnchor;
                 div.Visible = true;
-    }
-
+            }
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                HtmlAnchor div = this.FindControl("userLink1") as HtmlAnchor;
+                div.Visible = true;
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
