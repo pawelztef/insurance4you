@@ -56,6 +56,32 @@ input[type="select"] {
             }
         }
     }
+
+    .thumbnail {
+        img {
+            margin: 10px;
+            float: left;
+        }
+        #head1{
+           margin-top: 50px;
+        }
+        #head2{
+           margin-top: 6px !important;
+        }
+        p{
+            margin-top: 23px;
+            margin-bottom: 0px;
+            a {
+                float: right;
+                margin-right: 30px;
+                color: #b6c308;
+                &:hover {
+                    color: rgba(0,0,0,0.29);
+                }
+            }
+        }
+
+    }
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

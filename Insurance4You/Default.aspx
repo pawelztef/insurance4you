@@ -89,8 +89,10 @@
                         <div class="thumbnail">
                             <img src="/Images/thumbnail2.jpg" width="100px">
                             <div class="caption">
-                                <h5>Insurance Festival.</h5>
-                                <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.</p>
+                                <h5 id="head1">Best Car<br /> For Newbie.</h5>
+                                <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                <a href="#">read more <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -98,8 +100,10 @@
                         <div class="thumbnail">
                             <img src="/Images/thumbnail1.jpg" width="100px">
                             <div class="caption">
-                                <h5>How can I lower my car insurance costs?</h5>
-                                <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.</p>
+                                <h5 id="head2">How can I lower insurance costs?</h5>
+                                <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                <a href="#">read more <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                </p>
                             </div>
                         </div>
                     </div>
