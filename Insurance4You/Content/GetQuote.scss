@@ -66,27 +66,139 @@
     margin-bottom: 60px;
 }
 
-#accordion {
-    #collapseOne {
-        padding-top: 30px;
-        padding-bottom: 30px;
+#collapseOne {
+    padding-top: 30px;
+    padding-bottom: 30px;
 
-        #InputDay {
-            margin-left: -15px;
-        }
-        #InputMonth{
-            margin-left: -34px;
-        }
-        #InputYear {
-            margin-left: -54px;
-        }
+    #MainContent_InputDOBDay {
+        margin-left: -15px;
     }
-    button{
+    
+    #MainContent_InputDOBMonth {
+        margin-left: -34px;
+    }
+
+    #MainContent_InputDOBYear {
+        margin-left: -54px;
+    }
+
+    #MainContent_Button1 {
         margin-top: 60px;
-        
     }
+}
+
+#collapseTwo {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    #MainContent_InputDOMDay {
+        margin-left: -15px;
+    }
+
+    #MainContent_InputDOMMonth {
+        margin-left: -34px;
+    }
+
+    #MainContent_InputDOMYear {
+        margin-left: -54px;
+    }
+
+    #MainContent_Button2 {
+        margin-top: 60px;
+    }
+}
+
+#collapseThree {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .fa-plus {
+        color: #666;
+        margin-top: 13px;
+    }
+
+    #MainContent_InputClaimDateDay {
+        margin-left: -15px;
+    }
+
+    #MainContent_InputClaimDateMonth {
+        margin-left: -34px;
+    }
+
+    #MainContent_InputClaimDateYear {
+        margin-left: -54px;
+    }
+
+    #MainContent_InputConvictionDateDay {
+        margin-left: -15px;
+    }
+
+    #MainContent_InputConvictionDateMonth {
+        margin-left: -34px;
+    }
+
+    #MainContent_InputConvictionDateYear{
+        margin-left: -54px;
+    }
+
+    #MainContent_Button3 {
+        margin-top: 60px;
+    }
+
+    #Claims {
+        font-size: 1.8em;
+        margin-top: 20px;
+    }
+
+    #Convictions {
+        font-size: 1.8em;
+        margin-top: 20px;
+    }
+}
+
+#collapseFour {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    #MainContent_InputAdditionalDriverDOBDay {
+        margin-left: -15px;
+    }
+
+    #MainContent_InputAdditionalDriverDOBMonth {
+        margin-left: -34px;
+    }
+
+    #MainContent_InputAdditionalDriverDOBYear {
+        margin-left: -54px;
+    }
+
+    #MainContent_Button4 {
+        margin-top: 60px;
+    }
+}
+#collapseFive {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    #MainContent_Button5 {
+        margin-top: 60px;
+        margin-bottom: 30px;
+    }
+    .form-group {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    #MainContent_CheckBoxAccpetTerms{ 
+        margin-top: 10px;
+    }
+}
+
+.panel-title {
+    font-size: 20px;
 }
 
 .container#quotation {
     margin-top: 70px;
+}
+label{
+    font-size: 1.1em;
 }
