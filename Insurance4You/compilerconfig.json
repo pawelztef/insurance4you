@@ -2,5 +2,13 @@
   {
     "outputFile": "Content/Site.css",
     "inputFile": "Content/Site.scss"
+  },
+  {
+    "outputFile": "Content/GetQuote.css",
+    "inputFile": "Content/GetQuote.scss",
+    "sourceMap": true,
+    "minify": {
+      "enabled": false
+    }
   }
 ]

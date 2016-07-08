@@ -234,6 +234,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min - Copy.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GetQuote.css">
+      <DependentUpon>GetQuote.scss</DependentUpon>
+    </Content>
     <Content Include="Content\Site - Copy.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
@@ -257,8 +260,10 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\GetQuote.scss" />
     <None Include="Properties\PublishProfiles\insurance - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Quotation\GetQuote.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -457,6 +462,13 @@
     <Compile Include="Logic\RoleActions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quotation\GetQuote.aspx.cs">
+      <DependentUpon>GetQuote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quotation\GetQuote.aspx.designer.cs">
+      <DependentUpon>GetQuote.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
