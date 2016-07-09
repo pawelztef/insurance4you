@@ -184,13 +184,22 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.DropDownList InputBonus;
         
         /// <summary>
-        /// LinkButtonClaim control.
+        /// LinkButtonAddClaims control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonClaim;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAddClaims;
+        
+        /// <summary>
+        /// LinkButtonRemoveClaims control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonRemoveClaims;
         
         /// <summary>
         /// InputClaimDateDay control.
@@ -229,13 +238,22 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.TextBox InputClaimType;
         
         /// <summary>
-        /// LinkButtonConviction control.
+        /// LinkButtonAddConvictions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonConviction;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAddConvictions;
+        
+        /// <summary>
+        /// LinkButtonRemoveConvictions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonRemoveConvictions;
         
         /// <summary>
         /// InputConvictionDateDay control.
@@ -290,6 +308,24 @@ namespace Insurance4You.Quotation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button3;
+        
+        /// <summary>
+        /// LinkButtonAddDriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAddDriver;
+        
+        /// <summary>
+        /// LinkButtonRemoveDriver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonRemoveDriver;
         
         /// <summary>
         /// InputAdditionalDriverTitle control.

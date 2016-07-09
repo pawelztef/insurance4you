@@ -31,9 +31,7 @@
     <!-- place for styles -->
     <asp:ContentPlaceHolder ID="Styles" runat="server">
     </asp:ContentPlaceHolder>
-    <!-- place for scripts -->
-    <asp:PlaceHolder ID="scripts" runat="server" />
-
+  
 </head>
 <body>
     <form runat="server">
@@ -104,5 +102,6 @@
             </footer>
         </div>
     </form>
+   
 </body>
 </html>
