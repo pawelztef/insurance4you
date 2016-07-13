@@ -11,7 +11,11 @@
         olleh
     <div>
     
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+    
     </div>
+        <asp:Label ID="Label1" runat="server" Text="nothing happen"></asp:Label>
     </form>
 </body>
 </html>

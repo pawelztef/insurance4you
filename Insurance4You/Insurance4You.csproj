@@ -99,6 +99,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
@@ -229,6 +231,16 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\AssingRoles.aspx" />
+    <Content Include="App_Code\I4Y.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>I4Y.edmx</DependentUpon>
+      <LastGenOutput>I4Y.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Code\I4Y.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>I4Y.edmx</DependentUpon>
+      <LastGenOutput>I4Y.cs</LastGenOutput>
+    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap - Copy.css" />
     <Content Include="Content\bootstrap.css" />
@@ -263,6 +275,13 @@
     <Content Include="Quotation\SetPayment.aspx" />
     <Content Include="Scripts\SetQuote.js" />
     <Content Include="WebForm1.aspx" />
+    <EntityDeploy Include="App_Code\I4Y.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>I4Y.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="App_Code\I4Y.edmx.diagram">
+      <DependentUpon>I4Y.edmx</DependentUpon>
+    </Content>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -443,6 +462,45 @@
     <Compile Include="Admin\AssingRoles.aspx.designer.cs">
       <DependentUpon>AssingRoles.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\AspNetUser.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Car.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\ContactDetail.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Document.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Driver.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\DrivingHistory.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\I4Y.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>I4Y.Context.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\I4Y.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\I4Y.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>I4Y.edmx</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Policy.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Code\Quote.cs">
+      <DependentUpon>I4Y.tt</DependentUpon>
+    </Content>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -550,6 +608,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
