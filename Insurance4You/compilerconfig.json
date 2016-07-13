@@ -10,5 +10,13 @@
     "minify": {
       "enabled": false
     }
+  },
+  {
+    "outputFile": "Content/SetQuote.css",
+    "inputFile": "Content/SetQuote.scss",
+    "sourceMap": true,
+    "minify": {
+      "enabled": false
+    }
   }
 ]

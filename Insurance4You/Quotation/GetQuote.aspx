@@ -2,18 +2,25 @@
 
 <asp:Content ID="Styles" ContentPlaceHolderID="Styles" runat="server">
     <link rel="stylesheet" href="../Content/GetQuote.css" />
-
 </asp:Content>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="~/Scripts/jquery.validate.js" />
+            <asp:ScriptReference Path="~/Scripts/getquote.js" />
+        </Scripts>
+    </asp:ScriptManagerProxy>
+
+
     <div class="container" id="quotation">
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                 <div class="progr">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4">
-                            <p>Your Progress</p>
+                            <div class="steps">Step 1 of 3</div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-8 line">
                             <div class="icons-wrapper">
@@ -40,13 +47,13 @@
                             <h2 class="panel-title">1. Your Details</h2>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
+                            <div id="alert" class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter details in all the necessary fields bellow</div>
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <label for="InputTitle" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Title</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:DropDownList ID="InputTitle" CssClass="form-control" runat="server">
-                                            <asp:ListItem>--</asp:ListItem>
+                                            <asp:ListItem Value="">--</asp:ListItem>
                                             <asp:ListItem>Mrs</asp:ListItem>
                                             <asp:ListItem>Miss</asp:ListItem>
                                             <asp:ListItem>Ms</asp:ListItem>
@@ -57,36 +64,36 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="InputFirstName" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">First Name</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
-                                        <asp:TextBox ID="InputFirstName" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <asp:TextBox ID="InputFirstName" Name="firstName" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputSecondName" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Second Name</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox ID="InputSecondName" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputEmail" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Email</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox ID="InputEmail" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="InputPhone" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Phone Number</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox CssClass="form-control" ID="InputPhone" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputDOB" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Date of Birth</label>
-                                    <div id="InputDOB" class="col-lg-7 col-md-5 col-sm-5 col-xs-7">
+                                    <div id="InputDOB" class="col-lg-4 col-md-5 col-sm-5 col-xs-7">
                                         <div class="from-inline">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                 <asp:DropDownList ID="InputDOBDay" CssClass="form-control" runat="server">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>1</asp:ListItem>
                                                     <asp:ListItem>2</asp:ListItem>
                                                     <asp:ListItem>3</asp:ListItem>
@@ -122,7 +129,7 @@
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                 <asp:DropDownList ID="InputDOBMonth" CssClass=" form-control" runat="server">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>January</asp:ListItem>
                                                     <asp:ListItem>February</asp:ListItem>
                                                     <asp:ListItem>March</asp:ListItem>
@@ -139,7 +146,7 @@
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                 <asp:DropDownList ID="InputDOBYear" CssClass=" form-control" runat="server">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>1928</asp:ListItem>
                                                     <asp:ListItem>1929</asp:ListItem>
                                                     <asp:ListItem>1930</asp:ListItem>
@@ -219,9 +226,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="InputCounty" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">County</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:DropDownList ID="InputCounty" CssClass=" form-control" runat="server">
-                                            <asp:ListItem>--</asp:ListItem>
+                                            <asp:ListItem Value="">--</asp:ListItem>
                                             <asp:ListItem>Dublin 1</asp:ListItem>
                                             <asp:ListItem>Dublin 2</asp:ListItem>
                                             <asp:ListItem>Dublin 3</asp:ListItem>
@@ -245,11 +252,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
-                                        <asp:Button ID="Button1" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo" aria-controls="collapseTwo" CssClass="btn btn-success btn-lg" runat="server" Text="Continue" />
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -257,22 +260,22 @@
                         <div class="panel-heading" role="tab" id="headingTwo">
                             <h2 class="panel-title">2. Car Details</h2>
                         </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <label for="InputReg" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Registration Number</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox ID="InputReg" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputDOM" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Date of Manufacture</label>
-                                    <div id="InputDOM" class="col-lg-7 col-md-5 col-sm-5 col-xs-7">
+                                    <div id="InputDOM" class="col-lg-4 col-md-5 col-sm-5 col-xs-7">
                                         <div class="from-inline">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                 <asp:DropDownList ID="InputDOMDay" CssClass="form-control" runat="server">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>1</asp:ListItem>
                                                     <asp:ListItem>2</asp:ListItem>
                                                     <asp:ListItem>3</asp:ListItem>
@@ -308,7 +311,7 @@
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                 <asp:DropDownList ID="InputDOMMonth" CssClass="form-control" runat="server">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>January</asp:ListItem>
                                                     <asp:ListItem>February</asp:ListItem>
                                                     <asp:ListItem>March</asp:ListItem>
@@ -325,7 +328,7 @@
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                 <asp:DropDownList ID="InputDOMYear" runat="server" CssClass="form-control">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>1990</asp:ListItem>
                                                     <asp:ListItem>1991</asp:ListItem>
                                                     <asp:ListItem>1992</asp:ListItem>
@@ -360,25 +363,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="InputMake" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Make</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox ID="InputMake" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputModel" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Model</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox ID="InputModel" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputEngine" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Engine</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:TextBox ID="InputEngine" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
-                                        <asp:Button ID="Button2" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree" CssClass="btn btn-success btn-lg" runat="server" Text="Continue" />
                                     </div>
                                 </div>
                             </div>
@@ -388,14 +386,14 @@
                         <div class="panel-heading" role="tab" id="headingThree">
                             <h2 class="panel-title">3. Claims/Convitions </h2>
                         </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                             <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <label for="InputBonus" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Years No Claims Bonus</label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                         <asp:DropDownList ID="InputBonus" CssClass="form-control" runat="server">
-                                            <asp:ListItem>--</asp:ListItem>
+                                            <asp:ListItem Value="">--</asp:ListItem>
                                             <asp:ListItem>0</asp:ListItem>
                                             <asp:ListItem>1</asp:ListItem>
                                             <asp:ListItem>2</asp:ListItem>
@@ -411,6 +409,31 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="InputPenaltyPoints" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Penalty Points</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <asp:DropDownList runat="server" CssClass="form-control" ID="InputPenaltyPoints">
+                                            <asp:ListItem Value="">--</asp:ListItem>
+                                            <asp:ListItem>0</asp:ListItem>
+                                            <asp:ListItem>1</asp:ListItem>
+                                            <asp:ListItem>2</asp:ListItem>
+                                            <asp:ListItem>3</asp:ListItem>
+                                            <asp:ListItem>4</asp:ListItem>
+                                            <asp:ListItem>5</asp:ListItem>
+                                            <asp:ListItem>6</asp:ListItem>
+                                            <asp:ListItem>7</asp:ListItem>
+                                            <asp:ListItem>8</asp:ListItem>
+                                            <asp:ListItem>9</asp:ListItem>
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>11</asp:ListItem>
+                                            <asp:ListItem>12</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+
+                                <asp:HiddenField ID="HiddenFieldClaims" Value="false" runat="server" />
+                                <asp:HiddenField ID="HiddenFieldConvictions" Value="false" runat="server" />
+
+                                <div class="form-group">
                                     <label id="Claims" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1 lead control-label">Claims</label>
                                     <asp:LinkButton ID="LinkButtonAddClaims" runat="server">Add<i class="fa fa-plus fa-1x" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="LinkButtonRemoveClaims" runat="server">Remove<i class="fa fa-minus fa-1x" aria-hidden="true"></i></asp:LinkButton>
@@ -418,11 +441,11 @@
                                 <div id="IncidentForm">
                                     <div class="form-group">
                                         <label for="InputClaimDate" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Incident Date</label>
-                                        <div id="InputClaimDate" class="col-lg-7 col-md-5 col-sm-5 col-xs-7">
+                                        <div id="InputClaimDate" class="col-lg-4 col-md-5 col-sm-5 col-xs-7">
                                             <div class="from-inline">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputClaimDateDay">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>1</asp:ListItem>
                                                         <asp:ListItem>2</asp:ListItem>
                                                         <asp:ListItem>3</asp:ListItem>
@@ -458,7 +481,7 @@
                                                 </div>
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputClaimDateMonth">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>January</asp:ListItem>
                                                         <asp:ListItem>February</asp:ListItem>
                                                         <asp:ListItem>March</asp:ListItem>
@@ -475,7 +498,7 @@
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputClaimDateYear">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>1990</asp:ListItem>
                                                         <asp:ListItem>1991</asp:ListItem>
                                                         <asp:ListItem>1992</asp:ListItem>
@@ -510,7 +533,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="InputClaimType" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Incident Type</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:TextBox runat="server" CssClass="form-control" ID="InputClaimType"></asp:TextBox>
                                         </div>
                                     </div>
@@ -523,11 +546,11 @@
                                 <div id="ConvictionForm">
                                     <div class="form-group">
                                         <label for="InputConvictionDate" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Conviction Date</label>
-                                        <div id="InputConvictionDate" class="col-lg-7 col-md-5 col-sm-5 col-xs-7">
+                                        <div id="InputConvictionDate" class="col-lg-5 col-md-5 col-sm-5 col-xs-7">
                                             <div class="from-inline">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputConvictionDateDay">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>1</asp:ListItem>
                                                         <asp:ListItem>2</asp:ListItem>
                                                         <asp:ListItem>3</asp:ListItem>
@@ -563,7 +586,7 @@
                                                 </div>
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputConvictionDateMonth">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>January</asp:ListItem>
                                                         <asp:ListItem>February</asp:ListItem>
                                                         <asp:ListItem>March</asp:ListItem>
@@ -580,7 +603,7 @@
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputConvictionDateYear">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>1990</asp:ListItem>
                                                         <asp:ListItem>1991</asp:ListItem>
                                                         <asp:ListItem>1992</asp:ListItem>
@@ -615,37 +638,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="InputConvictionType" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Conviction Type</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:TextBox runat="server" ID="InputConvictionType" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="InputPenaltyPoints" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Penalty Points</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
-                                            <asp:DropDownList runat="server" CssClass="form-control" ID="InputPenaltyPoints">
-                                                <asp:ListItem>--</asp:ListItem>
-                                                <asp:ListItem>0</asp:ListItem>
-                                                <asp:ListItem>1</asp:ListItem>
-                                                <asp:ListItem>2</asp:ListItem>
-                                                <asp:ListItem>3</asp:ListItem>
-                                                <asp:ListItem>4</asp:ListItem>
-                                                <asp:ListItem>5</asp:ListItem>
-                                                <asp:ListItem>6</asp:ListItem>
-                                                <asp:ListItem>7</asp:ListItem>
-                                                <asp:ListItem>8</asp:ListItem>
-                                                <asp:ListItem>9</asp:ListItem>
-                                                <asp:ListItem>10</asp:ListItem>
-                                                <asp:ListItem>11</asp:ListItem>
-                                                <asp:ListItem>12</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
-                                        <asp:Button ID="Button3" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour" CssClass="btn btn-success btn-lg" runat="server" Text="Continue" />
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -653,10 +651,14 @@
                         <div class="panel-heading" role="tab" id="headingFour">
                             <h2 class="panel-title">4. Additional Drivers </h2>
                         </div>
-                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
                             <div class="form-horizontal">
                                 <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
                                 <div class="form-group"></div>
+                                
+
+                                <asp:HiddenField ID="HiddenFieldAdditionalDriver" Value="false" runat="server" />
+
                                 <div class="form-group">
                                     <label id="AdditionalDirver" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1 lead control-label">Additional Driver</label>
                                     <asp:LinkButton ID="LinkButtonAddDriver" runat="server">Add<i class="fa fa-plus fa-1x" aria-hidden="true"></i></asp:LinkButton>
@@ -665,9 +667,9 @@
                                 <div id="AdditionalDriverForm">
                                     <div class="form-group">
                                         <label for="InputAdditionalDriverTitle" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Title</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:DropDownList runat="server" CssClass="form-control" ID="InputAdditionalDriverTitle">
-                                                <asp:ListItem>--</asp:ListItem>
+                                                <asp:ListItem Value="">--</asp:ListItem>
                                                 <asp:ListItem>Mrs</asp:ListItem>
                                                 <asp:ListItem>Miss</asp:ListItem>
                                                 <asp:ListItem>Ms</asp:ListItem>
@@ -678,36 +680,36 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="InputAdditionalDriverFirstName" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">First Name</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:TextBox runat="server" ID="InputAdditionalDriverFirstName" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputAdditionalDriveSecondName" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Second Name</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:TextBox runat="server" ID="InputAdditionalDriverSecondName" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputAdditionalDriverEmail" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Email</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:TextBox runat="server" ID="InputAdditionalDriverEmail" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="InputAdditionalDriverPhone" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Phone Number</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:TextBox runat="server" ID="InputAdditionalDriverPhone" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputAdditionalDriverDOB" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">Date of Birth</label>
-                                        <div id="InputAdditionalDriverDOB" class="col-lg-7 col-md-5 col-sm-5 col-xs-7">
+                                        <div id="InputAdditionalDriverDOB" class="col-lg-4 col-md-5 col-sm-5 col-xs-7">
                                             <div class="from-inline">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputAdditionalDriverDOBDay">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>1</asp:ListItem>
                                                         <asp:ListItem>2</asp:ListItem>
                                                         <asp:ListItem>3</asp:ListItem>
@@ -743,7 +745,7 @@
                                                 </div>
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputAdditionalDriverDOBMonth">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>January</asp:ListItem>
                                                         <asp:ListItem>February</asp:ListItem>
                                                         <asp:ListItem>March</asp:ListItem>
@@ -760,7 +762,7 @@
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputAdditionalDriverDOBYear">
-                                                        <asp:ListItem>--</asp:ListItem>
+                                                        <asp:ListItem Value="">--</asp:ListItem>
                                                         <asp:ListItem>1928</asp:ListItem>
                                                         <asp:ListItem>1929</asp:ListItem>
                                                         <asp:ListItem>1930</asp:ListItem>
@@ -840,9 +842,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="InputAdditionalDriverCounty" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1  control-label">County</label>
-                                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                             <asp:DropDownList runat="server" CssClass="form-control" ID="InputAdditionalDriverCounty">
-                                                <asp:ListItem>--</asp:ListItem>
+                                                <asp:ListItem Value="">--</asp:ListItem>
                                                 <asp:ListItem>Dublin 1</asp:ListItem>
                                                 <asp:ListItem>Dublin 2</asp:ListItem>
                                                 <asp:ListItem>Dublin 3</asp:ListItem>
@@ -867,11 +869,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
-                                        <asp:Button ID="Button4" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-controls="collapseFive" CssClass="btn btn-success btn-lg" runat="server" Text="Continue" />
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -879,7 +877,7 @@
                         <div class="panel-heading" role="tab" id="headingFive">
                             <h2 class="panel-title">5. Insurance Details </h2>
                         </div>
-                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
                             <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
                             <div class="form-horizontal">
                                 <div class="form-group">
@@ -888,7 +886,7 @@
                                         <div class="from-inline">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                 <asp:DropDownList runat="server" CssClass="form-control" ID="InputStartPolicyDateDay">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>1</asp:ListItem>
                                                     <asp:ListItem>2</asp:ListItem>
                                                     <asp:ListItem>3</asp:ListItem>
@@ -924,7 +922,7 @@
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                 <asp:DropDownList runat="server" CssClass="form-control" ID="InputStartPolicyDateMonth">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>January</asp:ListItem>
                                                     <asp:ListItem>February</asp:ListItem>
                                                     <asp:ListItem>March</asp:ListItem>
@@ -941,7 +939,7 @@
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                 <asp:DropDownList runat="server" CssClass="form-control" ID="InputStartPolicyDateYear">
-                                                    <asp:ListItem>--</asp:ListItem>
+                                                    <asp:ListItem Value="">--</asp:ListItem>
                                                     <asp:ListItem>2016</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
@@ -957,7 +955,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 ">
-                                    <asp:Button ID="Button5" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Continue" />
+                                    <asp:Button ID="Button5" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Continue" OnClick="Button5_Click" />
                                 </div>
                             </div>
                         </div>
@@ -967,60 +965,97 @@
         </div>
     </div>
     <script>
-
         $(function () {
-            claimsConvictions();
-            additionalDriver();
+            var x = $('#form');
+            $(x).validate({
+                rules: {
+                    '<%= InputTitle.UniqueID %>': { required: true },
+                    '<%= InputDOBDay.UniqueID %>': { required: true },
+                    '<%= InputDOBMonth.UniqueID %>': { required: true },
+                    '<%= InputDOBYear.UniqueID %>': { required: true },
+                    '<%= InputCounty.UniqueID %>': { required: true },
+                    '<%= InputDOMDay.UniqueID %>': { required: true },
+                    '<%= InputDOMMonth.UniqueID %>': { required: true },
+                    '<%= InputDOMYear.UniqueID %>': { required: true },
+                    '<%= InputBonus.UniqueID %>': { required: true },
+                    '<%= InputClaimDateDay.UniqueID %>': { required: true },
+                    '<%= InputClaimDateMonth.UniqueID %>': { required: true },
+                    '<%= InputClaimDateYear.UniqueID %>': { required: true },
+                    '<%= InputConvictionDateDay.UniqueID %>': { required: true },
+                    '<%= InputConvictionDateMonth.UniqueID %>': { required: true },
+                    '<%= InputConvictionDateYear.UniqueID %>': { required: true },
+                    '<%= InputPenaltyPoints.UniqueID %>': { required: true },
+                    '<%= InputAdditionalDriverTitle.UniqueID %>': { required: true },
+                    '<%= InputAdditionalDriverDOBDay.UniqueID %>': { required: true },
+                    '<%= InputAdditionalDriverDOBMonth.UniqueID %>': { required: true },
+                    '<%= InputAdditionalDriverDOBYear.UniqueID %>': { required: true },
+                    '<%= InputAdditionalDriverCounty.UniqueID %>': { required: true },
+                    '<%= InputStartPolicyDateDay.UniqueID %>': { required: true },
+                    '<%= InputStartPolicyDateMonth.UniqueID %>': { required: true },
+                    '<%= InputStartPolicyDateYear.UniqueID %>': { required: false },
+                    '<%= InputFirstName.UniqueID %>': "required",
+                    '<%= InputSecondName.UniqueID %>': "required",
+                    '<%= InputEmail.UniqueID %>': { required: true, email: true },
+                    '<%= InputPhone.UniqueID %>': { required: true, number: true },
+                    '<%= InputReg.UniqueID %>': "required",
+                    '<%= InputMake.UniqueID %>': "required",
+                    '<%= InputModel.UniqueID %>': "required",
+                    '<%= InputEngine.UniqueID %>': { required: true, number: true, range: [700, 3000] },
+                    '<%= InputClaimType.UniqueID %>': "required",
+                    '<%= InputConvictionType.UniqueID %>': "required",
+                    '<%= InputAdditionalDriverFirstName.UniqueID %>': "required",
+                    '<%= InputAdditionalDriverSecondName.UniqueID %>': "required",
+                    '<%= InputAdditionalDriverEmail.UniqueID %>': { required: true, email: true },
+                    '<%= InputStartPolicyDateYear.UniqueID %>': "required",
+                    '<%= CheckBoxAcceptTerms.UniqueID %>': "required"
+                },
 
+                messages: {
+                    '<%= InputDOBDay.UniqueID %>': "*",
+                    '<%= InputDOBMonth.UniqueID %>': "*",
+                    '<%= InputDOBYear.UniqueID %>': "*",
+                    '<%= InputDOMDay.UniqueID %>': "*",
+                    '<%= InputDOMMonth.UniqueID %>': "*",
+                    '<%= InputDOMYear.UniqueID %>': "*",
+                    '<%= InputClaimDateDay.UniqueID %>': "*",
+                    '<%= InputClaimDateMonth.UniqueID %>': "*",
+                    '<%= InputClaimDateYear.UniqueID %>': "*",
+                    '<%= InputConvictionDateDay.UniqueID %>': "*",
+                    '<%= InputConvictionDateMonth.UniqueID %>': "*",
+                    '<%= InputConvictionDateYear.UniqueID %>': "*",
+                    '<%= InputAdditionalDriverDOBDay.UniqueID %>': "*",
+                    '<%= InputAdditionalDriverDOBMonth.UniqueID %>': "*",
+                    '<%= InputAdditionalDriverDOBYear.UniqueID %>': "*",
+                    '<%= InputStartPolicyDateDay.UniqueID %>': "*",
+                    '<%= InputStartPolicyDateMonth.UniqueID %>': "*",
+                    '<%= InputStartPolicyDateYear.UniqueID %>': "*",
+                    '<%= CheckBoxAcceptTerms.UniqueID %>': "*"
+                },
+                errorPlacement: function (error, element) {
+                    element.after(error);
+                    error.css("color", "red");
+                    error.css('position', 'relative');
+                },
+
+                highlight: function (element, errorClass) {
+                    $(element).closest('.panel-collapse').find('.alert').removeClass('alert-success');
+                    $(element).closest('.panel-collapse').find('.alert').addClass('alert-danger');
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).closest('.panel-collapse').find('.alert').removeClass('alert-danger');
+                    $(element).closest('.panel-collapse').find('.alert').addClass('alert-success');
+                }
+            });
+            $('#MainContent_Button5').on('click', function () {
+                if ($("#form1").valid()) {
+                    console.log("true");
+                } else {
+                    console.log("false");
+                };
+            });
         });
-
-        function claimsConvictions() {
-            event.preventDefault();
-            $("#ConvictionForm").slideUp();
-            $("#IncidentForm").slideUp();
-            $("#MainContent_LinkButtonRemoveConvictions").css("visibility", "hidden");
-            $("#MainContent_LinkButtonRemoveClaims").css("visibility", "hidden");
-            $("#MainContent_LinkButtonAddConvictions").click(function () {
-                event.preventDefault();
-                $("#ConvictionForm").slideDown();
-                $("#MainContent_LinkButtonAddConvictions").css("visibility", "hidden");
-                $("#MainContent_LinkButtonRemoveConvictions").css("visibility", "visible");
-            });
-            $("#MainContent_LinkButtonAddClaims").click(function () {
-                event.preventDefault();
-                $("#MainContent_LinkButtonAddClaims").css("visibility", "hidden");
-                $("#IncidentForm").slideDown();
-                $("#MainContent_LinkButtonRemoveClaims").css("visibility", "visible");
-            });
-            $("#MainContent_LinkButtonRemoveConvictions").click(function () {
-                event.preventDefault();
-                $("#ConvictionForm").slideUp();
-                $("#MainContent_LinkButtonAddConvictions").css("visibility", "visible");
-                $("#MainContent_LinkButtonRemoveConvictions").css("visibility", "hidden");
-            });
-            $("#MainContent_LinkButtonRemoveClaims").click(function () {
-                event.preventDefault();
-                $("#IncidentForm").slideUp();
-                $("#MainContent_LinkButtonAddClaims").css("visibility", "visible");
-                $("#MainContent_LinkButtonRemoveClaims").css("visibility", "hidden");
-            });
-        }
-        function additionalDriver() {
-            event.preventDefault();
-            $("#AdditionalDriverForm").slideUp();
-            $("#MainContent_LinkButtonRemoveDriver").css("visibility", "hidden");
-            $("#MainContent_LinkButtonAddDriver").click(function () {
-                event.preventDefault();
-                $("#AdditionalDriverForm").slideDown();
-                $("#MainContent_LinkButtonAddDriver").css("visibility", "hidden");
-                $("#MainContent_LinkButtonRemoveDriver").css("visibility", "visible");
-            });
-            $("#MainContent_LinkButtonRemoveDriver").click(function () {
-                event.preventDefault();
-                $("#AdditionalDriverForm").slideUp();
-                $("#MainContent_LinkButtonRemoveDriver").css("visibility", "hidden");
-                $("#MainContent_LinkButtonAddDriver").css("visibility", "visible");
-            });
-        }
+        //function preventBack() { window.history.forward(); }
+        //setTimeout("preventBack()", 0);
+        //window.onunload = function () { null };
     </script>
 </asp:Content>

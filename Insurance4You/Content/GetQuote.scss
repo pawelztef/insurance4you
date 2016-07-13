@@ -1,6 +1,10 @@
-﻿$myBrown: #666;
-$myRed: red;
-$myGreen: rgb(149, 211, 124);
+﻿@import '_variables.scss';
+
+.steps {
+    font-size: 2em;
+    margin-top: 17px;
+    margin-left: 60px;
+}
 
 .progr {
     width: 100%;
@@ -26,8 +30,10 @@ $myGreen: rgb(149, 211, 124);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#bbbbbb', GradientType=1 );
         width: 60%;
         float: right;
-        margin-top: 16px;
+        margin-top: 50px;
         margin-right: 65px;
+
+
 
         .icons-wrapper {
             padding-left: 150px;
@@ -51,7 +57,7 @@ $myGreen: rgb(149, 211, 124);
                 .fa-thumbs-up {
                     position: relative;
                     top: -24px;
-                    color: rgb(149, 211, 124);
+                    color: $mylightGray;
                 }
 
                 .fa-eur {
@@ -85,6 +91,12 @@ $myGreen: rgb(149, 211, 124);
 
 .alert-success {
     background-color: rgb(149, 211, 124);
+    margin-top: -10px;
+    margin-bottom: 60px;
+}
+
+.alert-danger {
+    background: $myRed;
     margin-top: -10px;
     margin-bottom: 60px;
 }
@@ -211,10 +223,12 @@ $myGreen: rgb(149, 211, 124);
     #MainContent_InputAdditionalDriverDOBYear {
         margin-left: -54px;
     }
+
     #MainContent_Button4 {
         margin-top: 60px;
     }
 }
+
 #MainContent_LinkButtonAddDriver {
     @extend %settingsLink;
 }
@@ -238,9 +252,9 @@ $myGreen: rgb(149, 211, 124);
         margin-bottom: 20px;
     }
 
-    #MainContent_CheckBoxAccpetTerms {
-        margin-top: 10px;
-    }
+   #MainContent_CheckBoxAcceptTerms {
+        margin-bottom: -12px;
+    } 
 }
 
 .panel-title {
@@ -254,3 +268,4 @@ $myGreen: rgb(149, 211, 124);
 label {
     font-size: 1.1em;
 }
+

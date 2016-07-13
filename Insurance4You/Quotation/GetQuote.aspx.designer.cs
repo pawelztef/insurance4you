@@ -13,6 +13,15 @@ namespace Insurance4You.Quotation {
     public partial class GetQuote {
         
         /// <summary>
+        /// ScriptManagerProxy1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManagerProxy ScriptManagerProxy1;
+        
+        /// <summary>
         /// InputTitle control.
         /// </summary>
         /// <remarks>
@@ -94,15 +103,6 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.DropDownList InputCounty;
         
         /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
         /// InputReg control.
         /// </summary>
         /// <remarks>
@@ -166,15 +166,6 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.TextBox InputEngine;
         
         /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
         /// InputBonus control.
         /// </summary>
         /// <remarks>
@@ -182,6 +173,33 @@ namespace Insurance4You.Quotation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList InputBonus;
+        
+        /// <summary>
+        /// InputPenaltyPoints control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList InputPenaltyPoints;
+        
+        /// <summary>
+        /// HiddenFieldClaims control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldClaims;
+        
+        /// <summary>
+        /// HiddenFieldConvictions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldConvictions;
         
         /// <summary>
         /// LinkButtonAddClaims control.
@@ -292,22 +310,13 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.TextBox InputConvictionType;
         
         /// <summary>
-        /// InputPenaltyPoints control.
+        /// HiddenFieldAdditionalDriver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList InputPenaltyPoints;
-        
-        /// <summary>
-        /// Button3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldAdditionalDriver;
         
         /// <summary>
         /// LinkButtonAddDriver control.
@@ -407,15 +416,6 @@ namespace Insurance4You.Quotation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList InputAdditionalDriverCounty;
-        
-        /// <summary>
-        /// Button4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
         /// InputStartPolicyDateDay control.
