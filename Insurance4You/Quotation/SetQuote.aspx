@@ -63,7 +63,7 @@
                                 <h4>You can set up your payment now</h4>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 rightFedback">
-                                <asp:Button ID="PaymentButton" runat="server" CssClass="btn btn-success btn-lg" Text="Set Payment" />
+                                <asp:Button ID="PaymentButton" runat="server" CssClass="btn btn-success btn-lg" Text="Set Payment" OnClick="PaymentButton_Click" PostBackUrl="~/Quotation/SetPayment.aspx" />
                             </div>
 
                         </div>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Insurance4You.ADO;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,10 +12,11 @@ namespace Insurance4You.Quotation
 {
     public partial class GetQuote : System.Web.UI.Page
     {
+        string AppUserId;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-           
+            AppUserId = this.Page.User.Identity.GetUserId();
+
         }
 
         public string DriverTitle
@@ -44,11 +47,11 @@ namespace Insurance4You.Quotation
                 return InputEmail.Text;
             }
         }
-        public string Phone
+        public int Phone
         {
             get
             {
-                return InputPhone.Text;
+                return int.Parse(InputPhone.Text);
             }
         }
         public DateTime DOB
@@ -57,7 +60,7 @@ namespace Insurance4You.Quotation
             {
                 return new DateTime(
                     int.Parse(InputDOBYear.SelectedItem.Text),
-                    InputDOBMonth.SelectedIndex + 1,
+                    int.Parse(InputDOBMonth.SelectedValue),
                     int.Parse(InputDOBDay.SelectedItem.Text)
                     );
             }
@@ -82,7 +85,7 @@ namespace Insurance4You.Quotation
             {
                 return new DateTime(
                                    int.Parse(InputDOMYear.SelectedItem.Text),
-                                   InputDOMMonth.SelectedIndex + 1,
+                                    int.Parse(InputDOMMonth.SelectedValue),
                                    int.Parse(InputDOMDay.SelectedItem.Text)
                                    );
             }
@@ -115,13 +118,20 @@ namespace Insurance4You.Quotation
                 return InputBonus.TabIndex;
             }
         }
+        public string LicenceNo
+        {
+            get
+            {
+                return InputLicenceNumber.Text;
+            }
+        }
         public DateTime ClaimDate
         {
             get
             {
                 return new DateTime(
                     InputClaimDateYear.SelectedIndex + 1990,
-                    InputClaimDateMonth.SelectedIndex + 1,
+                     int.Parse(InputClaimDateMonth.SelectedValue),
                    InputClaimDateDay.SelectedIndex + 1);                  
             }
         }
@@ -138,7 +148,7 @@ namespace Insurance4You.Quotation
             {
                 return new DateTime(
                      int.Parse(InputConvictionDateYear.SelectedItem.Text),
-                     InputConvictionDateMonth.SelectedIndex + 1,
+                     int.Parse(InputConvictionDateMonth.SelectedValue),
                      int.Parse(InputConvictionDateDay.SelectedItem.Text)
                      );
             }
@@ -199,7 +209,7 @@ namespace Insurance4You.Quotation
             {
                 return new DateTime(
                                     int.Parse(InputAdditionalDriverDOBYear.SelectedItem.Text),
-                                    InputAdditionalDriverDOBMonth.SelectedIndex + 1,
+                                    int.Parse(InputAdditionalDriverDOBMonth.SelectedValue),
                                     int.Parse(InputAdditionalDriverDOBDay.SelectedItem.Text)
                                     );
             }
@@ -217,7 +227,7 @@ namespace Insurance4You.Quotation
             {
                 return new DateTime(
                                     int.Parse(InputStartPolicyDateYear.SelectedItem.Text),
-                                    InputStartPolicyDateMonth.SelectedIndex + 1,
+                                    int.Parse(InputStartPolicyDateMonth.SelectedValue),
                                     int.Parse(InputStartPolicyDateDay.SelectedItem.Text)
                                     );
             }
@@ -254,8 +264,101 @@ namespace Insurance4You.Quotation
 
     protected void Button5_Click(object sender, EventArgs e)
     {
-        Server.Transfer("SetQuote.aspx");
+            saveDriver();
+            saveCar();
+            saveDrivingHistory();
+            saveAdditionalDriver();
+            Server.Transfer("SetQuote.aspx");
     }
+
+        private void saveDriver()
+        {
+            using (InsuranceConnection context = new InsuranceConnection())
+            {
+                Driver driver = new Driver();
+                driver.Title = DriverTitle;
+                driver.FirstName = FirstName;
+                driver.SecondName = SecondName;
+                driver.SiteUserId = AppUserId;
+                context.Drivers.Add(driver);
+
+                ContactDetail contact = new ContactDetail();
+                contact.AppUserID = AppUserId;
+                contact.Phone = Phone;
+                contact.DOB = DOB;
+                contact.Email = Email;
+                contact.County = County;
+                contact.AddDriver = false;
+                context.ContactDetails.Add(contact);
+                context.SaveChanges();
+
+            }
+        }
+
+        private void saveCar()
+        {
+            using (InsuranceConnection context = new InsuranceConnection())
+            {
+                Car car = new Car();
+                car.AppUserID = AppUserId;
+                car.RegNumber = Reg;
+                car.DOM = DOM;
+                car.Make = Make;
+                car.Model = Model;
+                car.Engine = Engine;
+                context.Cars.Add(car);
+                context.SaveChanges();
+            }
+        }
+
+        private void saveDrivingHistory()
+        {
+            using (InsuranceConnection context = new InsuranceConnection())
+            {
+                DrivingHistory dh = new DrivingHistory();
+                dh.AppUserId = AppUserId;
+                dh.LicenceNo = LicenceNo;
+                dh.ClaimsDiscount = Bonus;
+                if (ConvictionsFlag)
+                {
+                    dh.ConvictionType = ConvictionType;
+                    dh.ConvictionDate = ConvictionDate;
+                }
+                if (ClaimsFlag)
+                {
+                    dh.AccidentType = ClaimType;
+                    dh.AccidentDate = ClaimDate;
+                }
+                context.DrivingHistories.Add(dh);
+                context.SaveChanges();
+            }
+        }
+
+        private void saveAdditionalDriver()
+        {
+            if (AdditionalDriverFlag.Equals("true"))
+            {
+                using (InsuranceConnection context = new InsuranceConnection())
+                {
+                    AdditionalDriver add = new AdditionalDriver();
+                    add.AppUserId = AppUserId;
+                    add.Title = AdditionalDriverTitle;
+                    add.FirstName = AdditionalDriverFirstName;
+                    add.SecondName = AdditionalDriverSecondName;
+                    context.AdditionalDrivers.Add(add);
+
+                    ContactDetail con = new ContactDetail();
+                    con.AppUserID = AppUserId;
+                    con.Phone = AdditionalDriverPhone;
+                    con.DOB = AdditionalDriverDOB;
+                    con.Email = AdditionalDriverEmail;
+                    con.County = AdditionalDriverCounty;
+                    con.AddDriver = true;
+                    context.ContactDetails.Add(con);
+                    context.SaveChanges();
+                }
+            }
+        }
 
 }
 }

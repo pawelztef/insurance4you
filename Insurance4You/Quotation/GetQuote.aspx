@@ -130,18 +130,18 @@
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                 <asp:DropDownList ID="InputDOBMonth" CssClass=" form-control" runat="server">
                                                     <asp:ListItem Value="">--</asp:ListItem>
-                                                    <asp:ListItem>January</asp:ListItem>
-                                                    <asp:ListItem>February</asp:ListItem>
-                                                    <asp:ListItem>March</asp:ListItem>
-                                                    <asp:ListItem>April</asp:ListItem>
-                                                    <asp:ListItem>May</asp:ListItem>
-                                                    <asp:ListItem>June</asp:ListItem>
-                                                    <asp:ListItem>July</asp:ListItem>
-                                                    <asp:ListItem>August</asp:ListItem>
-                                                    <asp:ListItem>September</asp:ListItem>
-                                                    <asp:ListItem>October</asp:ListItem>
-                                                    <asp:ListItem>November</asp:ListItem>
-                                                    <asp:ListItem>December</asp:ListItem>
+                                                    <asp:ListItem Value="1">January</asp:ListItem>
+                                                    <asp:ListItem Value="2">February</asp:ListItem>
+                                                    <asp:ListItem Value="3">March</asp:ListItem>
+                                                    <asp:ListItem Value="4">April</asp:ListItem>
+                                                    <asp:ListItem Value="5">May</asp:ListItem>
+                                                    <asp:ListItem Value="6">June</asp:ListItem>
+                                                    <asp:ListItem Value="7">July</asp:ListItem>
+                                                    <asp:ListItem Value="8">August</asp:ListItem>
+                                                    <asp:ListItem Value="9">September</asp:ListItem>
+                                                    <asp:ListItem Value="10">October</asp:ListItem>
+                                                    <asp:ListItem Value="11">November</asp:ListItem>
+                                                    <asp:ListItem Value="12">December</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -312,18 +312,18 @@
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                 <asp:DropDownList ID="InputDOMMonth" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="">--</asp:ListItem>
-                                                    <asp:ListItem>January</asp:ListItem>
-                                                    <asp:ListItem>February</asp:ListItem>
-                                                    <asp:ListItem>March</asp:ListItem>
-                                                    <asp:ListItem>April</asp:ListItem>
-                                                    <asp:ListItem>May</asp:ListItem>
-                                                    <asp:ListItem>June</asp:ListItem>
-                                                    <asp:ListItem>July</asp:ListItem>
-                                                    <asp:ListItem>August</asp:ListItem>
-                                                    <asp:ListItem>September</asp:ListItem>
-                                                    <asp:ListItem>October</asp:ListItem>
-                                                    <asp:ListItem>November</asp:ListItem>
-                                                    <asp:ListItem>December</asp:ListItem>
+                                                    <asp:ListItem Value="1">January</asp:ListItem>
+                                                    <asp:ListItem Value="2">February</asp:ListItem>
+                                                    <asp:ListItem Value="3">March</asp:ListItem>
+                                                    <asp:ListItem Value="4">April</asp:ListItem>
+                                                    <asp:ListItem Value="5">May</asp:ListItem>
+                                                    <asp:ListItem Value="6">June</asp:ListItem>
+                                                    <asp:ListItem Value="7">July</asp:ListItem>
+                                                    <asp:ListItem Value="8">August</asp:ListItem>
+                                                    <asp:ListItem Value="9">September</asp:ListItem>
+                                                    <asp:ListItem Value="10">October</asp:ListItem>
+                                                    <asp:ListItem Value="11">November</asp:ListItem>
+                                                    <asp:ListItem Value="12">December</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -384,11 +384,17 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingThree">
-                            <h2 class="panel-title">3. Claims/Convitions </h2>
+                            <h2 class="panel-title">3. Driving History</h2>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                             <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
                             <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="InputLicenceNumber" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Licence No.</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                        <asp:TextBox ID="InputLicenceNumber" CssClass="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="InputBonus" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1   control-label">Years No Claims Bonus</label>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
@@ -482,18 +488,18 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputClaimDateMonth">
                                                         <asp:ListItem Value="">--</asp:ListItem>
-                                                        <asp:ListItem>January</asp:ListItem>
-                                                        <asp:ListItem>February</asp:ListItem>
-                                                        <asp:ListItem>March</asp:ListItem>
-                                                        <asp:ListItem>April</asp:ListItem>
-                                                        <asp:ListItem>May</asp:ListItem>
-                                                        <asp:ListItem>June</asp:ListItem>
-                                                        <asp:ListItem>July</asp:ListItem>
-                                                        <asp:ListItem>August</asp:ListItem>
-                                                        <asp:ListItem>September</asp:ListItem>
-                                                        <asp:ListItem>October</asp:ListItem>
-                                                        <asp:ListItem>November</asp:ListItem>
-                                                        <asp:ListItem>December</asp:ListItem>
+                                                        <asp:ListItem Value="1">January</asp:ListItem>
+                                                        <asp:ListItem Value="2">February</asp:ListItem>
+                                                        <asp:ListItem Value="3">March</asp:ListItem>
+                                                        <asp:ListItem Value="4">April</asp:ListItem>
+                                                        <asp:ListItem Value="5">May</asp:ListItem>
+                                                        <asp:ListItem Value="6">June</asp:ListItem>
+                                                        <asp:ListItem Value="7">July</asp:ListItem>
+                                                        <asp:ListItem Value="8">August</asp:ListItem>
+                                                        <asp:ListItem Value="9">September</asp:ListItem>
+                                                        <asp:ListItem Value="10">October</asp:ListItem>
+                                                        <asp:ListItem Value="11">November</asp:ListItem>
+                                                        <asp:ListItem Value="12">December</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -587,18 +593,18 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputConvictionDateMonth">
                                                         <asp:ListItem Value="">--</asp:ListItem>
-                                                        <asp:ListItem>January</asp:ListItem>
-                                                        <asp:ListItem>February</asp:ListItem>
-                                                        <asp:ListItem>March</asp:ListItem>
-                                                        <asp:ListItem>April</asp:ListItem>
-                                                        <asp:ListItem>May</asp:ListItem>
-                                                        <asp:ListItem>June</asp:ListItem>
-                                                        <asp:ListItem>July</asp:ListItem>
-                                                        <asp:ListItem>August</asp:ListItem>
-                                                        <asp:ListItem>September</asp:ListItem>
-                                                        <asp:ListItem>October</asp:ListItem>
-                                                        <asp:ListItem>November</asp:ListItem>
-                                                        <asp:ListItem>December</asp:ListItem>
+                                                        <asp:ListItem Value="1">January</asp:ListItem>
+                                                        <asp:ListItem Value="2">February</asp:ListItem>
+                                                        <asp:ListItem Value="3">March</asp:ListItem>
+                                                        <asp:ListItem Value="4">April</asp:ListItem>
+                                                        <asp:ListItem Value="5">May</asp:ListItem>
+                                                        <asp:ListItem Value="6">June</asp:ListItem>
+                                                        <asp:ListItem Value="7">July</asp:ListItem>
+                                                        <asp:ListItem Value="8">August</asp:ListItem>
+                                                        <asp:ListItem Value="9">September</asp:ListItem>
+                                                        <asp:ListItem Value="10">October</asp:ListItem>
+                                                        <asp:ListItem Value="11">November</asp:ListItem>
+                                                        <asp:ListItem Value="12">December</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -655,7 +661,7 @@
                             <div class="form-horizontal">
                                 <div class="alert alert-success col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" role="alert">Please enter your details in all the fields below.</div>
                                 <div class="form-group"></div>
-                                
+
 
                                 <asp:HiddenField ID="HiddenFieldAdditionalDriver" Value="false" runat="server" />
 
@@ -745,19 +751,19 @@
                                                 </div>
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <asp:DropDownList runat="server" CssClass="form-control" ID="InputAdditionalDriverDOBMonth">
-                                                        <asp:ListItem Value="">--</asp:ListItem>
-                                                        <asp:ListItem>January</asp:ListItem>
-                                                        <asp:ListItem>February</asp:ListItem>
-                                                        <asp:ListItem>March</asp:ListItem>
-                                                        <asp:ListItem>April</asp:ListItem>
-                                                        <asp:ListItem>May</asp:ListItem>
-                                                        <asp:ListItem>June</asp:ListItem>
-                                                        <asp:ListItem>July</asp:ListItem>
-                                                        <asp:ListItem>August</asp:ListItem>
-                                                        <asp:ListItem>September</asp:ListItem>
-                                                        <asp:ListItem>October</asp:ListItem>
-                                                        <asp:ListItem>November</asp:ListItem>
-                                                        <asp:ListItem>December</asp:ListItem>
+                                                         <asp:ListItem Value="">--</asp:ListItem>
+                                                        <asp:ListItem Value="1">January</asp:ListItem>
+                                                        <asp:ListItem Value="2">February</asp:ListItem>
+                                                        <asp:ListItem Value="3">March</asp:ListItem>
+                                                        <asp:ListItem Value="4">April</asp:ListItem>
+                                                        <asp:ListItem Value="5">May</asp:ListItem>
+                                                        <asp:ListItem Value="6">June</asp:ListItem>
+                                                        <asp:ListItem Value="7">July</asp:ListItem>
+                                                        <asp:ListItem Value="8">August</asp:ListItem>
+                                                        <asp:ListItem Value="9">September</asp:ListItem>
+                                                        <asp:ListItem Value="10">October</asp:ListItem>
+                                                        <asp:ListItem Value="11">November</asp:ListItem>
+                                                        <asp:ListItem Value="12">December</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -922,19 +928,19 @@
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                 <asp:DropDownList runat="server" CssClass="form-control" ID="InputStartPolicyDateMonth">
-                                                    <asp:ListItem Value="">--</asp:ListItem>
-                                                    <asp:ListItem>January</asp:ListItem>
-                                                    <asp:ListItem>February</asp:ListItem>
-                                                    <asp:ListItem>March</asp:ListItem>
-                                                    <asp:ListItem>April</asp:ListItem>
-                                                    <asp:ListItem>May</asp:ListItem>
-                                                    <asp:ListItem>June</asp:ListItem>
-                                                    <asp:ListItem>July</asp:ListItem>
-                                                    <asp:ListItem>August</asp:ListItem>
-                                                    <asp:ListItem>September</asp:ListItem>
-                                                    <asp:ListItem>October</asp:ListItem>
-                                                    <asp:ListItem>November</asp:ListItem>
-                                                    <asp:ListItem>December</asp:ListItem>
+                                                     <asp:ListItem Value="">--</asp:ListItem>
+                                                        <asp:ListItem Value="1">January</asp:ListItem>
+                                                        <asp:ListItem Value="2">February</asp:ListItem>
+                                                        <asp:ListItem Value="3">March</asp:ListItem>
+                                                        <asp:ListItem Value="4">April</asp:ListItem>
+                                                        <asp:ListItem Value="5">May</asp:ListItem>
+                                                        <asp:ListItem Value="6">June</asp:ListItem>
+                                                        <asp:ListItem Value="7">July</asp:ListItem>
+                                                        <asp:ListItem Value="8">August</asp:ListItem>
+                                                        <asp:ListItem Value="9">September</asp:ListItem>
+                                                        <asp:ListItem Value="10">October</asp:ListItem>
+                                                        <asp:ListItem Value="11">November</asp:ListItem>
+                                                        <asp:ListItem Value="12">December</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -1007,7 +1013,8 @@
                     '<%= InputAdditionalDriverSecondName.UniqueID %>': "required",
                     '<%= InputAdditionalDriverEmail.UniqueID %>': { required: true, email: true },
                     '<%= InputStartPolicyDateYear.UniqueID %>': "required",
-                    '<%= CheckBoxAcceptTerms.UniqueID %>': "required"
+                    '<%= CheckBoxAcceptTerms.UniqueID %>': "required",
+                    '<%= InputLicenceNumber.UniqueID %>': "required"
                 },
 
                 messages: {

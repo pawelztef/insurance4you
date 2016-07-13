@@ -166,6 +166,15 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.TextBox InputEngine;
         
         /// <summary>
+        /// InputLicenceNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox InputLicenceNumber;
+        
+        /// <summary>
         /// InputBonus control.
         /// </summary>
         /// <remarks>

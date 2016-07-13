@@ -8,14 +8,18 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        olleh
-    <div>
+        &nbsp;<div>
     
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:Label ID="Label1" runat="server" Text="Title"></asp:Label><br />
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
+        <asp:Label ID="Label2" runat="server" Text="Name"></asp:Label><br />
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br />
+        <asp:Label ID="Label3" runat="server" Text="Sname"></asp:Label><br />
+        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox><br />
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" /><br />
     
     </div>
-        <asp:Label ID="Label1" runat="server" Text="nothing happen"></asp:Label>
+        <asp:Label ID="Label4" runat="server" Text="nothing happen"></asp:Label>
     </form>
 </body>
 </html>
