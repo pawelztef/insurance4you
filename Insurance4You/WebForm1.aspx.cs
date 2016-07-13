@@ -11,7 +11,7 @@ namespace Insurance4You
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string StrCon = "Data Source=DESKTOP-UE02QOC\SQLEXPRESS;Initial Catalog=Insurance4You;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework"
+        string StrCon = "Data Source=DESKTOP-UE02QOC\\SQLEXPRESS;Initial Catalog=Insurance4You;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         OleDbConnection con;
         string query;
         string price;
