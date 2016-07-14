@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Insurance4You.ADO;
 
 namespace Insurance4You.UserPages
 {
@@ -20,7 +21,11 @@ namespace Insurance4You.UserPages
         {
             if (!this.Page.User.Identity.IsAuthenticated) { FormsAuthentication.RedirectToLoginPage(); }
             else { userId = this.Page.User.Identity.GetUserId(); }
-            if (!IsPostBack) { FillData();}
+            if (!IsPostBack)
+            {
+                FillData();
+                FillDetails();
+            }
         }
         protected void OpenDocument(object sender, EventArgs e)
         {
@@ -29,7 +34,6 @@ namespace Insurance4You.UserPages
             int id = int.Parse(GridView1.DataKeys[gr.RowIndex].Value.ToString());
             Download(id);
         }
-
         private void Download(int id)
         {
             DataTable dt = new DataTable();
@@ -55,7 +59,6 @@ namespace Insurance4You.UserPages
             Response.Flush();
             Response.End();
         }
-
         private void FillData()
         {
             DataTable dt = new DataTable();
@@ -67,7 +70,6 @@ namespace Insurance4You.UserPages
                 cn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 dt.Load(reader);
-                Response.Write(dt.Rows.Count);
                 if (dt.Rows.Count > 0)
                 {
                     GridView1.DataSource = dt;
@@ -75,7 +77,6 @@ namespace Insurance4You.UserPages
                 }
             }
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             FileInfo File = new FileInfo(FileUpload1.FileName);
@@ -95,6 +96,57 @@ namespace Insurance4You.UserPages
                 cn.Close();
             }
             FillData();
+        }
+
+
+
+
+
+        private void FillDetails()
+        {
+            using (InsuranceConnection context = new InsuranceConnection())
+            {
+                var queryOne = from p in context.Drivers
+                               where p.SiteUserId == userId
+                               select p;
+                Driver driver = queryOne.FirstOrDefault();
+                var queryTwo = from p in context.ContactDetails
+                               where p.AppUserID == userId
+                               select p;
+                ContactDetail contact = queryTwo.FirstOrDefault();
+                if (driver != null)
+                {
+                    FirstName.Text = driver.FirstName;
+                    LastName.Text = driver.SecondName;
+                }
+                if (contact != null)
+                {
+                    Phone.Text = contact.Phone.ToString();
+                    County.Text = contact.County;
+                    Email.Text = contact.Email;
+                }
+
+
+            }
+        }
+
+
+        protected void UpdateDetails_Click(object sender, EventArgs e)
+        {
+            
+            
+            using (InsuranceConnection context = new InsuranceConnection())
+            {
+                var query = from p in context.ContactDetails
+                            where p.AppUserID == userId
+                            select p;
+                ContactDetail contact = query.FirstOrDefault();
+                contact.Email = UpdateEmail.Text;
+                contact.Phone = int.Parse(UpdatePhone.Text);
+                context.SaveChanges();
+            }
+            FillDetails();
+
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿@import '_variables.scss';
+
+.main {
+    margin-top: 80px;
+    min-height: 700px;
+}
+
+.panel-body {
+    min-height: 500px;
+}
+
+.details {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.buttons {
+    margin-bottom: 30px;
+}
+
+.TdDet {
+    color: $myDarkerGray;
+    font-size: 1.5em;
+    position: relative;
+    top: 6px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
+    box-shadow: inset 0 -2px 0 green;
+    color: green;
+
+    &:hover {
+        color: green;
+    }
+
+    &:active {
+        color: green;
+    }
+}
+
+#MainContent_GridView1 {
+    th{
+        font-size: 2em;
+    }
+  
+    td, th {
+        border: none;
+        padding: 20px;
+    }
+   
+}
+   
+
+table {
+    border: none;
+   
+}
+ 
+.fa-file-text:before {
+        font-size: 3em;
+        color:green;
+    } 

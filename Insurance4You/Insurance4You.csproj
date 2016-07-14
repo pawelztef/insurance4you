@@ -249,6 +249,12 @@
     <Content Include="Content\GetQuote.css">
       <DependentUpon>GetQuote.scss</DependentUpon>
     </Content>
+    <Content Include="Content\Mypage.css">
+      <DependentUpon>MyPage.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\SetPayment.css">
+      <DependentUpon>SetPayment.scss</DependentUpon>
+    </Content>
     <Content Include="Content\SetQuote.css">
       <DependentUpon>SetQuote.scss</DependentUpon>
     </Content>
@@ -256,9 +262,6 @@
     <Content Include="Content\Site - Copy.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\Site.min.css">
-      <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -272,6 +275,7 @@
     <Content Include="apiapp.json" />
     <Content Include="Admin\Web.config" />
     <Content Include="Content\Site.scss" />
+    <Content Include="Quotation\Refusal.aspx" />
     <Content Include="Quotation\SetPayment.aspx" />
     <Content Include="Scripts\SetQuote.js" />
     <Content Include="WebForm1.aspx" />
@@ -288,6 +292,8 @@
     </None>
     <Content Include="Content\GetQuote.scss" />
     <Content Include="Content\_variables.scss" />
+    <Content Include="Content\SetPayment.scss" />
+    <Content Include="Content\MyPage.scss" />
     <None Include="Properties\PublishProfiles\insurance - Web Deploy.pubxml" />
     <Content Include="Quotation\GetQuote.aspx" />
     <Content Include="Default.aspx" />
@@ -531,6 +537,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\BaseRate.cs" />
+    <Compile Include="Logic\GenerateMonths.cs" />
+    <Compile Include="Logic\Plan.cs" />
     <Compile Include="Logic\PremiumCalculator.cs" />
     <Compile Include="Logic\RejectDecision.cs" />
     <Compile Include="Logic\RoleActions.cs" />
@@ -542,6 +550,13 @@
     </Compile>
     <Compile Include="Quotation\GetQuote.aspx.designer.cs">
       <DependentUpon>GetQuote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\Refusal.aspx.cs">
+      <DependentUpon>Refusal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quotation\Refusal.aspx.designer.cs">
+      <DependentUpon>Refusal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Quotation\SetPayment.aspx.cs">
       <DependentUpon>SetPayment.aspx</DependentUpon>

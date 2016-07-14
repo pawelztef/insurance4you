@@ -6,44 +6,56 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Insurance4You.Logic;
 namespace Insurance4You.Quotation
 {
     public partial class SetPayment : System.Web.UI.Page
     {
         string user;
+        decimal quote;
+        DateTime startDate;
+        List<decimal> plan;
+        List<string> months;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             user = this.Page.User.Identity.GetUserId();
-            Label1.Text = retriveAmount().ToString();
+            quote = 1250; //Convert.ToDecimal(Session["quote"]);
+            startDate = DateTime.Now; //Convert.ToDateTime(Session["startDate"]);
+            plan = Plan.generate(quote, 12);
+            months = GenerateMonths.generate(startDate, 12);
+           
+            MonthsList.DataSource = months;
+            MonthsList.DataBind();
 
+            RateList.DataSource = plan;
+            RateList.DataBind();
+           
         }
 
+        
 
 
 
-
-
-
-
-
-        private decimal retriveAmount()
+        private void saveQuote()
         {
             using (InsuranceConnection context = new InsuranceConnection())
             {
-                var query = (from p in context.Quotes
-                             where p.AppUserId == user
-                             orderby p.DOC descending
-                             select p);
-                Quote obj = query.First();
-                return obj.Price;
-
+                Quote price = new Quote();
+                price.AppUserId = user;
+                price.Price = quote;
+                price.RejectDecision = false;
+                price.DOC = DateTime.Today;
+                context.Quotes.Add(price);
+                context.SaveChanges();
+                Session["QuoteID"] = price.Id;
             }
         }
 
-
-        
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            saveQuote();
+        }
     }
 
 }

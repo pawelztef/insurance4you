@@ -13,35 +13,26 @@ namespace Insurance4You
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string user, title, name, sname;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = this.Page.User.Identity.GetUserId();
-
-
-
-
+            DateTime now = DateTime.Now;
+            ListBox1.DataSource = generateMonthsList(now, 12);
+            ListBox1.DataBind();
+            Label4.Text = Session["QuoteID"].ToString();
         }
 
 
-
-        protected void Button1_Click(object sender, EventArgs e)
+        private List<String> generateMonthsList(DateTime date, int s)
         {
-            using (InsuranceConnection context = new InsuranceConnection())
+            List<String> months = new List<String>();
+            DateTime dt = date;
+            for(int i = 0; i< s; i++)
             {
-                Driver driver = new Driver();
-
-                driver.Title = TextBox1.Text;
-                driver.FirstName = TextBox2.Text;
-                driver.SecondName = TextBox3.Text;
-                driver.SiteUserId = user;
-                context.Drivers.Add(driver);
-                context.SaveChanges();
-                Label4.Text = "Check Your DB";
-
+                months.Add(dt.ToString("MMMM"));
+                dt = dt.AddMonths(1);
             }
-
+            return months;
         }
+        
     }
 }

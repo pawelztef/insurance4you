@@ -1,10 +1,12 @@
 ﻿using Insurance4You.ADO;
+using Insurance4You.Logic;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,10 +14,11 @@ namespace Insurance4You.Quotation
 {
     public partial class GetQuote : System.Web.UI.Page
     {
-        string AppUserId;
+        string AppUserId, check;
         protected void Page_Load(object sender, EventArgs e)
         {
-            AppUserId = this.Page.User.Identity.GetUserId();
+            if (!this.Page.User.Identity.IsAuthenticated) { FormsAuthentication.RedirectToLoginPage(); }
+            else { AppUserId = this.Page.User.Identity.GetUserId(); }
 
         }
 
@@ -200,7 +203,7 @@ namespace Insurance4You.Quotation
         {
             get
             {
-                return int.Parse(InputAdditionalDriverPhone.Text);
+                return Convert.ToInt32(InputAdditionalDriverPhone.Text);
             }
         }
         public DateTime AdditionalDriverDOB
@@ -268,7 +271,15 @@ namespace Insurance4You.Quotation
             saveCar();
             saveDrivingHistory();
             saveAdditionalDriver();
-            Server.Transfer("SetQuote.aspx");
+            check = RejectDecision.check(DOB, PenaltyPoints, ClaimsFlag, ConvictionsFlag);
+            if(check.Equals("false"))
+            {
+                Server.Transfer("SetQuote.aspx");
+            }
+            else if (check.Equals("true"))
+            {
+                Server.Transfer("Refusal.aspx"); 
+            }
     }
 
         private void saveDriver()
@@ -291,6 +302,8 @@ namespace Insurance4You.Quotation
                 contact.AddDriver = false;
                 context.ContactDetails.Add(contact);
                 context.SaveChanges();
+                Session["DriverID"] = driver.Id;
+              
 
             }
         }
@@ -308,6 +321,7 @@ namespace Insurance4You.Quotation
                 car.Engine = Engine;
                 context.Cars.Add(car);
                 context.SaveChanges();
+                Session["CarID"] = car.Id;
             }
         }
 
@@ -356,7 +370,12 @@ namespace Insurance4You.Quotation
                     con.AddDriver = true;
                     context.ContactDetails.Add(con);
                     context.SaveChanges();
+                    Session["AddDriverID"] = add.Id;
                 }
+            }
+            else
+            {
+                Session["AddDriverID"] = false;
             }
         }
 

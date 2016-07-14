@@ -1,7 +1,17 @@
 ﻿[
   {
     "outputFile": "Content/Site.css",
-    "inputFile": "Content/Site.scss"
+    "inputFile": "Content/Site.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/Mypage.css",
+    "inputFile": "Content/Mypage.scss",
+    "minify": {
+      "enabled": false
+    }
   },
   {
     "outputFile": "Content/GetQuote.css",
@@ -14,6 +24,14 @@
   {
     "outputFile": "Content/SetQuote.css",
     "inputFile": "Content/SetQuote.scss",
+    "sourceMap": true,
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/SetPayment.css",
+    "inputFile": "Content/SetPayment.scss",
     "sourceMap": true,
     "minify": {
       "enabled": false

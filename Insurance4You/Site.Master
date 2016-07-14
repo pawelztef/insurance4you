@@ -13,7 +13,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    
+
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -31,7 +31,7 @@
     <!-- place for styles -->
     <asp:ContentPlaceHolder ID="Styles" runat="server">
     </asp:ContentPlaceHolder>
-  
+
 </head>
 <body>
     <form id="form" runat="server">
@@ -52,12 +52,12 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-               
+
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
-        
+
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -70,11 +70,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li><asp:Button ID="Button1" CssClass="btn btn-success" runat="server" Text="Get Quote" PostBackUrl="~/Quotation/GetQuote.aspx" /></li>
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" id="ownerLink1" visible="false" href="~/Admin/AssingRoles.aspx">Assing Roles</a></li>
                         <li><a runat="server" id="userLink1" visible="false" href="~/UserPages/ManageDocuments.aspx">My Details</a></li>
+                        
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -99,11 +100,11 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <footer>
-            <hr />
+                <hr />
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>
         </div>
     </form>
-   
+
 </body>
 </html>

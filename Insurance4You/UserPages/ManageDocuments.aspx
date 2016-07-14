@@ -1,34 +1,165 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageDocuments.aspx.cs" Inherits="Insurance4You.UserPages.ManageDocuments" %>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="Styles" runat="server">
+    <link rel="stylesheet" href="../Content/MyPage.css" />
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Remove those  after styling -->
-    <br>
-    <br />
-    <br />
-    <br>
-    <div class="row">
-        <div class="container">
-            <div class="jumbotron">
-                <asp:Label Text="Upload Your Documents Here" runat="server"></asp:Label>
-                <asp:FileUpload ID="FileUpload1" runat="server" /><asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+    <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="~/Scripts/jquery.validate.js" />
+        </Scripts>
+    </asp:ScriptManagerProxy>
+    <div class="row main">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#ContactDetails" aria-controls="ContactDetails" role="tab" data-toggle="tab">My Details</a></li>
+                        <li role="presentation"><a href="#UploadDocuments" aria-controls="UploadDocuments" role="tab" data-toggle="tab">Upload Documents</a></li>
+                        <li role="presentation"><a href="#Messages" aria-controls="Messages" role="tab" data-toggle="tab">Messages</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="ContactDetails">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 details">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <h4>First Name:</h4>
+                                            </td>
+                                            <td>
+                                                <asp:Label CssClass="TdDet" ID="FirstName" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>Last Name:</h4>
+                                            </td>
+                                            <td>
+                                                <asp:Label CssClass="TdDet" ID="LastName" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>Phone Number:</h4>
+                                            </td>
+                                            <td>
+                                                <asp:Label CssClass="TdDet" ID="Phone" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>Email:</h4>
+                                            </td>
+                                            <td>
+                                                <asp:Label CssClass="TdDet" ID="Email" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>County:</h4>
+                                            </td>
+                                            <td>
+                                                <asp:Label CssClass="TdDet" ID="County" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Update Your Details</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-8 col-md-offset-1">
+                                                            <div class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label for="UpdatePhone" class="col-sm-2 control-label">Phone</label>
+                                                                    <div class="col-sm-10">
+                                                                        <asp:TextBox ID="UpdatePhone" CssClass="form-control" runat="server"></asp:TextBox>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-8 col-md-offset-1">
+                                                            <div class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label for="UpdatePhone" class="col-sm-2 control-label">Email</label>
+                                                                    <div class="col-sm-10">
+                                                                        <asp:TextBox ID="UpdateEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <asp:Button ID="SaveUpdates" CssClass="btn btn-success" runat="server" OnClick="UpdateDetails_Click" Text="Save" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Of Modal -->
+                                </div>
+                            </div>
+                            <div class="row text-center buttons">
+                                <asp:Button ID="Button2" runat="server" data-toggle="modal" data-target="#myModal" CssClass="btn btn-default" Text="Update" />
+                                <asp:Button ID="Button3" runat="server" CssClass="btn btn-default" PostBackUrl="~/Account/ResetPassword.aspx" Text="Change Password" />
+                            </div>
+                        </div>
+                        <!-- panel two -->
+                        <div role="tabpanel" class="tab-pane" id="UploadDocuments">
+                            <div class="row">
+                                <div class="col-md-5 col-md-offset-1">
+                                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id">
+                                        <Columns>
+                                            <asp:TemplateField  HeaderText="Your Documents:">
+                                                <ItemTemplate>
+                                                    <i class="fa fa-file-text"></i>
+                                                    <asp:LinkButton ID="LinkButton1" OnClick="OpenDocument" runat="server" Text='<%# Eval("DocumentName") %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                                <div class="col-md-5">
+                                    <asp:Label Text="Upload Your Documents Here" runat="server"></asp:Label>
+                                    <asp:FileUpload ID="FileUpload1" runat="server" /><asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel three -->
+                        <div role="tabpanel" class="tab-pane" id="Messages">three</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="container">
-            <div class="jumbotron">
-                <asp:Label ID="Label1" runat="server"></asp:Label>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id">
-                    <Columns>
-                        <asp:TemplateField HeaderText="Your Documents:">
-                            <ItemTemplate>
-                                <i class="fa fa-file-text"></i>
-                                <asp:LinkButton ID="LinkButton1" OnClick="OpenDocument" runat="server" Text='<%# Eval("DocumentName") %>'></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-            </div>
-        </div>
-    </div>
+    <script>
+        $(function () {
+            var x = $('#form');
+            $(x).validate({
+                rules: {
+
+                    '<%= UpdatePhone.UniqueID %>': { required: true, number: true },
+                    '<%= UpdateEmail.UniqueID %>': { required: true, email: true },
+
+                },
+                errorPlacement: function (error, element) {
+                    element.after(error);
+                    error.css("color", "red");
+                    error.css('position', 'relative');
+                },
+            });
+        });
+    </script>
 </asp:Content>

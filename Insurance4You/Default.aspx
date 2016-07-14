@@ -42,7 +42,9 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+
             </div>
+
         </div>
     </div>
     <div class="container def-page-info">
@@ -89,8 +91,10 @@
                         <div class="thumbnail">
                             <img src="/Images/thumbnail2.jpg" width="100px">
                             <div class="caption">
-                                <h5 id="head1">Best Car<br /> For Newbie.</h5>
-                                <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                <h5 id="head1">Best Car<br />
+                                    For Newbie.</h5>
+                                <p>
+                                    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
                                 <a href="#">read more <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                                 </p>
                             </div>
@@ -101,7 +105,8 @@
                             <img src="/Images/thumbnail1.jpg" width="100px">
                             <div class="caption">
                                 <h5 id="head2">How can I lower insurance costs?</h5>
-                                <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                <p>
+                                    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
                                 <a href="#">read more <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                                 </p>
                             </div>
