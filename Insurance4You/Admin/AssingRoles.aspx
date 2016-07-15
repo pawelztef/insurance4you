@@ -32,7 +32,7 @@
 
                         <div role="tabpanel" class="tab-pane active" id="Policies">
                             Policies
-                            <asp:GridView ID="GridView1" runat="server">
+                            <asp:GridView ID="GridView1" runat="server" DataSourceID="EntityDataSource1">
                             </asp:GridView>
                         </div>
                         <div role="tabpanel" class="tab-pane " id="ManageRoles">
