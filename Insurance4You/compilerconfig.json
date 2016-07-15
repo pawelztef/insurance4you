@@ -7,6 +7,20 @@
     }
   },
   {
+    "outputFile": "Content/AssignRoles.css",
+    "inputFile": "Content/AssignRoles.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/LogIn.css",
+    "inputFile": "Content/LogIn.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
     "outputFile": "Content/Mypage.css",
     "inputFile": "Content/Mypage.scss",
     "minify": {
@@ -16,25 +30,29 @@
   {
     "outputFile": "Content/GetQuote.css",
     "inputFile": "Content/GetQuote.scss",
-    "sourceMap": true,
     "minify": {
       "enabled": false
-    }
+    },
+    "sourceMap": true
   },
   {
     "outputFile": "Content/SetQuote.css",
     "inputFile": "Content/SetQuote.scss",
-    "sourceMap": true,
     "minify": {
       "enabled": false
-    }
+    },
+    "sourceMap": true
   },
   {
     "outputFile": "Content/SetPayment.css",
     "inputFile": "Content/SetPayment.scss",
-    "sourceMap": true,
     "minify": {
       "enabled": false
-    }
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFile": "Content/AssignRoles.css",
+    "inputFile": "Content/AssignRoles.scss"
   }
 ]

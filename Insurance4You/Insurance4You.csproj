@@ -242,12 +242,21 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Contact.aspx" />
+    <Content Include="Content\AssignRoles.css">
+      <DependentUpon>AssignRoles.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\AssignRoles.min.css">
+      <DependentUpon>AssignRoles.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap - Copy.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min - Copy.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\GetQuote.css">
       <DependentUpon>GetQuote.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\LogIn.css">
+      <DependentUpon>LogIn.scss</DependentUpon>
     </Content>
     <Content Include="Content\Mypage.css">
       <DependentUpon>MyPage.scss</DependentUpon>
@@ -271,12 +280,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\header1.jpg" />
+    <Content Include="Images\header2.jpg" />
+    <Content Include="Images\header3.jpg" />
+    <Content Include="Images\page-under-construction1.jpg" />
+    <Content Include="Images\thumbnail1.jpg" />
+    <Content Include="Images\thumbnail2.jpg" />
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
     <Content Include="apiapp.json" />
     <Content Include="Admin\Web.config" />
     <Content Include="Content\Site.scss" />
     <Content Include="Quotation\Refusal.aspx" />
     <Content Include="Quotation\SetPayment.aspx" />
+    <Content Include="Quotation\UnderConstruction.aspx" />
     <Content Include="Scripts\SetQuote.js" />
     <Content Include="WebForm1.aspx" />
     <EntityDeploy Include="ADO\Model1.edmx">
@@ -294,6 +310,8 @@
     <Content Include="Content\_variables.scss" />
     <Content Include="Content\SetPayment.scss" />
     <Content Include="Content\MyPage.scss" />
+    <Content Include="Content\LogIn.scss" />
+    <Content Include="Content\AssignRoles.scss" />
     <None Include="Properties\PublishProfiles\insurance - Web Deploy.pubxml" />
     <Content Include="Quotation\GetQuote.aspx" />
     <Content Include="Default.aspx" />
@@ -572,6 +590,13 @@
     <Compile Include="Quotation\SetQuote.aspx.designer.cs">
       <DependentUpon>SetQuote.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Quotation\UnderConstruction.aspx.cs">
+      <DependentUpon>UnderConstruction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quotation\UnderConstruction.aspx.designer.cs">
+      <DependentUpon>UnderConstruction.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -611,7 +636,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

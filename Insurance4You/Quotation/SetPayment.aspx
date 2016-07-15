@@ -61,7 +61,6 @@
                             <div class="panel-group">
                                 <div class="row">
                                     <div class="text-center">
-                                        <asp:Label ID="Label" Text="nothing" runat="server"></asp:Label>
                                         <asp:Button ID="Button5" CssClass="btn btn-success btn-lg " runat="server" Text="Pay Now" OnClick="Button5_Click" />
                                     </div>
                                 </div>

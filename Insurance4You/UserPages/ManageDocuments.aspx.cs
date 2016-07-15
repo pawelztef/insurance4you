@@ -79,22 +79,26 @@ namespace Insurance4You.UserPages
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            FileInfo File = new FileInfo(FileUpload1.FileName);
-            byte[] DocumentContent = FileUpload1.FileBytes;
-            string FileName = File.Name;
-            string FileExtension = File.Extension;
-            using (SqlConnection cn = new SqlConnection(ConnectionStr))
+            if (FileUpload1.FileName != "")
             {
-                SqlCommand cmd = new SqlCommand("SaveDocument", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@DocumentName", SqlDbType.VarChar).Value = FileName;
-                cmd.Parameters.Add("@DocumentContent", SqlDbType.VarBinary).Value = DocumentContent;
-                cmd.Parameters.Add("@DocumentExtension", SqlDbType.VarChar).Value = FileExtension;
-                cmd.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = userId;
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                cn.Close();
+                FileInfo File = new FileInfo(FileUpload1.FileName);
+                byte[] DocumentContent = FileUpload1.FileBytes;
+                string FileName = File.Name;
+                string FileExtension = File.Extension;
+                using (SqlConnection cn = new SqlConnection(ConnectionStr))
+                {
+                    SqlCommand cmd = new SqlCommand("SaveDocument", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@DocumentName", SqlDbType.VarChar).Value = FileName;
+                    cmd.Parameters.Add("@DocumentContent", SqlDbType.VarBinary).Value = DocumentContent;
+                    cmd.Parameters.Add("@DocumentExtension", SqlDbType.VarChar).Value = FileExtension;
+                    cmd.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = userId;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                }
             }
+
             FillData();
         }
 
@@ -142,7 +146,7 @@ namespace Insurance4You.UserPages
                             select p;
                 ContactDetail contact = query.FirstOrDefault();
                 contact.Email = UpdateEmail.Text;
-                contact.Phone = int.Parse(UpdatePhone.Text);
+                contact.Phone = UpdatePhone.Text;
                 context.SaveChanges();
             }
             FillDetails();

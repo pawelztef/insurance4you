@@ -17,6 +17,7 @@ namespace Insurance4You.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            FeedbackLabel1.Text = "";
             if (!Page.IsPostBack)
             {
                 DisplayRoles();
@@ -24,6 +25,7 @@ namespace Insurance4You.Admin
                 BindRolesToList();
                 CheckRolesForSelectedUser();
                 RoleBox1.Text = string.Empty;
+
             }
         }
 
@@ -36,7 +38,7 @@ namespace Insurance4You.Admin
             BindRolesToList();
             RoleBox1.Text = string.Empty;
         }
-        
+
         private void CreateRole(string name)
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -69,14 +71,24 @@ namespace Insurance4You.Admin
 
             // Get the RoleNameLabel
             Label RoleNameLabel = RoleList.Rows[e.RowIndex].FindControl("RoleNameLabel") as Label;
-            
+
             Models.ApplicationDbContext context = new ApplicationDbContext();
 
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleMgr = new RoleManager<IdentityRole>(roleStore);
-
             var role = roleMgr.FindByName(RoleNameLabel.Text);
-            roleMgr.Delete(role);
+
+            if (roleMgr.RoleExists(role.Name))
+            {
+                // Create role
+                roleMgr.Delete(role);
+                FeedbackLabel1.Text = "Role deleted Sucessfully";
+            }
+            else
+            {
+                FeedbackLabel1.Text = "Role doesnt exists";
+            }
+
             BindRolesToList();
             DisplayRoles();
         }
@@ -110,7 +122,7 @@ namespace Insurance4You.Admin
             string selectedUserName = UserList1.SelectedValue;
             IdentityUser user = userMgr.FindByName(selectedUserName);
             var UsersRoleList = userMgr.GetRoles(user.Id);
-          
+
             foreach (RepeaterItem ri in UserRoleList.Items)
             {
                 // Programmatically reference the CheckBox 
@@ -135,7 +147,7 @@ namespace Insurance4You.Admin
             var roleMngr = new RoleManager<IdentityRole>(roleStore);
             var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-           
+
             // Get the currently selected user and role 
             // Reference the CheckBox that raised this event 
             CheckBox RoleCheckBox = sender as CheckBox;
@@ -147,13 +159,13 @@ namespace Insurance4You.Admin
             if (RoleCheckBox.Checked)
             {
                 userMgr.AddToRole(user.Id, roleName);
-                  
+
                 //ActionStatus.Text = string.Format("User {0} was added to role {1}.", selectedUserName, roleName);
             }
             else
             {
                 userMgr.RemoveFromRole(user.Id, roleName);
-               
+
                 // ActionStatus.Text = string.Format("User {0} was removed from role {1}.", selectedUserName, roleName);
 
             }
@@ -176,9 +188,9 @@ namespace Insurance4You.Admin
             //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
             //SendEmail(callbackUrl);
             //FeedbackLabel1.Text = "An email has been sent to your account. Please view the email and confirm your account to complete the registration process.";
-           // Models.ApplicationDbContext context = new ApplicationDbContext();
-           // var userStore = new UserStore<ApplicationUser>(context);
-           // var userManager = new UserManager<ApplicationUser>(userStore);
+            // Models.ApplicationDbContext context = new ApplicationDbContext();
+            // var userStore = new UserStore<ApplicationUser>(context);
+            // var userManager = new UserManager<ApplicationUser>(userStore);
             var userToInsert = new ApplicationUser { UserName = email, Email = email, EmailConfirmed = true };
 
             manager.Create(userToInsert, "1");
@@ -187,7 +199,7 @@ namespace Insurance4You.Admin
             EmailTextBox.Text = string.Empty;
             BindUsersToUserList();
 
-    }
+        }
         private void SendEmail(string callbackUrl)
         {
             SmtpClient client = new SmtpClient();

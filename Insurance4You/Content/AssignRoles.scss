@@ -1,0 +1,67 @@
+﻿@import "_variables.scss";
+.main {
+    margin-top: 60px;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
+    box-shadow: inset 0 -2px 0 green;
+    color: green;
+
+    &:hover {
+        color: green;
+    }
+
+    &:active {
+        color: green;
+    }
+}
+#selectUserLabel{
+    margin-left: -17px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+#MainContent_UserList1{
+    margin-left: 17px;
+    margin-top: 12px;
+    width: 195px;
+}
+.repeater {
+    margin-top: 12px;
+    input[type="checkbox"]:checked:after, .checkbox input[type="checkbox"]:checked:after, .checkbox-inline input[type="checkbox"]:checked:after {
+        background-color: green;
+            border-color: green;
+    }
+}
+#MainContent_RoleList{
+    td, th {
+        border: none;
+      
+    }
+    td {
+          padding: 5px;
+    }
+   
+}
+   a {
+       color: $myDarkerGray;
+       &:hover {
+           color: $myRed;
+       }
+   }
+
+table {
+    border: none;
+   
+}
+#MainContent_FeedbackLabel1 {
+    position: relative;
+    top: 10px;
+    left: 10px;
+   
+    color: $myRed;
+}
+.btn-success {
+    margin-top: 20px;
+}
+.newRoleInput{
+    margin-top: 20px;
+}

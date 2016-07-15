@@ -49,11 +49,23 @@
     }
    
 }
-   
+   a {
+       color: $myDarkerGray;
+   }
 
 table {
     border: none;
    
+}
+.panel-body .message {
+    min-height: 30px;
+}
+.upload {
+    margin-top: 30px;
+    #MainContent_Button1{
+        margin-top: 20px;
+    }
+    
 }
  
 .fa-file-text:before {

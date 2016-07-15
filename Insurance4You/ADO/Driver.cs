@@ -20,5 +20,7 @@ namespace Insurance4You.ADO
         public string SecondName { get; set; }
         public string SiteUserId { get; set; }
         public Nullable<int> PolicyId { get; set; }
+    
+        public virtual Policy Policy { get; set; }
     }
 }

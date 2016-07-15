@@ -122,7 +122,7 @@
                                 <div class="col-md-5 col-md-offset-1">
                                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id">
                                         <Columns>
-                                            <asp:TemplateField  HeaderText="Your Documents:">
+                                            <asp:TemplateField HeaderText="Your Documents">
                                                 <ItemTemplate>
                                                     <i class="fa fa-file-text"></i>
                                                     <asp:LinkButton ID="LinkButton1" OnClick="OpenDocument" runat="server" Text='<%# Eval("DocumentName") %>'></asp:LinkButton>
@@ -131,14 +131,24 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
-                                <div class="col-md-5">
-                                    <asp:Label Text="Upload Your Documents Here" runat="server"></asp:Label>
-                                    <asp:FileUpload ID="FileUpload1" runat="server" /><asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+                                <div class="col-md-5 col-md-offset-1 upload">
+
+                                    <h5>Upload Here</h5>
+                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Save" OnClick="Button1_Click" />
                                 </div>
                             </div>
                         </div>
                         <!-- panel three -->
-                        <div role="tabpanel" class="tab-pane" id="Messages">three</div>
+                        <div role="tabpanel" class="tab-pane" id="Messages">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Example Message</div>
+                                <div class="panel-body message">
+                                    <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.</p>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -33,8 +33,32 @@ namespace Insurance4You.Quotation
            
         }
 
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            saveQuote();
+            savePolicy();
+            Response.Redirect("UnderConstruction.aspx");
+        }
         
-
+        private void savePolicy()
+        {
+            using (InsuranceConnection context = new InsuranceConnection())
+            {
+                Policy policy = new Policy();
+                policy.CarID = Convert.ToInt16(Session["CarID"]);
+                policy.DriverID = Convert.ToInt16(Session["DriverID"]);
+                if (!(Convert.ToString(Session["AddDriverID"]).Equals("false")))
+                {
+                    policy.AdditionalDriverID = Convert.ToInt16(Session["AddDriverID"]);
+                }
+                policy.Quote = Convert.ToDecimal(Session["quote"]);
+                DateTime endDate = Convert.ToDateTime(Session["startDate"]).AddYears(1);
+                policy.StartDate = Convert.ToDateTime(Session["startDate"]);
+                policy.EndDate = endDate;
+                context.Policies.Add(policy);
+                context.SaveChanges();
+            }
+        }
 
 
         private void saveQuote()
@@ -52,10 +76,7 @@ namespace Insurance4You.Quotation
             }
         }
 
-        protected void Button5_Click(object sender, EventArgs e)
-        {
-            saveQuote();
-        }
+        
     }
 
 }

@@ -16,7 +16,7 @@ namespace Insurance4You.ADO
     {
         public int Id { get; set; }
         public string AppUserID { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public System.DateTime DOB { get; set; }
         public string Email { get; set; }
         public string County { get; set; }

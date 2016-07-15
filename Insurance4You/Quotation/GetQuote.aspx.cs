@@ -50,11 +50,11 @@ namespace Insurance4You.Quotation
                 return InputEmail.Text;
             }
         }
-        public int Phone
+        public string Phone
         {
             get
             {
-                return int.Parse(InputPhone.Text);
+                return InputPhone.Text;
             }
         }
         public DateTime DOB
@@ -199,11 +199,11 @@ namespace Insurance4You.Quotation
                 return InputAdditionalDriverEmail.Text; 
             }
         } 
-        public int AdditionalDriverPhone
+        public string AdditionalDriverPhone
         {
             get
             {
-                return Convert.ToInt32(InputAdditionalDriverPhone.Text);
+                return InputAdditionalDriverPhone.Text;
             }
         }
         public DateTime AdditionalDriverDOB

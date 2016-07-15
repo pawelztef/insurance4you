@@ -50,7 +50,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AppUserID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DOB" Type="date" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="County" Type="nvarchar" MaxLength="50" />
@@ -90,6 +90,8 @@
           <Property Name="DriverID" Type="int" Nullable="false" />
           <Property Name="AdditionalDriverID" Type="int" />
           <Property Name="PaymentID" Type="int" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="Quote" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Checked" Type="bit" Nullable="false" />
           <Property Name="Rejected" Type="bit" />
@@ -104,6 +106,18 @@
           <Property Name="RejectDecision" Type="bit" Nullable="false" />
           <Property Name="DOC" Type="date" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Driver_Policy">
+          <End Role="Policy" Type="Self.Policy" Multiplicity="0..1" />
+          <End Role="Driver" Type="Self.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Insurance4YouModelStoreContainer">
           <EntitySet Name="AdditionalDriver" EntityType="Self.AdditionalDriver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
@@ -113,6 +127,10 @@
           <EntitySet Name="DrivingHistory" EntityType="Self.DrivingHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Policy" EntityType="Self.Policy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quote" EntityType="Self.Quote" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Driver_Policy" Association="Self.FK_Driver_Policy">
+            <End Role="Policy" EntitySet="Policy" />
+            <End Role="Driver" EntitySet="Driver" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -157,6 +175,7 @@
           <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SiteUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PolicyId" Type="Int32" />
+          <NavigationProperty Name="Policy" Relationship="Insurance4YouModel.FK_Driver_Policy" FromRole="Driver" ToRole="Policy" />
         </EntityType>
         <EntityContainer Name="InsuranceConnection" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
@@ -164,9 +183,13 @@
           <EntitySet Name="Drivers" EntityType="Self.Driver" />
           <EntitySet Name="DrivingHistories" EntityType="Insurance4YouModel.DrivingHistory" />
           <EntitySet Name="AdditionalDrivers" EntityType="Insurance4YouModel.AdditionalDriver" />
-          <EntitySet Name="ContactDetails" EntityType="Insurance4YouModel.ContactDetail" />
-          <EntitySet Name="Policies" EntityType="Insurance4YouModel.Policy" />
           <EntitySet Name="Quotes" EntityType="Insurance4YouModel.Quote" />
+          <EntitySet Name="Policies" EntityType="Insurance4YouModel.Policy" />
+          <AssociationSet Name="FK_Driver_Policy" Association="Insurance4YouModel.FK_Driver_Policy">
+            <End Role="Policy" EntitySet="Policies" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <EntitySet Name="ContactDetails" EntityType="Insurance4YouModel.ContactDetail" />
         </EntityContainer>
         <EntityType Name="DrivingHistory">
           <Key>
@@ -192,17 +215,15 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SecondName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="ContactDetail">
+        <EntityType Name="Quote">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AppUserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddDriver" Type="Boolean" Nullable="false" />
+          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="RejectDecision" Type="Boolean" Nullable="false" />
+          <Property Name="DOC" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Policy">
           <Key>
@@ -213,19 +234,36 @@
           <Property Name="DriverID" Type="Int32" Nullable="false" />
           <Property Name="AdditionalDriverID" Type="Int32" />
           <Property Name="PaymentID" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Quote" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Checked" Type="Boolean" Nullable="false" />
           <Property Name="Rejected" Type="Boolean" />
+          <NavigationProperty Name="Drivers" Relationship="Insurance4YouModel.FK_Driver_Policy" FromRole="Policy" ToRole="Driver" />
         </EntityType>
-        <EntityType Name="Quote">
+        <Association Name="FK_Driver_Policy">
+          <End Type="Insurance4YouModel.Policy" Role="Policy" Multiplicity="0..1" />
+          <End Type="Insurance4YouModel.Driver" Role="Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContactDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="RejectDecision" Type="Boolean" Nullable="false" />
-          <Property Name="DOC" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AppUserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddDriver" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -302,15 +340,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ContactDetails">
-            <EntityTypeMapping TypeName="Insurance4YouModel.ContactDetail">
-              <MappingFragment StoreEntitySet="ContactDetails">
-                <ScalarProperty Name="AddDriver" ColumnName="AddDriver" />
-                <ScalarProperty Name="County" ColumnName="County" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="AppUserID" ColumnName="AppUserID" />
+          <EntitySetMapping Name="Quotes">
+            <EntityTypeMapping TypeName="Insurance4YouModel.Quote">
+              <MappingFragment StoreEntitySet="Quote">
+                <ScalarProperty Name="DOC" ColumnName="DOC" />
+                <ScalarProperty Name="RejectDecision" ColumnName="RejectDecision" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -321,6 +357,8 @@
                 <ScalarProperty Name="Rejected" ColumnName="Rejected" />
                 <ScalarProperty Name="Checked" ColumnName="Checked" />
                 <ScalarProperty Name="Quote" ColumnName="Quote" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="AdditionalDriverID" ColumnName="AdditionalDriverID" />
                 <ScalarProperty Name="DriverID" ColumnName="DriverID" />
@@ -329,13 +367,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Quotes">
-            <EntityTypeMapping TypeName="Insurance4YouModel.Quote">
-              <MappingFragment StoreEntitySet="Quote">
-                <ScalarProperty Name="DOC" ColumnName="DOC" />
-                <ScalarProperty Name="RejectDecision" ColumnName="RejectDecision" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+          <EntitySetMapping Name="ContactDetails">
+            <EntityTypeMapping TypeName="Insurance4YouModel.ContactDetail">
+              <MappingFragment StoreEntitySet="ContactDetails">
+                <ScalarProperty Name="AddDriver" ColumnName="AddDriver" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AppUserID" ColumnName="AppUserID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -31,6 +31,7 @@ namespace Insurance4You.Quotation
 
         protected void PaymentButton_Click(object sender, EventArgs e)
         {
+           
         }
         private decimal Price()
         {

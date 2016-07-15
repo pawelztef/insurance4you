@@ -31,15 +31,6 @@ namespace Insurance4You.Quotation {
         protected global::System.Web.UI.WebControls.Repeater RateList;
         
         /// <summary>
-        /// Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label;
-        
-        /// <summary>
         /// Button5 control.
         /// </summary>
         /// <remarks>
