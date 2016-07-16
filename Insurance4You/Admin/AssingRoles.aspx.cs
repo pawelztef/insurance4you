@@ -10,6 +10,10 @@ using System.Web.UI.WebControls;
 using Insurance4You.Logic;
 using Microsoft.AspNet.Identity.Owin;
 using System.Net.Mail;
+using Insurance4You.ADO;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Insurance4You.Admin
 {
@@ -25,8 +29,9 @@ namespace Insurance4You.Admin
                 BindRolesToList();
                 CheckRolesForSelectedUser();
                 RoleBox1.Text = string.Empty;
-
+              
             }
+          
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -38,7 +43,6 @@ namespace Insurance4You.Admin
             BindRolesToList();
             RoleBox1.Text = string.Empty;
         }
-
         private void CreateRole(string name)
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -56,7 +60,6 @@ namespace Insurance4You.Admin
                 FeedbackLabel1.Text = "Role already exists";
             }
         }
-
         private void DisplayRoles()
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -65,7 +68,6 @@ namespace Insurance4You.Admin
             RoleList.DataSource = roleMngr.Roles.ToList();
             RoleList.DataBind();
         }
-
         protected void RoleList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
@@ -92,8 +94,6 @@ namespace Insurance4You.Admin
             BindRolesToList();
             DisplayRoles();
         }
-
-
         private void BindUsersToUserList()
         {
 
@@ -102,7 +102,6 @@ namespace Insurance4You.Admin
             UserList1.DataSource = userMgr.Users.ToList();
             UserList1.DataBind();
         }
-
         private void BindRolesToList()
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -111,7 +110,6 @@ namespace Insurance4You.Admin
             UserRoleList.DataSource = roleMngr.Roles.ToList();
             UserRoleList.DataBind();
         }
-
         private void CheckRolesForSelectedUser()
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -134,12 +132,10 @@ namespace Insurance4You.Admin
                     RoleCheckBox.Checked = false;
             }
         }
-
         protected void UserList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             CheckRolesForSelectedUser();
         }
-
         protected void RoleCheckBox_CheckChanged(object sender, EventArgs e)
         {
             Models.ApplicationDbContext context = new ApplicationDbContext();
@@ -173,7 +169,6 @@ namespace Insurance4You.Admin
 
 
         }
-
         protected void Button2_Click(object sender, EventArgs e)
         {
             string name = EmailTextBox.Text;
@@ -221,6 +216,45 @@ namespace Insurance4You.Admin
 
 
 
+        }
+
+
+
+
+        protected void FindDriverButton_Click(object sender, EventArgs e)
+        {
+                   }
+        protected void OpenDocument(object sender, EventArgs e)
+        {
+            LinkButton lnk = (LinkButton)sender;
+            GridViewRow gr = (GridViewRow)lnk.NamingContainer;
+            int id = int.Parse(DriverDocumments.DataKeys[gr.RowIndex].Value.ToString());
+            Download(id);
+        }
+        private void Download(int id)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection cn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("GetDocument", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                cn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                dt.Load(reader);
+            }
+            string name = dt.Rows[0]["DocumentName"].ToString();
+            byte[] documentbytes = (byte[])dt.Rows[0]["DocumentContent"];
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/octet-stream";
+            Response.AddHeader("Content-Disposition", string.Format("attatchment; filename={0}", name));
+            Response.AddHeader("Content-Length", documentbytes.Length.ToString());
+            Response.BinaryWrite(documentbytes);
+            Response.Flush();
+            Response.End();
         }
     }
 }
