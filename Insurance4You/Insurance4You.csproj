@@ -239,6 +239,8 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\AssingRoles.aspx" />
+    <Content Include="Admin\Chat.aspx" />
+    <Content Include="Admin\Policies.aspx" />
     <Content Include="ADO\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -312,6 +314,7 @@
     <Content Include="ADO\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Admin\AdminMaster.Master" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -489,12 +492,33 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AssingRoles.aspx.cs">
       <DependentUpon>AssingRoles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AssingRoles.aspx.designer.cs">
       <DependentUpon>AssingRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Policies.aspx.cs">
+      <DependentUpon>Policies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Policies.aspx.designer.cs">
+      <DependentUpon>Policies.aspx</DependentUpon>
     </Compile>
     <Compile Include="ADO\AdditionalDriver.cs">
       <DependentUpon>Model1.tt</DependentUpon>

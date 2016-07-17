@@ -1,7 +1,9 @@
 ﻿@import "_variables.scss";
+
 .main {
     margin-top: 60px;
 }
+
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
     box-shadow: inset 0 -2px 0 green;
     color: green;
@@ -14,110 +16,199 @@
         color: green;
     }
 }
-#selectUserLabel{
+
+#selectUserLabel {
     margin-left: -17px;
     font-size: 1.5em;
     font-weight: 500;
 }
-#MainContent_UserList1{
+
+#MainContent_UserList1 {
     margin-left: 17px;
     margin-top: 12px;
     width: 195px;
 }
+
 .repeater {
     margin-top: 12px;
+
     input[type="checkbox"]:checked:after, .checkbox input[type="checkbox"]:checked:after, .checkbox-inline input[type="checkbox"]:checked:after {
         background-color: green;
-            border-color: green;
+        border-color: green;
     }
 }
-#MainContent_RoleList{
+
+#MainContent_RoleList {
     td, th {
         border: none;
-      
     }
+
     td {
-          padding: 5px;
+        padding: 5px;
     }
-   
 }
-   a {
-       color: $myDarkerGray;
-       &:hover {
-           color: $myRed;
-       }
-   }
+
+a {
+    color: $myDarkerGray;
+
+    &:hover {
+        color: $myRed;
+    }
+}
 
 table {
     border: none;
-   
 }
+
 #MainContent_FeedbackLabel1 {
     position: relative;
     top: 10px;
     left: 10px;
-   
     color: $myRed;
 }
+
 .btn-success {
     margin-top: 20px;
 }
-.newRoleInput{
+
+.newRoleInput {
     margin-top: 20px;
 }
+
 #MainContent_GridView3 {
     th, td, {
         padding: 10px;
-
     }
 }
- .auto-style1 {
-            width: 100%;
-        }
-        .auto-style9 {
-            width: 124px;
-            height: 33px;
-        }
-        .auto-style10 {
-            height: 27px;
-            text-align: center;
-        }
-        .auto-style14 {
-            width: 85px;
-            height: 33px;
-        }
-        .auto-style16 {
-            width: 85px;
-            height: 37px;
-        }
-        .auto-style17 {
-            width: 124px;
-            height: 37px;
-        }
-        .auto-style18 {
-            height: 37px;
-        }
-        .auto-style19 {
-            width: 85px;
-            height: 32px;
-        }
-        .auto-style20 {
-            width: 124px;
-            height: 32px;
-        }
-        .auto-style21 {
-            height: 32px;
-        }
-        .auto-style22 {
-            height: 33px;
-        }
-        .auto-style23 {
-            height: 43px;
-            text-align: center;
-        }
-        .modalBackground{
-            background-color: gray;
-            filter: alpha(opacity-80);
-            opacity: 0.8;
-            z-index: 10000;
-        }
+
+.auto-style1 {
+    width: 100%;
+}
+
+.auto-style9 {
+    width: 124px;
+    height: 33px;
+}
+
+.auto-style10 {
+    height: 27px;
+    text-align: center;
+}
+
+.auto-style14 {
+    width: 85px;
+    height: 33px;
+}
+
+.auto-style16 {
+    width: 85px;
+    height: 37px;
+}
+
+.auto-style17 {
+    width: 124px;
+    height: 37px;
+}
+
+.auto-style18 {
+    height: 37px;
+}
+
+.auto-style19 {
+    width: 85px;
+    height: 32px;
+}
+
+.auto-style20 {
+    width: 124px;
+    height: 32px;
+}
+
+.auto-style21 {
+    height: 32px;
+}
+
+.auto-style22 {
+    height: 33px;
+}
+
+.auto-style23 {
+    height: 43px;
+    text-align: center;
+}
+
+.modalBackground {
+    background-color: gray;
+    filter: alpha(opacity-80);
+    opacity: 0.8;
+    z-index: 10000;
+}
+
+#driverSearch {
+    padding-top: 25px;
+
+    label {
+        margin: 0 20px;
+        color: $myBrown;
+        font-size: 1.4em;
+    }
+
+    #MainContent_FindDriverButton {
+        margin-top: -5px;
+        margin-left: 30px;
+    }
+   
+}
+
+#MainContent_GD1 {
+    margin-bottom: 50px;
+    td, th {
+        padding: 15px;
+        border: none;
+        border-bottom: 1px solid $myGreen;
+    }
+
+    td {
+        padding: 5px;
+    }
+}
+#MainContent_GridView1{
+    margin-bottom: 50px;
+     td, th {
+         text-align: center;
+        padding: 15px;
+        border: none;
+        border-bottom: 1px solid $myGreen;
+    }
+
+    td {
+        padding: 5px;
+    }
+}
+footer{
+    hr{
+       border: none;
+    }
+    color: white;
+}
+#MainContent_DriverDocumments {
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 80px;
+    table{
+        margin-bottom: 20px;
+    }
+    th {
+        text-align: center;
+        font-size: 1.3em;
+    }
+     td, th {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid $myGreen;
+    }
+
+    td {
+        padding: 15px;
+    }
+}
