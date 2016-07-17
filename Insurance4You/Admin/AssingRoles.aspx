@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Assigni Roles" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AssingRoles.aspx.cs" Inherits="Insurance4You.Admin.AssingRoles" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <asp:Content ID="Styles" ContentPlaceHolderID="Styles" runat="server">
     <link rel="stylesheet" href="../Content/AssignRoles.css" />
 </asp:Content>
@@ -10,9 +11,7 @@
         </Scripts>
     </asp:ScriptManagerProxy>
 
-
-
-
+  
     <div class="row main">
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
             <div class="panel pane-default">
@@ -28,10 +27,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-
                         <div role="tabpanel" class="tab-pane active" id="Policies">
 
+
                             <h4>Find Driver</h4>
+
                             <asp:TextBox ID="FindDriverTextBox" runat="server"></asp:TextBox><asp:Button ID="FindDriverButton" runat="server" Text="Button" />
                             <asp:SqlDataSource ID="DriversSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Title], [Id], [FirstName], [SecondName], [SiteUserId] FROM [Driver] WHERE ([PolicyId] = @PolicyId)">
                                 <SelectParameters>
@@ -40,59 +40,70 @@
                             </asp:SqlDataSource>
 
 
-                            <asp:GridView ID="PoliciesGridView" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="PoliciesSource">
+
+
+
+                            <h4>Policies</h4>
+
+                          
+                            <asp:GridView ID="GD1" runat="server" AutoGenerateColumns="False">
                                 <Columns>
-                                    <asp:CommandField ShowSelectButton="True" />
-                                    <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                                    <asp:BoundField DataField="Quote" HeaderText="Quote" SortExpression="Quote" />
-                                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                                    <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-                                    <asp:BoundField DataField="SecondName" HeaderText="SecondName" SortExpression="SecondName" />
-                                    <asp:BoundField DataField="RegNumber" HeaderText="RegNumber" SortExpression="RegNumber" />
-                                    <asp:BoundField DataField="Make" HeaderText="Make" SortExpression="Make" />
-                                    <asp:BoundField DataField="Model" HeaderText="Model" SortExpression="Model" />
-                                    <asp:BoundField DataField="DOM" HeaderText="DOM" SortExpression="DOM" />
-                                    <asp:BoundField DataField="Engine" HeaderText="Engine" SortExpression="Engine" />
-                                    <asp:BoundField DataField="StartDate" HeaderText="StartDate" SortExpression="StartDate" />
-                                    <asp:BoundField DataField="AdditionalDriverID" HeaderText="AdditionalDriverID" SortExpression="AdditionalDriverID" />
-                                    <asp:CheckBoxField DataField="Checked" HeaderText="Checked" SortExpression="Checked" />
-                                    <asp:CheckBoxField DataField="Rejected" HeaderText="Rejected" SortExpression="Rejected" />
+                                    <asp:BoundField DataField="Id" HeaderText="Id" />
+                                    <asp:BoundField DataField="FirstName" HeaderText="Frist Name" />
+                                    <asp:BoundField DataField="SecondName" HeaderText="Second Name" />
+                                    <asp:BoundField DataField="Checked" HeaderText="Checked" />
+                                    <asp:BoundField DataField="Rejected" HeaderText="Rejected" />
+                                    <asp:TemplateField HeaderText="Edit">
+                                        <ItemTemplate>
+                                            <asp:ImageButton ID="ImageB" runat="server" Height="24px" ImageUrl="~/Images/pencil.png" Width="25px" OnClick="Image_Click" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
 
-                            <asp:SqlDataSource ID="PoliciesSource" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="GetAllPolicies" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                            <asp:Button ID="ButtonShowPopUp" runat="server" Style="display: none;" />
+                            <asp:Panel ID="Panel1" runat="server" Width="300px" Height="200px" Style="display: none; border: 1px solid #222222; background: white">
+                                <table class="auto-style1">
+                                    <tr>
+                                        <td class="auto-style10" colspan="3">&nbsp;Update Status&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Policy Id</td>
+                                        <td>
+                                            <asp:Label ID="Label1" runat="server"></asp:Label>
+                                        </td>
+                                        <td class="auto-style23"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style14">Checked</td>
+                                        <td class="auto-style9">
+                                            <asp:CheckBox ID="CheckBoxChecked" runat="server" />
+                                        </td>
+                                        <td class="auto-style22"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style16">Rejected</td>
+                                        <td class="auto-style17">
+                                            <asp:CheckBox ID="CheckBoxRejected" runat="server" />
+                                        </td>
+                                        <td class="auto-style18"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style19"></td>
+                                        <td class="auto-style20">
+                                            <asp:Button ID="ModalUpdateButton" runat="server" OnClick="Button1_Click" Text="Update" />
+                                            <asp:Button ID="ModalCancelButton" runat="server" Text="Cancel" />
+                                        </td>
+                                        <td class="auto-style21"></td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
+                            <ajax:ModalPopupExtender ID="ModalPopupExtender1" BackgroundCssClass="modalBackground" TargetControlID="ButtonShowPopUp" runat="server" PopupControlID="Panel1" CancelControlID="ModalCancelButton"></ajax:ModalPopupExtender>
 
 
-                            <asp:SqlDataSource ID="UpdateStatusSource" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" DeleteCommand="DELETE FROM [Policy] WHERE [Id] = @original_Id AND [Checked] = @original_Checked AND (([Rejected] = @original_Rejected) OR ([Rejected] IS NULL AND @original_Rejected IS NULL))" InsertCommand="INSERT INTO [Policy] ([Checked], [Rejected]) VALUES (@Checked, @Rejected)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [Checked], [Rejected] FROM [Policy] WHERE ([Id] = @Id)" UpdateCommand="UPDATE [Policy] SET [Checked] = @Checked, [Rejected] = @Rejected WHERE [Id] = @original_Id AND [Checked] = @original_Checked AND (([Rejected] = @original_Rejected) OR ([Rejected] IS NULL AND @original_Rejected IS NULL))">
-                                <DeleteParameters>
-                                    <asp:Parameter Name="original_Id" Type="Int32" />
-                                    <asp:Parameter Name="original_Checked" Type="Boolean" />
-                                    <asp:Parameter Name="original_Rejected" Type="Boolean" />
-                                </DeleteParameters>
-                                <InsertParameters>
-                                    <asp:Parameter Name="Checked" Type="Boolean" />
-                                    <asp:Parameter Name="Rejected" Type="Boolean" />
-                                </InsertParameters>
-                                <SelectParameters>
-                                    <asp:ControlParameter ControlID="PoliciesGridView" Name="Id" PropertyName="SelectedValue" Type="Int32" />
-                                </SelectParameters>
-                                <UpdateParameters>
-                                    <asp:Parameter Name="Checked" Type="Boolean" />
-                                    <asp:Parameter Name="Rejected" Type="Boolean" />
-                                    <asp:Parameter Name="original_Id" Type="Int32" />
-                                    <asp:Parameter Name="original_Checked" Type="Boolean" />
-                                    <asp:Parameter Name="original_Rejected" Type="Boolean" />
-                                </UpdateParameters>
-                            </asp:SqlDataSource>
-                            <asp:GridView ID="UpdateStatusGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="UpdateStatusSource">
-                                <Columns>
-                                    <asp:CommandField ShowEditButton="True" />
-                                    <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                                    <asp:CheckBoxField DataField="Checked" HeaderText="Checked" SortExpression="Checked" />
-                                    <asp:CheckBoxField DataField="Rejected" HeaderText="Rejected" SortExpression="Rejected" />
-                                </Columns>
-                            </asp:GridView>
 
+
+                            <h4>Driver</h4>
 
                             <asp:GridView ID="GridView1" runat="server" DataKeyNames="SiteUserId" DataSourceID="DriversSource">
                                 <Columns>
@@ -101,7 +112,9 @@
                             </asp:GridView>
 
                             <asp:GridView ID="DriverDocumments" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1">
+
                                 <Columns>
+
                                     <asp:TemplateField HeaderText="Your Documents">
                                         <ItemTemplate>
                                             <i class="fa fa-file-text"></i>
@@ -109,7 +122,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-
                             </asp:GridView>
 
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="GetDocumentsByUser" SelectCommandType="StoredProcedure">
@@ -118,6 +130,18 @@
                                 </SelectParameters>
                             </asp:SqlDataSource>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
                         <div role="tabpanel" class="tab-pane " id="ManageRoles">
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1">
@@ -204,9 +228,6 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="Messages">Messages...</div>
                         <div role="tabpanel" class="tab-pane" id="Settings">Settings...</div>
-                        <br />
-                        <br />
-
                     </div>
                 </div>
             </div>

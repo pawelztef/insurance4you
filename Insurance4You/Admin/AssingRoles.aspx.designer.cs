@@ -58,40 +58,85 @@ namespace Insurance4You.Admin {
         protected global::System.Web.UI.WebControls.SqlDataSource DriversSource;
         
         /// <summary>
-        /// PoliciesGridView control.
+        /// GD1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView PoliciesGridView;
+        protected global::System.Web.UI.WebControls.GridView GD1;
         
         /// <summary>
-        /// PoliciesSource control.
+        /// ButtonShowPopUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource PoliciesSource;
+        protected global::System.Web.UI.WebControls.Button ButtonShowPopUp;
         
         /// <summary>
-        /// UpdateStatusSource control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource UpdateStatusSource;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// UpdateStatusGridView control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView UpdateStatusGridView;
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// CheckBoxChecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxChecked;
+        
+        /// <summary>
+        /// CheckBoxRejected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxRejected;
+        
+        /// <summary>
+        /// ModalUpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ModalUpdateButton;
+        
+        /// <summary>
+        /// ModalCancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ModalCancelButton;
+        
+        /// <summary>
+        /// ModalPopupExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
         
         /// <summary>
         /// GridView1 control.
