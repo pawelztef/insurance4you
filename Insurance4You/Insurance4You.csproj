@@ -80,6 +80,14 @@
       <HintPath>..\packages\Microsoft.AspNet.EntityDataSource.6.0.0\lib\net40\Microsoft.AspNet.EntityDataSource.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Azure.AppService.ApiApps.Service, Version=0.9.16.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.AppService.ApiApps.Service.0.9.16\lib\net45\Microsoft.Azure.AppService.ApiApps.Service.dll</HintPath>
       <Private>True</Private>
@@ -262,6 +270,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min - Copy.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chat.css">
+      <DependentUpon>Chat.scss</DependentUpon>
+    </Content>
     <Content Include="Content\GetQuote.css">
       <DependentUpon>GetQuote.scss</DependentUpon>
     </Content>
@@ -305,8 +316,10 @@
     <Content Include="Quotation\Refusal.aspx" />
     <Content Include="Quotation\SetPayment.aspx" />
     <Content Include="Quotation\UnderConstruction.aspx" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\SetQuote.js" />
-    <Content Include="WebForm1.aspx" />
+    <Content Include="WebFrom2.aspx" />
     <EntityDeploy Include="ADO\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -325,6 +338,7 @@
     <Content Include="Content\MyPage.scss" />
     <Content Include="Content\LogIn.scss" />
     <Content Include="Content\AssignRoles.scss" />
+    <Content Include="Content\Chat.scss" />
     <None Include="Properties\PublishProfiles\insurance - Web Deploy.pubxml" />
     <Content Include="Quotation\GetQuote.aspx" />
     <Content Include="Default.aspx" />
@@ -660,12 +674,12 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="WebFrom2.aspx.cs">
+      <DependentUpon>WebFrom2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="WebFrom2.aspx.designer.cs">
+      <DependentUpon>WebFrom2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

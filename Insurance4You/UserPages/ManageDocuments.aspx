@@ -16,7 +16,7 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#ContactDetails" aria-controls="ContactDetails" role="tab" data-toggle="tab">My Details</a></li>
                         <li role="presentation"><a href="#UploadDocuments" aria-controls="UploadDocuments" role="tab" data-toggle="tab">Upload Documents</a></li>
-                        <li role="presentation"><a href="#Messages" aria-controls="Messages" role="tab" data-toggle="tab">Messages</a></li>
+                        <li role="presentation"><a href="#LiveChat" aria-controls="LiveChat" role="tab" data-toggle="tab">Live Chat</a></li>
                     </ul>
                 </div>
                 <div class="panel-body">
@@ -140,12 +140,28 @@
                             </div>
                         </div>
                         <!-- panel three -->
-                        <div role="tabpanel" class="tab-pane" id="Messages">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Example Message</div>
-                                <div class="panel-body message">
-                                    <p>Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.</p>
-
+                        <div role="tabpanel" class="tab-pane" id="LiveChat">
+                            <div class="panel panel-default chat-panel-main">
+                                <div id='Conversation' class='panel panel-default chat-panel'>
+                                    <div class='panel-heading'>
+                                        <a href='#' id='closeChat'><i class="fa fa-dot-circle-o" aria-hidden="true"></i></a>
+                                        <div class='panel-title'>Open Conversation</div>
+                                    </div>
+                                    <div id="slide-wrapper">
+                                        <div id='boardMessages' class='panel-body'></div>
+                                        <div class='panel-footer'>
+                                            <div class='form-inline'>
+                                                <div class='form-group'>
+                                                    <div class='input-group'>
+                                                        <textarea id='chatInput' class='form-control' rows='2'></textarea>
+                                                    </div>
+                                                    <div class='input-group-addon'>
+                                                        <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -156,6 +172,38 @@
     </div>
     <script>
         $(function () {
+            myValidation();
+            openChatWindow();
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function openChatWindow() {
+            $("#closeChat").click(function () {
+
+                if ($("#slide-wrapper").is(":hidden")) {
+                    $("#slide-wrapper").slideDown();
+                }
+                else {
+                    $("#slide-wrapper").slideUp();
+                }
+
+            });
+        }
+
+
+
+        function myValidation() {
             var x = $('#form');
             $(x).validate({
                 rules: {
@@ -170,6 +218,6 @@
                     error.css('position', 'relative');
                 },
             });
-        });
+        }
     </script>
 </asp:Content>

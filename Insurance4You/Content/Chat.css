@@ -1,0 +1,99 @@
+﻿#panel-clients {
+  position: relative;
+  float: right;
+  margin-top: 50px;
+  margin-right: 84px;
+  height: 300px;
+  width: 280px; }
+  #panel-clients .panel-heading {
+    text-align: center;
+    font-size: 1.3em; }
+  #panel-clients .panel.panel-default {
+    position: relative;
+    margin-right: 0px;
+    height: 600px; }
+  #panel-clients .panel-body {
+    overflow-y: scroll;
+    position: relative;
+    height: 77%; }
+    #panel-clients .panel-body a {
+      color: #666; }
+      #panel-clients .panel-body a:hover {
+        color: #999999; }
+    #panel-clients .panel-body .fa {
+      padding-left: 13px;
+      padding-top: 13px;
+      font-size: 1.4em; }
+    #panel-clients .panel-body .well-sm {
+      padding-bottom: 0px;
+      margin-bottom: 5px;
+      background: #eeeeee; }
+      #panel-clients .panel-body .well-sm p {
+        font-size: 1.2em;
+        padding-left: 13px; }
+  #panel-clients .panel-footer {
+    width: 278px;
+    position: absolute;
+    bottom: 0px;
+    padding-bottom: 25px;
+    padding-top: 25px; }
+
+.panel-success {
+  border: 1px solid #95d37c; }
+
+#chatRoomBtn:focus {
+  outline: none; }
+
+footer {
+  display: none; }
+
+.chat-panel {
+  margin-right: 150px;
+  margin-top: 50px;
+  float: right;
+  width: 340px; }
+  .chat-panel .panel-body {
+    min-height: 460px;
+    max-height: 460px;
+    overflow-y: scroll; }
+  .chat-panel .panel-heading .panel-title {
+    font-size: 1.3em;
+    font-weight: 500; }
+  .chat-panel .panel-heading #closeChat {
+    float: right;
+    color: #666;
+    margin-top: 2px;
+    margin-right: 5px; }
+    .chat-panel .panel-heading #closeChat:hover {
+      color: #f82c2c; }
+  .chat-panel .form-inline {
+    margin-bottom: -32px; }
+  .chat-panel .form-group .input-group-addon {
+    text-align: right;
+    position: relative;
+    right: -5px;
+    top: -40px; }
+    .chat-panel .form-group .input-group-addon .fa-paper-plane-o {
+      color: #666;
+      font-size: 2.3em; }
+      .chat-panel .form-group .input-group-addon .fa-paper-plane-o:hover {
+        color: #999; }
+  .chat-panel .form-group textarea {
+    min-width: 240px;
+    max-width: 240px;
+    max-height: 135px; }
+    .chat-panel .form-group textarea:focus {
+      outline: none; }
+
+#boardMessages .right p {
+  text-align: right; }
+
+#boardMessages .right .fa-commenting-o {
+  position: relative;
+  left: 273px;
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1); }
+
+/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAiLi4vQ29udGVudC9DaGF0LmNzcyIsCgkic291cmNlcyI6IFsKCQkiLi4vQ29udGVudC9DaGF0LnNjc3MiLAoJCSIuLi9Db250ZW50L192YXJpYWJsZXMuc2NzcyIKCV0sCgkibWFwcGluZ3MiOiAiQUFFQSxBQUFBLGNBQWMsQ0FBQztFQU1YLFFBQVEsRUFBRSxRQUFTO0VBQ25CLEtBQUssRUFBRSxLQUFNO0VBQ2IsVUFBVSxFQUFFLElBQUs7RUFDakIsWUFBWSxFQUFFLElBQUs7RUFDbkIsTUFBTSxFQUFFLEtBQU07RUFDZCxLQUFLLEVBQUUsS0FBTSxHQThDaEI7RUF6REQsQUFDSSxjQURVLENBQ1YsY0FBYyxDQUFDO0lBQ1gsVUFBVSxFQUFFLE1BQU87SUFDbkIsU0FBUyxFQUFFLEtBQU0sR0FDcEI7RUFKTCxBQWFVLGNBYkksQ0FhVixNQUFNLEFBQUEsY0FBYyxDQUFDO0lBQ2pCLFFBQVEsRUFBRSxRQUFTO0lBQ25CLFlBQVksRUFBRSxHQUFJO0lBQ2xCLE1BQU0sRUFBRSxLQUFNLEdBQ2pCO0VBakJMLEFBbUJJLGNBbkJVLENBbUJWLFdBQVcsQ0FBQztJQUNSLFVBQVUsRUFBRSxNQUFPO0lBQ25CLFFBQVEsRUFBRSxRQUFTO0lBQ25CLE1BQU0sRUFBRSxHQUFJLEdBMEJmO0lBaERMLEFBd0JRLGNBeEJNLENBbUJWLFdBQVcsQ0FLUCxDQUFDLENBQUM7TUFDRSxLQUFLLEVDckJQLElBQUksR0QwQkw7TUE5QlQsQUF3QlEsY0F4Qk0sQ0FtQlYsV0FBVyxDQUtQLENBQUMsQUFHSSxNQUFNLENBQUM7UUFDSixLQUFLLEVBQUUsT0FBUSxHQUNsQjtJQTdCYixBQWdDUSxjQWhDTSxDQW1CVixXQUFXLENBYVAsR0FBRyxDQUFDO01BQ0EsWUFBWSxFQUFFLElBQUs7TUFDbkIsV0FBVyxFQUFFLElBQUs7TUFDbEIsU0FBUyxFQUFFLEtBQU0sR0FDcEI7SUFwQ1QsQUFzQ1EsY0F0Q00sQ0FtQlYsV0FBVyxDQW1CUCxRQUFRLENBQUM7TUFDTCxjQUFjLEVBQUUs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 */

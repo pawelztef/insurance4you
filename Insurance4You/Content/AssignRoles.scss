@@ -88,11 +88,17 @@ table {
 .auto-style9 {
     width: 124px;
     height: 33px;
+    padding-bottom: 3px;
 }
 
 .auto-style10 {
     height: 27px;
     text-align: center;
+    position: relative;
+    left: -50px;
+    padding-top: 15px;
+    font-size: 1.3em;
+    font-weight: 500;
 }
 
 .auto-style14 {
@@ -103,11 +109,13 @@ table {
 .auto-style16 {
     width: 85px;
     height: 37px;
+
 }
 
 .auto-style17 {
     width: 124px;
     height: 37px;
+    padding-bottom: 3px;
 }
 
 .auto-style18 {
@@ -122,6 +130,8 @@ table {
 .auto-style20 {
     width: 124px;
     height: 32px;
+    position: relative;
+    left: -110px;
 }
 
 .auto-style21 {
@@ -211,4 +221,23 @@ footer{
     td {
         padding: 15px;
     }
+}
+#MainContent_Panel1{
+    label[for="MainContent_CheckBoxChecked"], label[for="MainContent_CheckBoxRejected"] {
+        display: none;
+    }
+    td {
+        padding-left: 70px;
+    }
+    #MainContent_ModalCancelButton{
+        position: relative;
+        right: -70px;
+        top:  -28px;
+    }
+
+}
+i {
+padding-right: 10px;
+font-size: 1.3em;
+color: black;
 }

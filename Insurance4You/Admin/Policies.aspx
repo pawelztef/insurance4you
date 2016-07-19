@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <asp:Button ID="ButtonShowPopUp" runat="server" Style="display: none;" BorderStyle="None" />
-                    <asp:Panel ID="Panel1" runat="server" Width="300px" Height="200px" Style="display: none; border: 1px solid #222222; background: white">
+                    <asp:Panel ID="Panel1" runat="server" Width="300px" Height="220px" Style="display: none; border: 1px solid #222222; background: white">
                         <table class="auto-style1">
                             <tr>
                                 <td class="auto-style10" colspan="3">&nbsp;Update Status&nbsp;</td>

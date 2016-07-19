@@ -7,6 +7,13 @@
     }
   },
   {
+    "outputFile": "Content/Chat.css",
+    "inputFile": "Content/Chat.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
     "outputFile": "Content/AssignRoles.css",
     "inputFile": "Content/AssignRoles.scss",
     "minify": {

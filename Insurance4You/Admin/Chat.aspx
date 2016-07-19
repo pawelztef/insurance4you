@@ -1,26 +1,100 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="Chat.aspx.cs" Inherits="Insurance4You.Admin.Messages" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Styles" runat="server">
+    <link rel="stylesheet" href="../Content/Chat.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="row main">
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-            <div class="panel pane-default">
+    <div id="mainContainer" class="container-fluid">
+        <div id="panel-clients">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <b>Write Your Message</b>
+                    <b>Chat Room Insurance 4 You</b>
 
                 </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                    </div>
+                <div id="clients" class="panel-body">
+                    <a href="#">
+                        <div class="well well-sm">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <p class="client">aronusfuturus@gmai.com</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="well well-sm">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <p class="client">aronusfuturus@gmai.com</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="well well-sm">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <p class="client">aronusfuturus@gmai.com</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="well well-sm">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <p class="client">aronusfuturus@gmai.com</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" id="chatRoomBtn" class="btn btn-default btn-lg btn-block">Open</button>
                 </div>
             </div>
         </div>
+
+
     </div>
 
 
 
+
+
+
+    <script>
+        $(function () {
+            mainSwitch();
+            openConversation();
+            closeConversation();
+            addMessage();
+        });
+
+
+
+
+        function mainSwitch() {
+            $('#chatRoomBtn').click(function () {
+                $(this).text(function (i, text) {
+                    return text === "Open" ? "Close" : "Open";
+                });
+                $('#panel-clients .panel-default').toggleClass("panel-success");
+
+            });
+
+        }
+
+        function openConversation() {
+            $('div#clients>a').on('click', function () {
+                $('#mainContainer').append("<div id='Conversation' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Panel title</div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='2'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
+            });
+            }
+        function addMessage() {
+            $('#mainContainer').on('click', '#sendBtn', function () {
+                $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>Various versions have evolved over the years, sometimes by accident,</p></div>");
+                $('#boardMessages').append("<div class='right'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>Various versions have evolved over the years, sometimes by accident,</p></div>");
+
+            });
+        }
+        function closeConversation() {
+            console.log('hello 1');
+            $('#mainContainer').on('click', '#closeChat', function () {
+                console.log('hello 2');
+                $('#Conversation').remove();
+                console.log('hello 3');
+            });
+        }
+
+    </script>
 
 
 </asp:Content>
