@@ -153,7 +153,7 @@
                                             <div class='form-inline'>
                                                 <div class='form-group'>
                                                     <div class='input-group'>
-                                                        <textarea id='chatInput' class='form-control' rows='2'></textarea>
+                                                        <textarea id='chatI' class='form-control' rows='2'></textarea>
                                                     </div>
                                                     <div class='input-group-addon'>
                                                         <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a>
@@ -174,11 +174,40 @@
         $(function () {
             myValidation();
             openChatWindow();
+            sendMessage();
         });
 
 
 
+        function addMessage(msg) {
+             $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
+        }
 
+        function sendMessage() {
+            // Declare a proxy to reference the hub. 
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.broadcastMessage = function (name, message) {
+                // Html encode display name and message. 
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                // Add the message to the page. 
+                addMessage(encodedMsg);
+            };
+            // Get the user name and store it to prepend to messages.
+            $('#displayname').val(prompt('Enter your name:', ''));
+            // Set initial focus to message input box.  
+           // $('#chatInput').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#sendBtn').on('click', function () {
+                    // Call the Send method on the hub. 
+                    chat.server.send($('#displayname').val(), $('#chatI').val());
+                    // Clear text box and reset focus for next comment. 
+                    $('#chatInput').val('').focus();
+                });
+            });
+        };
 
 
 

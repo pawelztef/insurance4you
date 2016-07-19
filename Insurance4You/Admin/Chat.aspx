@@ -57,6 +57,7 @@
             openConversation();
             closeConversation();
             addMessage();
+            sendMessage();
         });
 
 
@@ -77,13 +78,9 @@
             $('div#clients>a').on('click', function () {
                 $('#mainContainer').append("<div id='Conversation' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Panel title</div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='2'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
             });
-            }
-        function addMessage() {
-            $('#mainContainer').on('click', '#sendBtn', function () {
-                $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>Various versions have evolved over the years, sometimes by accident,</p></div>");
-                $('#boardMessages').append("<div class='right'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>Various versions have evolved over the years, sometimes by accident,</p></div>");
-
-            });
+        }
+        function addMessage(msg) {
+            $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
         }
         function closeConversation() {
             console.log('hello 1');
@@ -93,6 +90,38 @@
                 console.log('hello 3');
             });
         }
+
+
+
+
+        function sendMessage() {
+            // Declare a proxy to reference the hub. 
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.broadcastMessage = function (name, message, decoration) {
+                // Html encode display name and message. 
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                // Add the message to the page. 
+                addMessage(encodedMsg);
+            };
+            // Get the user name and store it to prepend to messages.
+            $('#displayname').val(prompt('Enter your name:', ''));
+            // Set initial focus to message input box.  
+            // $('#chatInput').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#mainContainer').on('click', '#sendBtn', function () {
+                    // Call the Send method on the hub. 
+                    chat.server.send($('#displayname').val(), $('#chatInput').val());
+                    // Clear text box and reset focus for next comment. 
+                    $('#chatInput').val('').focus();
+                });
+            });
+        };
+
+
+
 
     </script>
 
