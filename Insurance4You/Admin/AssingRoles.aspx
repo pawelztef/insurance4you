@@ -20,6 +20,7 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#Premissions" aria-controls="Premissions" role="tab" data-toggle="tab">Grant Premisions</a></li>
                         <li role="presentation"><a href="#ManageRoles" aria-controls="ManageRoles" role="tab" data-toggle="tab">Manage Roles</a></li>
+                        <li role="presentation"><a href="#CreateUser" aria-controls="CreateUser" role="tab" data-toggle="tab">Create Users</a></li>
 
                     </ul>
                     <asp:Label ID="FeedbackLabel1" runat="server"></asp:Label>
@@ -54,64 +55,72 @@
                         </div>
                         <div role="tabpanel" class="tab-pane " id="ManageRoles">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-4 roles">
-                                                <asp:GridView ID="RoleList" runat="server" AutoGenerateColumns="False" OnRowDeleting="RoleList_RowDeleting">
-                                                    <Columns>
-                                                        <asp:TemplateField HeaderText="Available Roles">
-                                                            <ItemTemplate>
-                                                                <asp:Label runat="server" ID="RoleNameLabel" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:CommandField DeleteText="Delete" ShowDeleteButton="True" />
-                                                    </Columns>
-                                                </asp:GridView>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-offset-3 newRoleInput">
-                                                <label for="RoleBox1" class="control-label">New Role</label>
-                                                <asp:TextBox ID="RoleBox1" runat="server"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-4 col-sm-10">
-                                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" OnClick="Button1_Click" Text="Create Role" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="NameTextBox" class="col-sm-2 control-label">Frist Name</label>
-                                            <div class="col-sm-10">
-                                                <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="SurnameTextBox" class="col-sm-2 control-label">Last Name</label>
-                                            <div class="col-sm-10">
-                                                <asp:TextBox ID="SurnameTextBox" runat="server"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="EmailTextBox" class="col-sm-2 control-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <asp:Button ID="Button2" runat="server" CssClass="btn btn-success" Text="Create User" OnClick="Button2_Click" />
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="row">
+                                        <div class="well well-lg">
+                                            <div class="form-horizontal">
+                                                <div class="form-group">
+                                                    <div class="col-md-5 col-md-offset-1 roles">
+                                                        <asp:GridView ID="RoleList" runat="server" AutoGenerateColumns="False" OnRowDeleting="RoleList_RowDeleting">
+                                                            <Columns>
+                                                                <asp:TemplateField HeaderText="Available Roles">
+                                                                    <ItemTemplate>
+                                                                        <asp:Label runat="server" ID="RoleNameLabel" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:CommandField DeleteText="Delete" ShowDeleteButton="True" />
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </div>
+
+                                                    <div class="col-md-6 newRoleInput">
+                                                        <label for="RoleBox1" class="control-label">New Role</label>
+                                                        <asp:TextBox ID="RoleBox1" runat="server"></asp:TextBox>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-offset-2 col-sm-10">
+                                                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" OnClick="Button1_Click" Text="Create Role" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div role="tabpanel" class="tab-pane" id="CreateUser">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="well well-lg">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="NameTextBox" class="col-sm-2 control-label">Frist Name</label>
+                                                <div class="col-sm-10">
+                                                    <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SurnameTextBox" class="col-sm-2 control-label">Last Name</label>
+                                                <div class="col-sm-10">
+                                                    <asp:TextBox ID="SurnameTextBox" runat="server"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="EmailTextBox" class="col-sm-2 control-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <asp:Button ID="Button2" runat="server" CssClass="btn btn-success" Text="Create User" OnClick="Button2_Click" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

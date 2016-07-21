@@ -15,20 +15,28 @@
 
     <script>
 
-        $('#answer').on('click', function () {
-            feedback('hey there');
+        $(function () {
+            var chat = $.connection.testHub;
+
+            chat.client.getmsg = function (msg) {
+                console.log(msg);
+            };
+            $.connection.hub.start().done(
+                function () {
+                    var msg = "pawel";
+                    chat.server.send2(msg);
+                }
+                );
+            $.connection.hub.start().done(
+               function () {
+                   var msg = "pawel";
+                   chat.server.send2(msg);
+               }
+               );
+
+
+
         });
-
-        var counter = 0;
-
-        function feedback(message) {
-
-            //$('#feedback').remove();
-
-            $('.answers').append('<div id="feedback">' + message + ' ' + counter + '</div>');
-
-            counter++;
-        }
 
 
     </script>

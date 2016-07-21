@@ -25,6 +25,7 @@ namespace Insurance4You.UserPages
             {
                 FillData();
                 FillDetails();
+                UserName.Value = Page.User.Identity.Name;
             }
         }
         protected void OpenDocument(object sender, EventArgs e)
@@ -137,8 +138,8 @@ namespace Insurance4You.UserPages
 
         protected void UpdateDetails_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             using (InsuranceConnection context = new InsuranceConnection())
             {
                 var query = from p in context.ContactDetails

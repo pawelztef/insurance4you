@@ -170,67 +170,80 @@
             </div>
         </div>
     </div>
+    <asp:HiddenField ID="UserName" runat="server" />
     <script>
+
         $(function () {
             myValidation();
-            openChatWindow();
-            sendMessage();
+
+            isOpen = false;
+
+            var chat = $.connection.chatHub;
+
+            // regiter signalr event handlers
+            chat.client.broadcastMessage = function (name, message) {
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                addMessage(encodedMsg);
+            };
+            chat.client.isRoomOpen = function (flag) {
+                isOpen = flag;
+                console.log("eventh " + isOpen);
+
+            };
+
+            //open connection
+            $.connection.hub.start();
+
+            // join to room if available
+            joinToRoom(chat, isOpen);
+
+            // send message
+            sendMessage(chat);
+
+
+
+
         });
 
 
 
-        function addMessage(msg) {
-             $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
+
+        function joinToRoom(hubInst) {
+            $("#closeChat").mouseover(function () {
+                event.preventDefault();
+                hubInst.server.checkRoomState()
+            });
+            $("#closeChat").click(function () {
+                event.preventDefault();
+                if (isOpen) {
+                    if ($("#slide-wrapper").is(":hidden")) {
+                        $("#slide-wrapper").slideDown();
+                        console.log("join room " + isOpen);
+                        hubInst.server.joinRoom();
+                    }
+                    else {
+                        $("#slide-wrapper").slideUp();
+                        console.log("join room " + isOpen);
+                        hubInst.server.leaveRoom();
+                    }
+                }
+            });
         }
 
-        function sendMessage() {
-            // Declare a proxy to reference the hub. 
-            var chat = $.connection.chatHub;
-            // Create a function that the hub can call to broadcast messages.
-            chat.client.broadcastMessage = function (name, message) {
-                // Html encode display name and message. 
-                var encodedName = $('<div />').text(name).html();
-                var encodedMsg = $('<div />').text(message).html();
-                // Add the message to the page. 
-                addMessage(encodedMsg);
-            };
-            // Get the user name and store it to prepend to messages.
+        function sendMessage(chatInstance) {
             $('#displayname').val(prompt('Enter your name:', ''));
-            // Set initial focus to message input box.  
-           // $('#chatInput').focus();
-            // Start the connection.
             $.connection.hub.start().done(function () {
                 $('#sendBtn').on('click', function () {
-                    // Call the Send method on the hub. 
-                    chat.server.send($('#displayname').val(), $('#chatI').val());
-                    // Clear text box and reset focus for next comment. 
+                    chatInstance.server.send($('#displayname').val(), $('#chatI').val());
                     $('#chatInput').val('').focus();
                 });
             });
-        };
-
-
-
-
-
-
-
-
-
-        function openChatWindow() {
-            $("#closeChat").click(function () {
-
-                if ($("#slide-wrapper").is(":hidden")) {
-                    $("#slide-wrapper").slideDown();
-                }
-                else {
-                    $("#slide-wrapper").slideUp();
-                }
-
-            });
         }
 
-
+        function addMessage(msg) {
+            $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
+        }
 
         function myValidation() {
             var x = $('#form');
@@ -248,5 +261,8 @@
                 },
             });
         }
+
+
+
     </script>
 </asp:Content>

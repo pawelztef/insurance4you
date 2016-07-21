@@ -70,16 +70,19 @@ namespace Insurance4You
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User.IsInRole("owner"))
-            {
-                HtmlAnchor div = this.FindControl("ownerLink1") as HtmlAnchor;
-                div.Visible = true;
-            }
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 HtmlAnchor div = this.FindControl("userLink1") as HtmlAnchor;
                 div.Visible = true;
             }
+            if (HttpContext.Current.User.IsInRole("owner"))
+            {
+                HtmlAnchor div = this.FindControl("ownerLink1") as HtmlAnchor;
+                div.Visible = true;
+                HtmlAnchor div2 = this.FindControl("userLink1") as HtmlAnchor;
+                div2.Visible = false;
+            }
+
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

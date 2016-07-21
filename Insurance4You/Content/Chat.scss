@@ -6,23 +6,36 @@
         font-size: 1.3em;
     }
 
+    .fa-dot-circle-o {
+        margin-top: 4px;
+        font-size: 1.3em !important;
+        color: green;
+        float: right;
+
+        &:hover {
+            color: $myGreen;
+        }
+    }
+
     position: relative;
-    float: right;
+    float: left;
     margin-top: 50px;
-    margin-right: 84px;
+    margin-left: 84px;
     height: 300px;
     width: 280px;
 
     .panel.panel-default {
         position: relative;
         margin-right: 0px;
-        height: 600px;
+        max-height: 600px;
     }
 
     .panel-body {
-        overflow-y: scroll;
+        overflow-y: auto;
         position: relative;
-        height: 77%;
+        height: 91%;
+        width: 280px;
+        padding: 0;
 
         a {
             color: $myBrown;
@@ -39,13 +52,16 @@
         }
 
         .well-sm {
-            padding-bottom: 0px;
-            margin-bottom: 5px;
+            margin: 10px;
             background: #eeeeee;
 
             p {
                 font-size: 1.2em;
-                padding-left: 13px;
+                font-weight: bold;
+                i{
+                    font-size: 2em;
+                    margin-right: 20px;
+                }
             }
         }
     }
@@ -57,6 +73,12 @@
         padding-bottom: 25px;
         padding-top: 25px;
     }
+}
+
+#slide-wrapper {
+    display: none;
+    height: 600px;
+    display: inline;
 }
 
 .panel-success {
@@ -75,9 +97,9 @@ footer {
 }
 
 .chat-panel {
-    margin-right: 150px;
+    margin-left: 20px;
     margin-top: 50px;
-    float: right;
+    float: left;
     width: 340px;
 
     .panel-body {
@@ -140,9 +162,10 @@ footer {
 
 #boardMessages {
     .right {
-        p{
+        p {
             text-align: right;
         }
+
         .fa-commenting-o {
             position: relative;
             left: 273px;
