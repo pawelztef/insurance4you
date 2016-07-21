@@ -28,7 +28,6 @@
     <script>
         $(function () {
 
-            openConversation();
             closeConversation();
 
 
@@ -74,26 +73,30 @@
             //send message
             sendMessage(chat);
 
+            //open conversation
+            openConversation(chat);
+
 
         });
 
 
 
 
-        function mainSwitch(mychat) {
+        function mainSwitch(chatInst) {
 
             $("#closeRoom").click(function () {
-
+                event.preventDefault();
                 if ($("#slide-wrapper").is(":hidden")) {
                     $("#slide-wrapper").slideDown();
                     $('#panel-clients .panel-default').addClass("panel-success");
-                    mychat.server.roomOpen(true);
+                    chatInst.server.openRoom();
+
 
                 }
                 else {
                     $("#slide-wrapper").slideUp();
                     $('#panel-clients .panel-default').removeClass("panel-success");
-                    mychat.server.roomOpen(false);
+                    chatInst.server.closeRoom();
 
                 }
             });
@@ -114,13 +117,20 @@
         function populateClientList(list) {
             $('#clients').empty();
             for (var i = 0; i < list.length; i++) {
-                $('#clients').append("<a href='#'> <div class='well well-sm'> <p class='client' data-user='" + list[i].name + "'><i class='fa fa-user' aria-hidden='true'></i>" + list[i].name + "</p> </div> </a>");
+                $('#clients').append("<a href='#' data-con='" + list[i].conId + "' data-user='" + list[i].name + "'> <div class='well well-sm'> <p class='client'><i class='fa fa-user' aria-hidden='true'></i>" + list[i].name + "</p> </div> </a>");
             }
         }
 
-        function openConversation() {
+        function openConversation(chatInst) {
             $('div#clients').on('click', 'a', function () {
+                conId = $(this).attr("data-con");
+                name = $(this).attr("data-user");
+                console.log("conId: " + conId + "name: " + name);
                 $('#mainContainer').append("<div id='Conversation' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Panel title</div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='2'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
+                $.connection.hub.start().done(function () {
+                    chatInst.server.removeFromRoom(conId, name);
+                });
+
             });
         }
 

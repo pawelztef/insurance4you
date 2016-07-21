@@ -33,10 +33,7 @@ namespace Insurance4You
             Clients.Group(groupName).ConversationAvailable();
         }
 
-        public void OpenRoom(bool flag)
-        {
-            Clients.All.roomOpen(flag);
-        }
+
 
         public Task DestroyConversation(string roomName)
         {
@@ -60,28 +57,41 @@ namespace Insurance4You
         public void LeaveRoom()
         {
             string conId = Context.ConnectionId;
-            string id = Context.User.Identity.GetUserId();
-            ChatRoom.LeaveRoom(conId, id);
+            string name = Context.User.Identity.Name;
+            ChatRoom.LeaveRoom(conId, name);
+            var joined = ChatRoom.getJoined();
+            var serList = JsonConvert.SerializeObject(joined);
+            Clients.All.left(serList);
+        }
+        public void RemoveFromRoom(string con, string userName)
+        {
+            string conId = con;
+            string name = userName;
+            ChatRoom.LeaveRoom(conId, name);
             var joined = ChatRoom.getJoined();
             var serList = JsonConvert.SerializeObject(joined);
             Clients.All.left(serList);
         }
 
-        public void RoomOpen(bool flag)
+        public void OpenRoom()
         {
-            roomState = flag;
+            roomState = true;
         }
+        public void CloseRoom()
+        {
+            roomState = false;
+            ChatRoom.ClearRoom();
+            var joined = ChatRoom.getJoined();
+            var serList = JsonConvert.SerializeObject(joined);
+            Clients.All.left(serList);
+        }
+
         public void CheckRoomState()
         {
             Clients.All.isRoomOpen(roomState);
         }
-        
 
-        public void Send2(string message)
-        {
 
-            Clients.All.getmsg(message);
 
-        }
     }
 }

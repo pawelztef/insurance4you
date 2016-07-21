@@ -143,9 +143,10 @@
                         <div role="tabpanel" class="tab-pane" id="LiveChat">
                             <div class="panel panel-default chat-panel-main">
                                 <div id='Conversation' class='panel panel-default chat-panel'>
-                                    <div class='panel-heading'>
-                                        <a href='#' id='closeChat'><i class="fa fa-dot-circle-o" aria-hidden="true"></i></a>
-                                        <div class='panel-title'>Open Conversation</div>
+                                    <div class='panel-heading' id="chat-panel-heading">
+                                        <a href='#' 
+                                            id='closeChat'><i class="fa fa-dot-circle-o" aria-hidden="true"></i></a>
+                                        <div class='panel-title'>Live Chat</div>
                                     </div>
                                     <div id="slide-wrapper">
                                         <div id='boardMessages' class='panel-body'></div>
@@ -219,12 +220,16 @@
                 if (isOpen) {
                     if ($("#slide-wrapper").is(":hidden")) {
                         $("#slide-wrapper").slideDown();
+                        $('#slide-wrapper').addClass("panel-success");
+                        $('#chat-panel-heading').addClass("success");
                         console.log("join room " + isOpen);
                         hubInst.server.joinRoom();
                     }
                     else {
                         $("#slide-wrapper").slideUp();
                         console.log("join room " + isOpen);
+                        $('#slide-wrapper').removeClass("panel-success");
+                        $('#chat-panel-heading').removeClass("success");
                         hubInst.server.leaveRoom();
                     }
                 }

@@ -19,9 +19,9 @@ namespace Insurance4You.Logic
             
         }
 
-        public static void LeaveRoom(string conId, string id)
+        public static void LeaveRoom(string conId, string name)
         {
-          Room.RemoveAll(x=> x.conId==conId && x.id==id);
+          Room.RemoveAll(x=> x.conId==conId && x.name == name);
            
         }
 
@@ -30,7 +30,7 @@ namespace Insurance4You.Logic
             status = true;
         }
 
-        public static void CloseRoom()
+        public static void ClearRoom()
         {
             Room.Clear();
             status = false;

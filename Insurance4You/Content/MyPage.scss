@@ -74,10 +74,6 @@ table {
     color: green;
 }
 
-.panel-success {
-    border: 1px solid $myGreen;
-}
-
 #chatRoomBtn {
 
     &:focus {
@@ -101,7 +97,7 @@ footer {
     .panel-body {
         min-height: 460px;
         max-height: 460px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .panel-heading {
@@ -109,6 +105,7 @@ footer {
         .panel-title {
             font-size: 1.3em;
             font-weight: 500;
+            text-align: center;
         }
 
         #closeChat {
@@ -171,19 +168,34 @@ footer {
             -ms-transform: scaleX(-1);
         }
     }
-   
 }
-#slide-wrapper{
+
+#slide-wrapper {
     display: none;
-    
-   
 }
-.fa-dot-circle-o{
+
+.popover > .arrow {
+    visibility: hidden;
+}
+
+.popover {
+    font-size: 15px;
+}
+
+.fa-dot-circle-o {
     margin-top: 5px;
     font-size: 1.6em !important;
     color: green;
-    &:hover{
-      color: $myGreen;
-      font-size: 1.7em !important;
+
+    &:hover {
+        color: $myGreen;
+        font-size: 1.7em !important;
     }
+}
+.panel-success {
+    border: 1px solid $myGreen;
+}
+.success{
+    background: $myGreen !important;
+    color: white !important;
 }
