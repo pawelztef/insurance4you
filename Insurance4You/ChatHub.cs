@@ -96,6 +96,12 @@ namespace Insurance4You
             Clients.All.isRoomOpen(roomState);
         }
 
+        public void WaitingTime()
+        {
+            string message = ChatRoom.CalculateTime();
+            Clients.All.timeInQueue(message);
+        }
+
 
 
     }

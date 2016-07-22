@@ -41,9 +41,10 @@ namespace Insurance4You.Logic
             return Room;
         }
 
-        public static int CalateElpasedTime()
+        public static string CalculateTime()
         {
-            return 0;
+            int i =(Room.Count()+1) * 5;
+            return "Approximate waiting time is: " + i + " mins.";
         }
 
     }

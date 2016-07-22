@@ -86,6 +86,7 @@
                     $("#slide-wrapper").slideDown();
                     $('#panel-clients .panel-default').addClass("panel-success");
                     chatInst.server.openRoom();
+                    chatInst.server.waitingTime();
                 }
                 else {
                     $("#slide-wrapper").slideUp();
@@ -123,6 +124,7 @@
                 chatInst.server.removeFromRoom(name, conId);
                 chatInst.server.createConversation(name);
                 chatInst.server.startConversation(name);
+                chatInst.server.waitingTime();
                
             });
         }

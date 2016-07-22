@@ -193,6 +193,9 @@
             chat.client.finishChat = function () {
                 $("#input").css("display", "none");
             };
+            chat.client.timeInQueue = function () {
+                                                                                // start here....
+            }
 
             //open connection
             $.connection.hub.start();
