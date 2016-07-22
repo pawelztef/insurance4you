@@ -36,11 +36,15 @@ namespace Insurance4You.Logic
             status = false;
         }
 
-        public static List<Interlocutor> getJoined()
+        public static List<Interlocutor> GetJoined()
         {
             return Room;
         }
 
+        public static int CalateElpasedTime()
+        {
+            return 0;
+        }
 
     }
 }

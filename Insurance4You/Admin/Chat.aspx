@@ -20,50 +20,49 @@
         </div>
     </div>
 
-
-
-
-
-
     <script>
         $(function () {
-
-            closeConversation();
-
 
             var chat = $.connection.chatHub;
             var isOpen = false;
 
             //register event handlers
-            chat.client.broadcastMessage = function (name, message, decoration) {
-                var encodedName = $('<div />').text(name).html();
-                var encodedMsg = $('<div />').text(message).html();
-                addMessage(encodedMsg);
+            chat.client.broadcastMessage = function (name, message) {
+                console.log(" broadcast messagae in group name: " + name)
+                addMessage(message);
             };
 
             chat.client.left = function (list) {
                 var newList = $.parseJSON(list);
                 populateClientList(newList);
-                console.log('done left');
+              
             };
 
             chat.client.joined = function (list) {
                 var newList = $.parseJSON(list);
                 populateClientList(newList);
-                console.log('done joined');
+               
             };
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
-                console.log(flag);
+             
 
             };
             chat.client.Check = function (msg) {
-                console.log(msg);
+              
             };
 
             chat.client.getmsg = function (msg) {
-                console.log(msg);
+                
             };
+
+            chat.client.finishChat = function () {
+                $("#input").css("display", "none");
+            }
+            chat.client.startChat = function () {
+                $("#input").css("display", "initial");
+            }
+
             //open connection
             $.connection.hub.start();
 
@@ -75,40 +74,33 @@
 
             //open conversation
             openConversation(chat);
-
+            //close conversation
+            closeConversation(chat);
 
         });
 
-
-
-
         function mainSwitch(chatInst) {
-
             $("#closeRoom").click(function () {
                 event.preventDefault();
                 if ($("#slide-wrapper").is(":hidden")) {
                     $("#slide-wrapper").slideDown();
                     $('#panel-clients .panel-default').addClass("panel-success");
                     chatInst.server.openRoom();
-
-
                 }
                 else {
                     $("#slide-wrapper").slideUp();
                     $('#panel-clients .panel-default').removeClass("panel-success");
                     chatInst.server.closeRoom();
-
                 }
             });
-
-
         }
 
         function sendMessage(chatInstance) {
-            $('#displayname').val(prompt('Enter your name:', ''));
             $.connection.hub.start().done(function () {
                 $('#mainContainer').on('click', '#sendBtn', function () {
-                    chatInstance.server.send($('#displayname').val(), $('#chatInput').val());
+                    groupName = $("#Conversation").attr("data-group");
+                    console.log("group name wihile send " + groupName);
+                    chatInstance.server.send(groupName, $('#chatInput').val());
                     $('#chatInput').val('').focus();
                 });
             });
@@ -117,6 +109,7 @@
         function populateClientList(list) {
             $('#clients').empty();
             for (var i = 0; i < list.length; i++) {
+                console.log(" populate list connection Id " + list[i].name + " " + list[i].conId);
                 $('#clients').append("<a href='#' data-con='" + list[i].conId + "' data-user='" + list[i].name + "'> <div class='well well-sm'> <p class='client'><i class='fa fa-user' aria-hidden='true'></i>" + list[i].name + "</p> </div> </a>");
             }
         }
@@ -125,12 +118,12 @@
             $('div#clients').on('click', 'a', function () {
                 conId = $(this).attr("data-con");
                 name = $(this).attr("data-user");
-                console.log("conId: " + conId + "name: " + name);
-                $('#mainContainer').append("<div id='Conversation' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Panel title</div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='2'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
-                $.connection.hub.start().done(function () {
-                    chatInst.server.removeFromRoom(conId, name);
-                });
-
+                console.log("joining to group: " + name);
+                $('#mainContainer').append("<div id='Conversation' data-group='" + name + "' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>You chat with " + name + "</div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div id='input' class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='1'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
+                chatInst.server.removeFromRoom(name, conId);
+                chatInst.server.createConversation(name);
+                chatInst.server.startConversation(name);
+               
             });
         }
 
@@ -138,21 +131,15 @@
             $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
         }
 
-        function closeConversation() {
+        function closeConversation(chatInst) {
 
             $('#mainContainer').on('click', '#closeChat', function () {
-
+                groupName = $("#Conversation").attr("data-group");
                 $('#Conversation').remove();
-
+                chatInst.server.finishConversation(groupName);
+                chatInst.server.destroyConversation(groupName);
             });
         }
 
-
-
-
-
-
     </script>
-
-
 </asp:Content>

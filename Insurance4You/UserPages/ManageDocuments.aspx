@@ -144,7 +144,7 @@
                             <div class="panel panel-default chat-panel-main">
                                 <div id='Conversation' class='panel panel-default chat-panel'>
                                     <div class='panel-heading' id="chat-panel-heading">
-                                        <a href='#' 
+                                        <a href='#'
                                             id='closeChat'><i class="fa fa-dot-circle-o" aria-hidden="true"></i></a>
                                         <div class='panel-title'>Live Chat</div>
                                     </div>
@@ -152,9 +152,9 @@
                                         <div id='boardMessages' class='panel-body'></div>
                                         <div class='panel-footer'>
                                             <div class='form-inline'>
-                                                <div class='form-group'>
+                                                <div class='form-group' id="input">
                                                     <div class='input-group'>
-                                                        <textarea id='chatI' class='form-control' rows='2'></textarea>
+                                                        <textarea id='chatI' class='form-control' rows='1'></textarea>
                                                     </div>
                                                     <div class='input-group-addon'>
                                                         <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a>
@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -176,21 +176,22 @@
 
         $(function () {
             myValidation();
-
             isOpen = false;
 
             var chat = $.connection.chatHub;
 
-            // regiter signalr event handlers
+            // register signalr event handlers
             chat.client.broadcastMessage = function (name, message) {
-                var encodedName = $('<div />').text(name).html();
-                var encodedMsg = $('<div />').text(message).html();
-                addMessage(encodedMsg);
+                addMessage(message);
             };
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
-                console.log("eventh " + isOpen);
-
+            };
+            chat.client.startChat = function () {
+                $("#input").css("display", "initial");
+            };
+            chat.client.finishChat = function () {
+                $("#input").css("display", "none");
             };
 
             //open connection
@@ -202,15 +203,11 @@
             // send message
             sendMessage(chat);
 
-
-
-
         });
 
-
-
-
         function joinToRoom(hubInst) {
+            userName = $("#<%=UserName.ClientID %>").val();
+            $('#chatI').attr('data-user', userName);
             $("#closeChat").mouseover(function () {
                 event.preventDefault();
                 hubInst.server.checkRoomState()
@@ -222,14 +219,16 @@
                         $("#slide-wrapper").slideDown();
                         $('#slide-wrapper').addClass("panel-success");
                         $('#chat-panel-heading').addClass("success");
-                        console.log("join room " + isOpen);
+                        hubInst.server.createConversation(userName);
                         hubInst.server.joinRoom();
                     }
                     else {
+                        hubInst.server.finishConversation(userName);
+                        $(".left").remove();
                         $("#slide-wrapper").slideUp();
-                        console.log("join room " + isOpen);
                         $('#slide-wrapper').removeClass("panel-success");
                         $('#chat-panel-heading').removeClass("success");
+                        hubInst.server.destroyConversation(userName);
                         hubInst.server.leaveRoom();
                     }
                 }
@@ -237,11 +236,13 @@
         }
 
         function sendMessage(chatInstance) {
-            $('#displayname').val(prompt('Enter your name:', ''));
             $.connection.hub.start().done(function () {
                 $('#sendBtn').on('click', function () {
-                    chatInstance.server.send($('#displayname').val(), $('#chatI').val());
-                    $('#chatInput').val('').focus();
+                    event.preventDefault();
+                    userName = $("#<%=UserName.ClientID %>").val();
+                    console.log("group name wihile send " + userName);
+                    chatInstance.server.send(userName, $('textarea[data-user="' + userName + '"]').val());
+                    $('textarea[data-user="' + userName + '"]').val('').focus();
                 });
             });
         }
@@ -254,10 +255,8 @@
             var x = $('#form');
             $(x).validate({
                 rules: {
-
                     '<%= UpdatePhone.UniqueID %>': { required: true, number: true },
                     '<%= UpdateEmail.UniqueID %>': { required: true, email: true },
-
                 },
                 errorPlacement: function (error, element) {
                     element.after(error);
@@ -266,8 +265,6 @@
                 },
             });
         }
-
-
 
     </script>
 </asp:Content>

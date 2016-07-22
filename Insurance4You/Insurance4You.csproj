@@ -319,7 +319,6 @@
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\SetQuote.js" />
-    <Content Include="WebFrom2.aspx" />
     <EntityDeploy Include="ADO\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -663,7 +662,6 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="TestHub.cs" />
     <Compile Include="UserPages\ManageDocuments.aspx.cs">
       <DependentUpon>ManageDocuments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -677,13 +675,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="WebFrom2.aspx.cs">
-      <DependentUpon>WebFrom2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebFrom2.aspx.designer.cs">
-      <DependentUpon>WebFrom2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

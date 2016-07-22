@@ -16,28 +16,30 @@ namespace Insurance4You
     {
         public static bool roomState = false;
 
-        public void Send(string name, string message)
+        public void Send(string groupName, string message)
         {
-            Clients.All.broadcastMessage(name, message);
+            Clients.Group(groupName).broadcastMessage(groupName, message);
         }
 
         //roomName based on user name
-        public async Task CreateConversation(string conversationName)
+        public Task CreateConversation(string groupName)
         {
-            await Groups.Add(Context.ConnectionId, conversationName);
+            return Groups.Add(Context.ConnectionId, groupName);
+        }
 
+        public Task DestroyConversation(string userName)
+        {
+            return Groups.Remove(Context.ConnectionId, userName);
         }
 
         public void StartConversation(string groupName)
         {
-            Clients.Group(groupName).ConversationAvailable();
+            Clients.Group(groupName).startChat();
         }
 
-
-
-        public Task DestroyConversation(string roomName)
+        public void FinishConversation(string groupName)
         {
-            return Groups.Remove(Context.ConnectionId, roomName);
+            Clients.Group(groupName).finishChat();
         }
 
         public void JoinRoom()
@@ -49,7 +51,7 @@ namespace Insurance4You
                 string conId = Context.ConnectionId;
                 ChatRoom.JoinRoom(conId, id, name);
             }
-            var joined = ChatRoom.getJoined();
+            var joined = ChatRoom.GetJoined();
             string serList = JsonConvert.SerializeObject(joined);
             Clients.All.joined(serList);
         }
@@ -59,29 +61,32 @@ namespace Insurance4You
             string conId = Context.ConnectionId;
             string name = Context.User.Identity.Name;
             ChatRoom.LeaveRoom(conId, name);
-            var joined = ChatRoom.getJoined();
+            var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
             Clients.All.left(serList);
         }
-        public void RemoveFromRoom(string con, string userName)
+
+        public void RemoveFromRoom(string userName, string con)
         {
             string conId = con;
             string name = userName;
             ChatRoom.LeaveRoom(conId, name);
-            var joined = ChatRoom.getJoined();
+            var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
             Clients.All.left(serList);
         }
 
         public void OpenRoom()
+
         {
             roomState = true;
         }
+
         public void CloseRoom()
         {
             roomState = false;
             ChatRoom.ClearRoom();
-            var joined = ChatRoom.getJoined();
+            var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
             Clients.All.left(serList);
         }
