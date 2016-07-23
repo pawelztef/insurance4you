@@ -29,7 +29,7 @@
             //register event handlers
             chat.client.broadcastMessage = function (name, message) {
                 console.log(" broadcast messagae in group name: " + name)
-                addMessage(message);
+                addMessage(message, name);
             };
 
             chat.client.left = function (list) {
@@ -111,7 +111,7 @@
             $('#clients').empty();
             for (var i = 0; i < list.length; i++) {
                 console.log(" populate list connection Id " + list[i].name + " " + list[i].conId);
-                $('#clients').append("<a href='#' data-con='" + list[i].conId + "' data-user='" + list[i].name + "'> <div class='well well-sm'> <p class='client'><i class='fa fa-user' aria-hidden='true'></i>" + list[i].name + "</p> </div> </a>");
+                $('#clients').append("<a href='#' class='user' data-con='" + list[i].conId + "' data-user='" + list[i].name + "'> <div class='well well-sm'> <p class='client'><i class='fa fa-user' aria-hidden='true'></i>" + list[i].name + "</p> </div> </a>");
             }
         }
 
@@ -119,8 +119,9 @@
             $('div#clients').on('click', 'a', function () {
                 conId = $(this).attr("data-con");
                 name = $(this).attr("data-user");
-                console.log("joining to group: " + name);
-                $('#mainContainer').append("<div id='Conversation' data-group='" + name + "' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>You chat with " + name + "</div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div id='input' class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='1'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
+                
+                $('#mainContainer').append("<div id='Conversation' data-group='" + name + "' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Chat with<b> " + name + "</b></div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div id='input' class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='1'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
+                $(".user").addClass("non-active");
                 chatInst.server.removeFromRoom(name, conId);
                 chatInst.server.createConversation(name);
                 chatInst.server.startConversation(name);
@@ -129,8 +130,8 @@
             });
         }
 
-        function addMessage(msg) {
-            $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
+        function addMessage(msg, name) {
+            $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>"+ name +"</p><div>" + msg + "</div></div>");
         }
 
         function closeConversation(chatInst) {
@@ -138,6 +139,7 @@
             $('#mainContainer').on('click', '#closeChat', function () {
                 groupName = $("#Conversation").attr("data-group");
                 $('#Conversation').remove();
+                    $(".user").removeClass("non-active");
                 chatInst.server.finishConversation(groupName);
                 chatInst.server.destroyConversation(groupName);
             });

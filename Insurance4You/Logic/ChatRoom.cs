@@ -43,8 +43,8 @@ namespace Insurance4You.Logic
 
         public static string CalculateTime()
         {
-            int i =(Room.Count()+1) * 5;
-            return "Approximate waiting time is: " + i + " mins.";
+            int i = Room.Count() * 5;
+            return "Approx. waiting time: " + i + " mins.";
         }
 
     }

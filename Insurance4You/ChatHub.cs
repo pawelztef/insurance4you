@@ -18,7 +18,7 @@ namespace Insurance4You
 
         public void Send(string groupName, string message)
         {
-            Clients.Group(groupName).broadcastMessage(groupName, message);
+            Clients.Group(groupName).broadcastMessage(Context.User.Identity.Name, message);
         }
 
         //roomName based on user name

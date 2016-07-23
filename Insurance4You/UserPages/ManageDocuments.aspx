@@ -149,7 +149,8 @@
                                         <div class='panel-title'>Live Chat</div>
                                     </div>
                                     <div id="slide-wrapper">
-                                        <div id='boardMessages' class='panel-body'></div>
+                                        <div id='boardMessages' class='panel-body'>
+                                        </div>
                                         <div class='panel-footer'>
                                             <div class='form-inline'>
                                                 <div class='form-group' id="input">
@@ -164,7 +165,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,19 +183,22 @@
 
             // register signalr event handlers
             chat.client.broadcastMessage = function (name, message) {
-                addMessage(message);
+                addMessage(message, name);
             };
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
             };
             chat.client.startChat = function () {
+                $("#waiting").remove();
                 $("#input").css("display", "initial");
             };
             chat.client.finishChat = function () {
                 $("#input").css("display", "none");
             };
-            chat.client.timeInQueue = function () {
-                                                                                // start here....
+            chat.client.timeInQueue = function (msg) {
+                console.log(msg);
+                $("#waiting").remove();
+                $("#boardMessages").append("<div id='waiting'><p><i class='fa fa-users' aria-hidden='true'></i>" + msg + "</p></div>");
             }
 
             //open connection
@@ -224,16 +228,27 @@
                         $('#chat-panel-heading').addClass("success");
                         hubInst.server.createConversation(userName);
                         hubInst.server.joinRoom();
+                        hubInst.server.waitingTime();
                     }
                     else {
                         hubInst.server.finishConversation(userName);
                         $(".left").remove();
+                        $("#waiting").remove();
                         $("#slide-wrapper").slideUp();
                         $('#slide-wrapper').removeClass("panel-success");
                         $('#chat-panel-heading').removeClass("success");
                         hubInst.server.destroyConversation(userName);
                         hubInst.server.leaveRoom();
                     }
+                } else {
+                    hubInst.server.finishConversation(userName);
+                    $(".left").remove();
+                    $("#waiting").remove();
+                    $("#slide-wrapper").slideUp();
+                    $('#slide-wrapper').removeClass("panel-success");
+                    $('#chat-panel-heading').removeClass("success");
+                    hubInst.server.destroyConversation(userName);
+                    hubInst.server.leaveRoom();
                 }
             });
         }
@@ -250,8 +265,8 @@
             });
         }
 
-        function addMessage(msg) {
-            $('#boardMessages').append("<div class='left'><i class='fa fa-commenting-o' aria-hidden='true'></i><p>" + msg + "</p></div>");
+        function addMessage(msg, name) {
+            $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>"+name+"</p><div>" + msg + "</div></div>");
         }
 
         function myValidation() {
