@@ -265,7 +265,7 @@
             });
         }
 
-        function addMessage(msg, name) {
+        function addMessage(msg, groupname, name) {
             $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>" + name + "</p><div>" + msg + "</div></div>");
         }
 
