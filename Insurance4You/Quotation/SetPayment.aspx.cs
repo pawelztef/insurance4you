@@ -56,10 +56,10 @@ namespace Insurance4You.Quotation
                 policy.StartDate = Convert.ToDateTime(Session["startDate"]);
                 policy.EndDate = endDate;
                 context.Policies.Add(policy);
+                int driverID = int.Parse(Session["DriverID"].ToString());
                 int policyID = policy.Id;
                 var query = from p in context.Drivers
-                            where p.Id == int.Parse(Session["DriverID"].ToString())
-                          
+                            where p.Id == driverID
                             select p;
                 Driver i = query.FirstOrDefault();
                 i.PolicyId = policyID;
