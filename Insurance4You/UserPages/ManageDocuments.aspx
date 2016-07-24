@@ -190,7 +190,7 @@
             };
             chat.client.startChat = function () {
                 $("#waiting").remove();
-                $("#input").css("display", "initial");
+                $("#input").css("display", "inline");
             };
             chat.client.finishChat = function () {
                 $("#input").css("display", "none");
