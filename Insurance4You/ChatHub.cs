@@ -16,9 +16,9 @@ namespace Insurance4You
     {
         public static bool roomState = false;
 
-        public void Send(string groupName, string message)
+        public void Send(string message, string groupName)
         {
-            Clients.Group(groupName).broadcastMessage(Context.User.Identity.Name, message);
+            Clients.Group(groupName).broadcastMessage(message, groupName, Context.User.Identity.Name);
         }
 
         //roomName based on user name
@@ -54,6 +54,7 @@ namespace Insurance4You
             var joined = ChatRoom.GetJoined();
             string serList = JsonConvert.SerializeObject(joined);
             Clients.All.joined(serList);
+            Clients.All.waitingTime();
         }
 
         public void LeaveRoom()
@@ -64,6 +65,7 @@ namespace Insurance4You
             var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
             Clients.All.left(serList);
+            Clients.All.waitingTime();
         }
 
         public void RemoveFromRoom(string userName, string con)

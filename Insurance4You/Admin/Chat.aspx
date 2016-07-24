@@ -27,33 +27,33 @@
             var isOpen = false;
 
             //register event handlers
-            chat.client.broadcastMessage = function (name, message) {
-                console.log(" broadcast messagae in group name: " + name)
-                addMessage(message, name);
+            chat.client.broadcastMessage = function (message, groupname, name) {
+                console.log(" broadcast messagae from" + groupname)
+                addMessage(message, groupname, name);
             };
 
             chat.client.left = function (list) {
                 var newList = $.parseJSON(list);
                 populateClientList(newList);
-              
+
             };
 
             chat.client.joined = function (list) {
                 var newList = $.parseJSON(list);
                 populateClientList(newList);
-               
+
             };
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
-             
+
 
             };
             chat.client.Check = function (msg) {
-              
+
             };
 
             chat.client.getmsg = function (msg) {
-                
+
             };
 
             chat.client.finishChat = function () {
@@ -86,7 +86,6 @@
                     $("#slide-wrapper").slideDown();
                     $('#panel-clients .panel-default').addClass("panel-success");
                     chatInst.server.openRoom();
-                    chatInst.server.waitingTime();
                 }
                 else {
                     $("#slide-wrapper").slideUp();
@@ -98,11 +97,12 @@
 
         function sendMessage(chatInstance) {
             $.connection.hub.start().done(function () {
-                $('#mainContainer').on('click', '#sendBtn', function () {
-                    groupName = $("#Conversation").attr("data-group");
-                    console.log("group name wihile send " + groupName);
-                    chatInstance.server.send(groupName, $('#chatInput').val());
-                    $('#chatInput').val('').focus();
+                $('#mainContainer').on('click', '.sendBtn', function (e) {
+                    groupName = this.id;
+                    console.log("button id " + groupName);
+                    console.log("textarea " + $('[data-group="'+ groupName +'"] textarea').val());
+                    chatInstance.server.send($('[data-group="'+ groupName +'"] textarea').val(), groupName);
+                    $('textarea.chatInput').val('').focus();
                 });
             });
         }
@@ -119,27 +119,29 @@
             $('div#clients').on('click', 'a', function () {
                 conId = $(this).attr("data-con");
                 name = $(this).attr("data-user");
-                
-                $('#mainContainer').append("<div id='Conversation' data-group='" + name + "' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' id='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Chat with<b> " + name + "</b></div> </div> <div id='boardMessages' class='panel-body'>  </div> <div class='panel-footer'> <div class='form-inline'> <div id='input' class='form-group'> <div class='input-group'> <textarea id='chatInput' class='form-control' rows='1'></textarea> </div> <div class='input-group-addon'> <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
-                $(".user").addClass("non-active");
+
+                $('#mainContainer').append("<div data-group='" + name + "' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' class='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Chat with<b> " + name + "</b></div> </div> <div  data-group='" + name + "' class='panel-body boardMessages'>  </div> <div class='panel-footer'> <div class='form-inline'> <div id='input' class='form-group'> <div class='input-group'> <textarea class='form-control chatInput' rows='1'></textarea> </div> <div class='input-group-addon'> <a class='sendBtn' id='" + name + "' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
+
+                console.log("open conversation on group: " + name);
                 chatInst.server.removeFromRoom(name, conId);
                 chatInst.server.createConversation(name);
                 chatInst.server.startConversation(name);
-                chatInst.server.waitingTime();
-               
+
+
             });
         }
-
-        function addMessage(msg, name) {
-            $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>"+ name +"</p><div>" + msg + "</div></div>");
+        // finished here
+        function addMessage(msg, groupname, name) {
+            console.log("group name " + groupname);
+            $(".boardMessages[data-group='" + groupname + "']").append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>" + name + "</p><div>" + msg + "</div></div>");
         }
 
         function closeConversation(chatInst) {
 
-            $('#mainContainer').on('click', '#closeChat', function () {
-                groupName = $("#Conversation").attr("data-group");
-                $('#Conversation').remove();
-                    $(".user").removeClass("non-active");
+            $('#mainContainer').on('click', '.closeChat', function () {
+                groupName = $(".chat-panel").attr("data-group");
+                $("div[data-group='" + groupName + "']").remove();
+                console.log("closing conversation" + groupName);
                 chatInst.server.finishConversation(groupName);
                 chatInst.server.destroyConversation(groupName);
             });

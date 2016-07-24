@@ -120,7 +120,7 @@ footer {
             font-size: 1.1em;
         }
 
-        #closeChat {
+        .closeChat {
             float: right;
             color: $myBrown;
             margin-top: 2px;
@@ -165,7 +165,7 @@ footer {
     }
 }
 
-#boardMessages {
+.boardMessages {
     margin-left: 10px;
     margin-right: 10px;
     .left {
@@ -193,7 +193,4 @@ footer {
         margin-bottom: 10px;
     }
 }
-.non-active {
-    pointer-events: none;
-    cursor: default;
-}
+

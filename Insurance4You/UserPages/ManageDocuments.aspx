@@ -182,8 +182,8 @@
             var chat = $.connection.chatHub;
 
             // register signalr event handlers
-            chat.client.broadcastMessage = function (name, message) {
-                addMessage(message, name);
+            chat.client.broadcastMessage = function (message, groupname, name) {
+                addMessage(message, groupname, name);
             };
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
@@ -227,8 +227,8 @@
                         $('#slide-wrapper').addClass("panel-success");
                         $('#chat-panel-heading').addClass("success");
                         hubInst.server.createConversation(userName);
-                        hubInst.server.joinRoom();
-                        hubInst.server.waitingTime();
+                        hubInst.server.joinRoom().done(function () {
+                        });
                     }
                     else {
                         hubInst.server.finishConversation(userName);
@@ -259,14 +259,14 @@
                     event.preventDefault();
                     userName = $("#<%=UserName.ClientID %>").val();
                     console.log("group name wihile send " + userName);
-                    chatInstance.server.send(userName, $('textarea[data-user="' + userName + '"]').val());
-                    $('textarea[data-user="' + userName + '"]').val('').focus();
+                    chatInstance.server.send($('#chatI').val(), userName);
+                    $('#chatI').val('').focus();
                 });
             });
         }
 
         function addMessage(msg, name) {
-            $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>"+name+"</p><div>" + msg + "</div></div>");
+            $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>" + name + "</p><div>" + msg + "</div></div>");
         }
 
         function myValidation() {
