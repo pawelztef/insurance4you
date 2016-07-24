@@ -15,10 +15,10 @@
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                 <div class="progr">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                             <div class="steps">Step 2 of 3</div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-8 line">
+                        <div class="col-lg-4 col-md-6 col-sm-6 hidden-xs line">
                             <div class="icons-wrapper">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <p><i class="fa fa-user fa-3x" aria-hidden="true"></i></p>
@@ -48,21 +48,21 @@
                     <div class="panel-body">
                         <div class="row" id="1">
 
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 leftFedback">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10 leftFedback">
                                 <h3>Your quote is: </h3>
                             </div>
                             
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rightFedback">
+                            <div class="col-lg-6 col-md-5 col-sm-5 col-md-offset-1 col-xs-10 rightFedback">
                                 <asp:Label ID="Label1" runat="server" Text="Label" CssClass="label"></asp:Label>
                             </div>
 
                         </div>
                         <div class="row" id="2">
 
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 leftFedback">
-                                <h4>You can set up your payment now</h4>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 leftFedback">
+                                <h5>You can set up your payment now</h5>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 rightFedback">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10 rightFedback">
                                 <asp:Button ID="PaymentButton" runat="server" CssClass="btn btn-success btn-lg" Text="Set Payment" OnClick="PaymentButton_Click" PostBackUrl="~/Quotation/SetPayment.aspx" />
                             </div>
 

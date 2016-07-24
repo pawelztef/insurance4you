@@ -10,10 +10,10 @@
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                 <div class="progr">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="steps">Step 3 of 3</div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-8 line">
+                        <div class="col-lg-4 col-md-6 col-sm-8 hidden-xs line">
                             <div class="icons-wrapper">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <p><i class="fa fa-user fa-3x" aria-hidden="true"></i></p>
