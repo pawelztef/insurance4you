@@ -352,6 +352,10 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Properties\PublishProfiles\Insurance4YouBeta - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Insurance4YouBeta - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Insurance4YouBeta - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Insurance4YouBeta - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

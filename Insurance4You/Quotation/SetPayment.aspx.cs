@@ -59,6 +59,7 @@ namespace Insurance4You.Quotation
                 int policyID = policy.Id;
                 var query = from p in context.Drivers
                             where p.Id == int.Parse(Session["DriverID"].ToString())
+                          
                             select p;
                 Driver i = query.FirstOrDefault();
                 i.PolicyId = policyID;
