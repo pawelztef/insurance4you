@@ -28,7 +28,6 @@
 
             //register event handlers
             chat.client.broadcastMessage = function (message, groupname, name) {
-                console.log(" broadcast messagae from" + groupname)
                 addMessage(message, groupname, name);
             };
 
@@ -99,8 +98,6 @@
             $.connection.hub.start().done(function () {
                 $('#mainContainer').on('click', '.sendBtn', function (e) {
                     groupName = this.id;
-                    console.log("button id " + groupName);
-                    console.log("textarea " + $('[data-group="'+ groupName +'"] textarea').val());
                     chatInstance.server.send($('[data-group="'+ groupName +'"] textarea').val(), groupName);
                     $('textarea.chatInput').val('').focus();
                 });
@@ -110,7 +107,6 @@
         function populateClientList(list) {
             $('#clients').empty();
             for (var i = 0; i < list.length; i++) {
-                console.log(" populate list connection Id " + list[i].name + " " + list[i].conId);
                 $('#clients').append("<a href='#' class='user' data-con='" + list[i].conId + "' data-user='" + list[i].name + "'> <div class='well well-sm'> <p class='client'><i class='fa fa-user' aria-hidden='true'></i>" + list[i].name + "</p> </div> </a>");
             }
         }
@@ -119,33 +115,23 @@
             $('div#clients').on('click', 'a', function () {
                 conId = $(this).attr("data-con");
                 name = $(this).attr("data-user");
-
                 $('#mainContainer').append("<div data-group='" + name + "' class='panel panel-default chat-panel'> <div class='panel-heading'> <a href='#' class='closeChat'><i class='fa fa-times' aria-hidden='true'></i> </a> <div class='panel-title'>Chat with<b> " + name + "</b></div> </div> <div  data-group='" + name + "' class='panel-body boardMessages'>  </div> <div class='panel-footer'> <div class='form-inline'> <div id='input' class='form-group'> <div class='input-group'> <textarea class='form-control chatInput' rows='1'></textarea> </div> <div class='input-group-addon'> <a class='sendBtn' id='" + name + "' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a> </div> </div> </div> </div> </div> ");
-
-                console.log("open conversation on group: " + name);
                 chatInst.server.removeFromRoom(name, conId);
                 chatInst.server.createConversation(name);
                 chatInst.server.startConversation(name);
-
-
             });
         }
-        // finished here
         function addMessage(msg, groupname, name) {
-            console.log("group name " + groupname);
             $(".boardMessages[data-group='" + groupname + "']").append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>" + name + "</p><div>" + msg + "</div></div>");
         }
 
         function closeConversation(chatInst) {
-
             $('#mainContainer').on('click', '.closeChat', function () {
                 groupName = $(".chat-panel").attr("data-group");
                 $("div[data-group='" + groupName + "']").remove();
-                console.log("closing conversation" + groupName);
                 chatInst.server.finishConversation(groupName);
                 chatInst.server.destroyConversation(groupName);
             });
         }
-
     </script>
 </asp:Content>

@@ -143,10 +143,10 @@
                         <div role="tabpanel" class="tab-pane" id="LiveChat">
                             <div class="panel panel-default chat-panel-main">
                                 <div id='Conversation' class='panel panel-default chat-panel'>
-                                    <div class='panel-heading' id="chat-panel-heading">
-                                        <a href='#'
-                                            id='closeChat'><i class="fa fa-dot-circle-o" aria-hidden="true"></i></a>
-                                        <div class='panel-title'>Live Chat</div>
+                                    <div class="head">
+                                        <div class='panel-heading' id='chat-panel-heading'>
+                                            <div class='panel-title'>Service Closed</div>
+                                        </div>
                                     </div>
                                     <div id="slide-wrapper">
                                         <div id='boardMessages' class='panel-body'>
@@ -188,6 +188,20 @@
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
             };
+            chat.client.roomState = function (flag) {
+                console.log("flag " + flag);
+                if (flag == true) {
+                    $('#chat-panel-heading').remove();
+                    $('.head').append("<div class='panel-heading' id='chat-panel-heading'> <a href='#' id='closeChat'><i class='fa fa-dot-circle-o' aria-hidden='true'></i></a> <div class='panel-title'>Live Chat</div> </div>");
+                }
+                else {
+                    $('#chat-panel-heading').remove();
+                    $(".head").append("<div class='panel-heading' id='chat-panel-heading'><div class='panel-title'>Closed</div></div>")
+                }
+
+            };
+
+
             chat.client.startChat = function () {
                 $("#waiting").remove();
                 $("#input").css("display", "inline");
@@ -219,28 +233,20 @@
                 event.preventDefault();
                 hubInst.server.checkRoomState()
             });
-            $("#closeChat").click(function () {
+
+            $("#Conversation").on('click', "#closeChat", function () {
+                console.log("btn clk");
                 event.preventDefault();
-                if (isOpen) {
-                    if ($("#slide-wrapper").is(":hidden")) {
-                        $("#slide-wrapper").slideDown();
-                        $('#slide-wrapper').addClass("panel-success");
-                        $('#chat-panel-heading').addClass("success");
-                        hubInst.server.createConversation(userName);
-                        hubInst.server.joinRoom().done(function () {
-                        });
-                    }
-                    else {
-                        hubInst.server.finishConversation(userName);
-                        $(".left").remove();
-                        $("#waiting").remove();
-                        $("#slide-wrapper").slideUp();
-                        $('#slide-wrapper').removeClass("panel-success");
-                        $('#chat-panel-heading').removeClass("success");
-                        hubInst.server.destroyConversation(userName);
-                        hubInst.server.leaveRoom();
-                    }
-                } else {
+
+                if ($("#slide-wrapper").is(":hidden")) {
+                    $("#slide-wrapper").slideDown();
+                    $('#slide-wrapper').addClass("panel-success");
+                    $('#chat-panel-heading').addClass("success");
+                    hubInst.server.createConversation(userName);
+                    hubInst.server.joinRoom().done(function () {
+                    });
+                }
+                else {
                     hubInst.server.finishConversation(userName);
                     $(".left").remove();
                     $("#waiting").remove();
@@ -249,6 +255,7 @@
                     $('#chat-panel-heading').removeClass("success");
                     hubInst.server.destroyConversation(userName);
                     hubInst.server.leaveRoom();
+                    hubInst.server.userCloseRoom();
                 }
             });
         }
@@ -258,31 +265,31 @@
                 $('#sendBtn').on('click', function () {
                     event.preventDefault();
                     userName = $("#<%=UserName.ClientID %>").val();
-                    console.log("group name wihile send " + userName);
-                    chatInstance.server.send($('#chatI').val(), userName);
-                    $('#chatI').val('').focus();
+                        console.log("group name wihile send " + userName);
+                        chatInstance.server.send($('#chatI').val(), userName);
+                        $('#chatI').val('').focus();
+                    });
                 });
-            });
-        }
+            }
 
-        function addMessage(msg, groupname, name) {
-            $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>" + name + "</p><div>" + msg + "</div></div>");
-        }
+            function addMessage(msg, groupname, name) {
+                $('#boardMessages').append("<div class='left well'><p><i class='fa fa-commenting-o' aria-hidden='true'></i>" + name + "</p><div>" + msg + "</div></div>");
+            }
 
-        function myValidation() {
-            var x = $('#form');
-            $(x).validate({
-                rules: {
-                    '<%= UpdatePhone.UniqueID %>': { required: true, number: true },
-                    '<%= UpdateEmail.UniqueID %>': { required: true, email: true },
-                },
-                errorPlacement: function (error, element) {
-                    element.after(error);
-                    error.css("color", "red");
-                    error.css('position', 'relative');
-                },
-            });
-        }
+            function myValidation() {
+                var x = $('#form');
+                $(x).validate({
+                    rules: {
+                        '<%= UpdatePhone.UniqueID %>': { required: true, number: true },
+                        '<%= UpdateEmail.UniqueID %>': { required: true, email: true },
+                    },
+                    errorPlacement: function (error, element) {
+                        element.after(error);
+                        error.css("color", "red");
+                        error.css('position', 'relative');
+                    },
+                });
+            }
 
     </script>
 </asp:Content>

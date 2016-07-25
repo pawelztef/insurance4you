@@ -79,23 +79,27 @@ namespace Insurance4You
         }
 
         public void OpenRoom()
-
         {
-            roomState = true;
+            Clients.All.RoomState(true);
         }
+        public void UserCloseRoom()
+        {
 
+            Clients.All.RoomState(false);
+        }
         public void CloseRoom()
         {
             roomState = false;
             ChatRoom.ClearRoom();
             var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
+            Clients.All.RoomState(false);
             Clients.All.left(serList);
         }
 
-        public void CheckRoomState()
+        public void RoomState(bool flag)
         {
-            Clients.All.isRoomOpen(roomState);
+            Clients.All.RoomOpen(flag);
         }
 
         public void WaitingTime()
