@@ -53,8 +53,10 @@ namespace Insurance4You
             }
             var joined = ChatRoom.GetJoined();
             string serList = JsonConvert.SerializeObject(joined);
+            string message = ChatRoom.CalculateTime();
             Clients.All.joined(serList);
-            Clients.All.waitingTime();
+            Clients.All.timeInQueue(message);
+           
         }
 
         public void LeaveRoom()
@@ -64,8 +66,9 @@ namespace Insurance4You
             ChatRoom.LeaveRoom(conId, name);
             var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
+            string message = ChatRoom.CalculateTime();
             Clients.All.left(serList);
-            Clients.All.waitingTime();
+            Clients.All.timeInQueue(message);
         }
 
         public void RemoveFromRoom(string userName, string con)
@@ -75,18 +78,17 @@ namespace Insurance4You
             ChatRoom.LeaveRoom(conId, name);
             var joined = ChatRoom.GetJoined();
             var serList = JsonConvert.SerializeObject(joined);
+            string message = ChatRoom.CalculateTime();
             Clients.All.left(serList);
+            Clients.All.timeInQueue(message);
         }
 
         public void OpenRoom()
         {
+            roomState = true;
             Clients.All.RoomState(true);
         }
-        public void UserCloseRoom()
-        {
-
-            Clients.All.RoomState(false);
-        }
+       
         public void CloseRoom()
         {
             roomState = false;
@@ -97,9 +99,9 @@ namespace Insurance4You
             Clients.All.left(serList);
         }
 
-        public void RoomState(bool flag)
+        public void CheckIsRoomOpen()
         {
-            Clients.All.RoomOpen(flag);
+            Clients.All.RoomState(roomState);
         }
 
         public void WaitingTime()

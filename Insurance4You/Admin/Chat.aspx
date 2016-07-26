@@ -33,14 +33,16 @@
 
             chat.client.left = function (list) {
                 var newList = $.parseJSON(list);
-                populateClientList(newList);
-
+                $.when(populateClientList(newList)).then(function () {
+                    //chat.server.waitingTime();
+                });
             };
 
             chat.client.joined = function (list) {
                 var newList = $.parseJSON(list);
-                populateClientList(newList);
-
+                $.when(populateClientList(newList)).then(function () {
+                    //chat.server.waitingTime();
+                });
             };
             chat.client.isRoomOpen = function (flag) {
                 isOpen = flag;
@@ -98,7 +100,7 @@
             $.connection.hub.start().done(function () {
                 $('#mainContainer').on('click', '.sendBtn', function (e) {
                     groupName = this.id;
-                    chatInstance.server.send($('[data-group="'+ groupName +'"] textarea').val(), groupName);
+                    chatInstance.server.send($('[data-group="' + groupName + '"] textarea').val(), groupName);
                     $('textarea.chatInput').val('').focus();
                 });
             });
