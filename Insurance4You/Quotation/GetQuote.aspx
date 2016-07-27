@@ -956,7 +956,9 @@
                                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-3 col-md-offset-3">
                                         <asp:CheckBox ID="CheckBoxAcceptTerms" runat="server" />
                                     </div>
-                                    <label for="CheckBoxAcceptTerms" class="col-lg-6 col-md-4 col-sm-4 col-xs-6 control-label">I accept the terms and conditioins</label>
+                                    <label for="CheckBoxAcceptTerms" class="col-lg-6 col-md-4 col-sm-4 col-xs-6 control-label">I accept the</label><asp:LinkButton ID="Terms" runat="server" OnClick="Terms_Click">terms and conditioins</asp:LinkButton> 
+
+                                       
                                 </div>
                             </div>
                             <div class="row">

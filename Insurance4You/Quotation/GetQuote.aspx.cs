@@ -348,6 +348,19 @@ namespace Insurance4You.Quotation
             }
         }
 
+        protected void Terms_Click(object sender, EventArgs e)
+        {
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/octet-stream";
+            Response.AddHeader("Content-Disposition", "attachment;filename=TermsAndConditions.pdf");
+            Response.TransmitFile(Server.MapPath("../Files/TermsAndConditions.pdf"));
+            Response.Flush();
+            Response.End();
+        }
+
         private void saveAdditionalDriver()
         {
             if (AdditionalDriverFlag.Equals("true"))

@@ -286,6 +286,9 @@
     <Content Include="Content\Mypage.css">
       <DependentUpon>MyPage.scss</DependentUpon>
     </Content>
+    <Content Include="Content\PaymentFeedback.css">
+      <DependentUpon>PaymentFeedback.scss</DependentUpon>
+    </Content>
     <Content Include="Content\SetPayment.css">
       <DependentUpon>SetPayment.scss</DependentUpon>
     </Content>
@@ -318,6 +321,7 @@
     <Content Include="apiapp.json" />
     <Content Include="Admin\Web.config" />
     <Content Include="Content\Site.scss" />
+    <Content Include="Quotation\PaymentFeedback.aspx" />
     <Content Include="Quotation\Refusal.aspx" />
     <Content Include="Quotation\SetPayment.aspx" />
     <Content Include="Quotation\UnderConstruction.aspx" />
@@ -343,6 +347,8 @@
     <Content Include="Content\LogIn.scss" />
     <Content Include="Content\AssignRoles.scss" />
     <Content Include="Content\Chat.scss" />
+    <Content Include="Content\PaymentFeedback.scss" />
+    <Content Include="Files\agreement.pdf" />
     <None Include="Properties\PublishProfiles\insurance - Web Deploy.pubxml" />
     <Content Include="Quotation\GetQuote.aspx" />
     <Content Include="Default.aspx" />
@@ -627,6 +633,13 @@
     </Compile>
     <Compile Include="Quotation\GetQuote.aspx.designer.cs">
       <DependentUpon>GetQuote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\PaymentFeedback.aspx.cs">
+      <DependentUpon>PaymentFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quotation\PaymentFeedback.aspx.designer.cs">
+      <DependentUpon>PaymentFeedback.aspx</DependentUpon>
     </Compile>
     <Compile Include="Quotation\Refusal.aspx.cs">
       <DependentUpon>Refusal.aspx</DependentUpon>

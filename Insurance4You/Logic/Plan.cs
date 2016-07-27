@@ -7,7 +7,7 @@ namespace Insurance4You.Logic
 {
     public static class Plan
     {
-        public static List<decimal> generate(decimal quote, int months) {
+        public static List<decimal> Generate(decimal quote, int months) {
             List<decimal> res = new List<decimal>(); 
             decimal deposit = quote * 0.2M;
             decimal j = Math.Round((quote - deposit)/months, 2);

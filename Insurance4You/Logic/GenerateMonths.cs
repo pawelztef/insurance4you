@@ -7,7 +7,7 @@ namespace Insurance4You.Logic
 {
     public static class GenerateMonths
     {
-        public static List<String> generate(DateTime date, int s)
+        public static List<String> Generate(DateTime date, int s)
         {
             List<String> months = new List<String>();
             DateTime dt = date;

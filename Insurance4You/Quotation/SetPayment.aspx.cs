@@ -25,8 +25,8 @@ namespace Insurance4You.Quotation
             user = this.Page.User.Identity.GetUserId();
             quote = 1250; //Convert.ToDecimal(Session["quote"]);
             startDate = DateTime.Now; //Convert.ToDateTime(Session["startDate"]);
-            plan = Plan.generate(quote, 12);
-            months = GenerateMonths.generate(startDate, 12);
+            plan = Plan.Generate(quote, 12);
+            months = GenerateMonths.Generate(startDate, 12);
 
             MonthsList.DataSource = months;
             MonthsList.DataBind();
@@ -39,19 +39,49 @@ namespace Insurance4You.Quotation
 
         protected void Button5_Click(object sender, EventArgs e)
         {
-            StripeCustomer Customer = GetCustomer();
-            var charge = new StripeChargeCreateOptions();
-            charge.Currency = "eur";
-            var dec = plan[1] * 1000;
-            charge.Amount = Convert.ToInt32(dec);
+            try
+            {
+                StripeCustomer customer = GetCustomer();
+                var charge = new StripeChargeCreateOptions();
+                charge.Currency = "eur";
+                var dec = plan[1] * 100;
+                charge.Amount = Convert.ToInt32(dec);
 
-            charge.CustomerId = Customer.Id;
-            var chargeSrv = new StripeChargeService();
-            StripeCharge CurrentCharge = chargeSrv.Create(charge);
-           
-            saveQuote();
-            savePolicy();
-            Response.Redirect("UnderConstruction.aspx");
+                charge.CustomerId = customer.Id;
+                var chargeSrv = new StripeChargeService();
+                StripeCharge currentCharge = chargeSrv.Create(charge);
+                var chargeId = currentCharge.Id;
+                SaveQuote();
+                SavePolicy(chargeId);
+               // Response.Redirect("UnderConstruction.aspx");
+
+            }
+            catch (StripeException stripeException)
+            {
+                switch (stripeException.StripeError.ErrorType)
+                {
+                    case "card_error":
+                        //do some stuff, set your lblError or something like this
+                       string x = stripeException.StripeError.Code;
+                       Session["errorMsg"] = stripeException.StripeError.Message;
+                        // or better yet, handle based on error code: exception.StripeError.Code
+                        break;
+                    case "api_error":
+                        //do some stuff
+                        break;
+                    case "invalid_request_error":
+                        //do some stuff
+                        break;
+                    default:
+                        throw;
+                }
+
+            }
+            finally
+            {
+                Server.Transfer("PaymentFeedback.aspx");
+            }
+
         }
 
 
@@ -69,7 +99,7 @@ namespace Insurance4You.Quotation
                 Number = CardNumber.Text,
                 ExpirationYear = ExpiryYear.SelectedItem.Text,
                 ExpirationMonth = ExpiryMonth.SelectedIndex.ToString(),
-                Cvc = "123"
+                Cvc = CVN.Text
             };
             myCustomer.PlanId = "Insurance4You";
             myCustomer.TrialEnd = DateTime.UtcNow.AddMonths(12);
@@ -80,7 +110,7 @@ namespace Insurance4You.Quotation
         }
 
 
-        private void savePolicy()
+        private void SavePolicy(string paymentId)
         {
             using (InsuranceConnection context = new InsuranceConnection())
             {
@@ -91,7 +121,7 @@ namespace Insurance4You.Quotation
                 {
                     policy.AdditionalDriverID = Convert.ToInt16(Session["AddDriverID"]);
                 }
-               // policy.PaymentID = chargeId;
+                policy.PaymentID = paymentId;
                 policy.Quote = Convert.ToDecimal(Session["quote"]);
                 DateTime endDate = Convert.ToDateTime(Session["startDate"]).AddYears(1);
                 policy.StartDate = Convert.ToDateTime(Session["startDate"]);
@@ -109,7 +139,7 @@ namespace Insurance4You.Quotation
         }
 
 
-        private void saveQuote()
+        private void SaveQuote()
         {
             using (InsuranceConnection context = new InsuranceConnection())
             {

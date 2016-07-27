@@ -24,7 +24,7 @@ namespace Insurance4You.ADO
         public int CarID { get; set; }
         public int DriverID { get; set; }
         public Nullable<int> AdditionalDriverID { get; set; }
-        public Nullable<int> PaymentID { get; set; }
+        public string PaymentID { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public decimal Quote { get; set; }

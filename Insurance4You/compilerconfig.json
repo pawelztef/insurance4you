@@ -1,5 +1,12 @@
 ﻿[
   {
+    "outputFile": "Content/PaymentFeedback.css",
+    "inputFile": "Content/PaymentFeedback.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
     "outputFile": "Content/Site.css",
     "inputFile": "Content/Site.scss",
     "minify": {

@@ -31,7 +31,7 @@ namespace Insurance4You.ADO
         public virtual DbSet<DrivingHistory> DrivingHistories { get; set; }
         public virtual DbSet<AdditionalDriver> AdditionalDrivers { get; set; }
         public virtual DbSet<Quote> Quotes { get; set; }
-        public virtual DbSet<Policy> Policies { get; set; }
         public virtual DbSet<ContactDetail> ContactDetails { get; set; }
+        public virtual DbSet<Policy> Policies { get; set; }
     }
 }

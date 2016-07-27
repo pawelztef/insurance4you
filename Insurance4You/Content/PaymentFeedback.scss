@@ -1,0 +1,61 @@
+﻿.payment-feedback {
+    margin-top: 60px;
+
+    #MainContent_FeedbackHeader {
+        margin-left: 30px;
+    }
+
+    #MainContent_FeedbackBody {
+        font-size: 2em;
+        margin-left: 30px;
+        margin-top: 100px;
+    }
+
+    .panel-group {
+        margin-top: 70px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+
+        span {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.panel-body {
+    padding-bottom: 60px;
+    padding-right: 80px;
+}
+
+#MainContent_CancelBtn, #MainContent_GoBackBtn {
+    margin-left: 30px;
+}
+
+#MainContent_AgreementLabel {
+    font-size: 1.2em;
+    margin-left: 50px;
+    line-height: 5px;
+}
+
+#MainContent_UploadLabel {
+    font-size: 1.2em;
+    margin-left: 50px;
+    line-height: 5px;
+}
+footer {
+    color: white;
+
+    hr {
+        border-top: none;
+    }
+}
+
+a {
+    font-size: 1.4em;
+    margin-left: 10px;
+}
+
+.btn {
+    padding-right: 30px;   
+    padding-left: 30px;   
+}
