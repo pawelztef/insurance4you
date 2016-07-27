@@ -148,10 +148,8 @@ table {
 }
 
 .modalBackground {
-    background-color: gray;
-    filter: alpha(opacity-80);
-    opacity: 0.8;
-    z-index: 10000;
+background-color: rgba(0,0,0,0.4);
+z-index: 1000;
 }
 
 #driverSearch {

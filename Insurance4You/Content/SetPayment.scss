@@ -86,8 +86,15 @@
         margin-top: 40px;
     }
 }
+.background-modal{
+   background-color: rgba(0,0,0,0.4);
+}
 
-
+#MainContent_Panel1 {
+    #payment-panel {
+        height: 100%;
+    }
+}
 
 .alert-success {
     background-color: rgb(149, 211, 124);
@@ -110,7 +117,37 @@
     margin-left: auto;
     margin-right: auto;
 }
-
+#payment-panel {
+    img{
+        margin-left: 22px;
+        width: 160px;
+    }
+    label {
+        font-size: 1.2em;
+    }
+    #MainContent_Button5{
+        padding-right: 30px;
+        padding-left: 30px;
+        margin-top: 55px;
+        margin-left: 15px;
+    }
+    #MainContent_CancelBtn{
+        margin-top: 55px;
+        margin-left: 70px;
+    }
+    .form-horizontal{
+        margin-top: 30px;
+    }
+    .date {
+        margin: 0px;
+        margin-right: 17px;
+        padding: 0px;
+    }
+    select, select.form-control{
+        background-image: none;
+       
+    }
+}
 @media screen and (min-width: 1060px) {
     .line {
         margin-top: 45px;

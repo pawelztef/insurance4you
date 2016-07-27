@@ -305,6 +305,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\credit-card-icons.png" />
     <Content Include="Images\header1.jpg" />
     <Content Include="Images\header2.jpg" />
     <Content Include="Images\header3.jpg" />
