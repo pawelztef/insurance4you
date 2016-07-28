@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetPayment.aspx.cs" Inherits="Insurance4You.Quotation.SetPayment" %>
+﻿<%@ Page Title="Payment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetPayment.aspx.cs" Inherits="Insurance4You.Quotation.SetPayment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Styles" runat="server">
@@ -59,7 +59,7 @@
                                     <asp:Repeater ID="RateList" runat="server">
                                         <ItemTemplate>
                                             <h5>
-                                                <asp:Literal ID="Literal1" runat="server" Text="<%# Container.DataItem %>"></asp:Literal>
+                                                <asp:Literal ID="Literal1" runat="server" Text="<%# Container.DataItem %>"></asp:Literal>€
                                             </h5>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -147,6 +147,9 @@
                                     <asp:Button ID="Button5" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="Button5_Click" />
                                     <asp:Button Text="Cancel" runat="server" CssClass="btn btn-default" ID="CancelBtn" />
                                 </div>
+                            </div>
+                            <div class="from-group">
+                                <img id="stripe-logo" src="../Images/stripe_logo.png" />
                             </div>
                         </div>
                     </div>

@@ -315,6 +315,7 @@
     <Content Include="Images\page-under-construction1.jpg" />
     <Content Include="Images\pen.ico" />
     <Content Include="Images\pencil.png" />
+    <Content Include="Images\stripe_logo.png" />
     <Content Include="Images\thumbnail1.jpg" />
     <Content Include="Images\thumbnail2.jpg" />
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />

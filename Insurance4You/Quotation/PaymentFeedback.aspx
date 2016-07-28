@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentFeedback.aspx.cs" Inherits="Insurance4You.Quotation.PaymentFeedback" %>
+﻿<%@ Page Title="Payment Feedback" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentFeedback.aspx.cs" Inherits="Insurance4You.Quotation.PaymentFeedback" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Styles" runat="server">
     <link rel="stylesheet" href="../Content/PaymentFeedback.css" />

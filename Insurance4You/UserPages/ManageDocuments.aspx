@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageDocuments.aspx.cs" Inherits="Insurance4You.UserPages.ManageDocuments" %>
+﻿<%@ Page Title="My Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageDocuments.aspx.cs" Inherits="Insurance4You.UserPages.ManageDocuments" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Styles" runat="server">
     <link rel="stylesheet" href="../Content/MyPage.css" />

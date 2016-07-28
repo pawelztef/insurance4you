@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Assigni Roles" Language="C#" MasterPageFile="AdminMaster.Master" AutoEventWireup="true" CodeBehind="AssingRoles.aspx.cs" Inherits="Insurance4You.Admin.AssingRoles" %>
+﻿<%@ Page Title="Assign Roles" Language="C#" MasterPageFile="AdminMaster.Master" AutoEventWireup="true" CodeBehind="AssingRoles.aspx.cs" Inherits="Insurance4You.Admin.AssingRoles" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <asp:Content ID="Styles" ContentPlaceHolderID="Styles" runat="server">

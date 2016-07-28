@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="Chat.aspx.cs" Inherits="Insurance4You.Admin.Messages" %>
+﻿<%@ Page Title="Live Chat" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="Chat.aspx.cs" Inherits="Insurance4You.Admin.Messages" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Styles" runat="server">
     <link rel="stylesheet" href="../Content/Chat.css" />

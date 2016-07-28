@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GetQuote.aspx.cs" Inherits="Insurance4You.Quotation.GetQuote" %>
+﻿<%@ Page Title="Get Quote" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GetQuote.aspx.cs" Inherits="Insurance4You.Quotation.GetQuote" %>
 
 <asp:Content ID="Styles" ContentPlaceHolderID="Styles" runat="server">
     <link rel="stylesheet" href="../Content/GetQuote.css" />

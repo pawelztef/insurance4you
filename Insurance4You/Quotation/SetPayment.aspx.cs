@@ -23,7 +23,7 @@ namespace Insurance4You.Quotation
         protected void Page_Load(object sender, EventArgs e)
         {
             user = this.Page.User.Identity.GetUserId();
-            quote = 1250; //Convert.ToDecimal(Session["quote"]);
+            quote = Convert.ToDecimal(Session["quote"]);
             startDate = DateTime.Now; //Convert.ToDateTime(Session["startDate"]);
             plan = Plan.Generate(quote, 12);
             months = GenerateMonths.Generate(startDate, 12);
@@ -41,19 +41,26 @@ namespace Insurance4You.Quotation
         {
             try
             {
+                //Deposit Charge
+                StripeCustomer depositCustomer = GetDepositCustomer();
+                var depositCharge = new StripeChargeCreateOptions();
+                depositCharge.Currency = "eur";
+                depositCharge.Amount = Convert.ToInt32(plan[0])*100;
+                depositCharge.CustomerId = depositCustomer.Id;
+                var chargeService = new StripeChargeService();
+                StripeCharge finalDepositCharge = chargeService.Create(depositCharge);
+                //Recuring Payment
                 StripeCustomer customer = GetCustomer();
                 var charge = new StripeChargeCreateOptions();
                 charge.Currency = "eur";
                 var dec = plan[1] * 100;
                 charge.Amount = Convert.ToInt32(dec);
-
                 charge.CustomerId = customer.Id;
                 var chargeSrv = new StripeChargeService();
                 StripeCharge currentCharge = chargeSrv.Create(charge);
                 var chargeId = currentCharge.Id;
                 SaveQuote();
                 SavePolicy(chargeId);
-               // Response.Redirect("UnderConstruction.aspx");
 
             }
             catch (StripeException stripeException)
@@ -62,8 +69,8 @@ namespace Insurance4You.Quotation
                 {
                     case "card_error":
                         //do some stuff, set your lblError or something like this
-                       string x = stripeException.StripeError.Code;
-                       Session["errorMsg"] = stripeException.StripeError.Message;
+                        string x = stripeException.StripeError.Code;
+                        Session["errorMsg"] = stripeException.StripeError.Message;
                         // or better yet, handle based on error code: exception.StripeError.Code
                         break;
                     case "api_error":
@@ -107,6 +114,22 @@ namespace Insurance4You.Quotation
             var customerService = new StripeCustomerService();
             StripeCustomer stripeCustomer = customerService.Create(myCustomer);
             return stripeCustomer;
+        }
+
+        private StripeCustomer GetDepositCustomer()
+        {
+            var myCustomer = new StripeCustomerCreateOptions();
+            myCustomer.Email = User.Identity.GetUserName();
+            myCustomer.Description = User.Identity.GetUserName();
+            myCustomer.SourceCard = new SourceCard()
+            {
+                Number = CardNumber.Text,
+                ExpirationYear = ExpiryYear.SelectedItem.Text,
+                ExpirationMonth = ExpiryMonth.SelectedIndex.ToString(),
+                Cvc = CVN.Text
+            };
+            var customerService = new StripeCustomerService();
+            return customerService.Create(myCustomer);
         }
 
 
