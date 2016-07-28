@@ -62,7 +62,7 @@ table {
 }
 
 .upload {
-    margin-top: 30px;
+    margin-top: 20px;
 
     #MainContent_Button1 {
         margin-top: 20px;
@@ -70,7 +70,8 @@ table {
 }
 
 .fa-file-text:before {
-    font-size: 3em;
+    font-size: 2.3em;
+    padding-right: 10px;
     color: green;
 }
 
@@ -87,12 +88,15 @@ footer {
 
 .chat-panel-main {
     box-shadow: none;
+    margin-top: 25px;
 }
 
 
 .chat-panel {
     margin: 0 auto;
     width: 280px;
+    position: relative;
+    top: -100px;
 
     .panel-body {
         min-height: 460px;
@@ -104,7 +108,8 @@ footer {
 
         .panel-title {
             font-size: 1.3em;
-            padding-left: 20px;
+            //padding-left: 20px;
+            //margin-left:90px;
             font-weight: 500;
             text-align: center;
         }
@@ -232,4 +237,7 @@ footer {
         font-size: 1.5em;
         margin-right: 10px;
     }
+}
+.opening-hours{
+    padding-left: 100px;
 }

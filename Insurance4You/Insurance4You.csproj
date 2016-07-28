@@ -394,6 +394,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserPages\Chat.aspx" />
     <Content Include="UserPages\ManageDocuments.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <None Include="Web.config">
@@ -654,6 +655,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserPages\Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPages\Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserPages\ManageDocuments.aspx.cs">
       <DependentUpon>ManageDocuments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

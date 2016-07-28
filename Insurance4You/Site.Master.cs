@@ -74,6 +74,8 @@ namespace Insurance4You
             {
                 HtmlAnchor div = this.FindControl("userLink1") as HtmlAnchor;
                 div.Visible = true;
+                HtmlAnchor div3 = this.FindControl("userLink2") as HtmlAnchor;
+                div3.Visible = true;
             }
             if (HttpContext.Current.User.IsInRole("owner"))
             {
@@ -81,6 +83,8 @@ namespace Insurance4You
                 div.Visible = true;
                 HtmlAnchor div2 = this.FindControl("userLink1") as HtmlAnchor;
                 div2.Visible = false;
+                HtmlAnchor div3 = this.FindControl("userLink2") as HtmlAnchor;
+                div3.Visible = false;
             }
 
         }

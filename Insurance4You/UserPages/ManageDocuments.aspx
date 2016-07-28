@@ -16,7 +16,6 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#ContactDetails" aria-controls="ContactDetails" role="tab" data-toggle="tab">My Details</a></li>
                         <li role="presentation"><a href="#UploadDocuments" aria-controls="UploadDocuments" role="tab" data-toggle="tab">Upload Documents</a></li>
-                        <li role="presentation"><a href="#LiveChat" aria-controls="LiveChat" role="tab" data-toggle="tab">Live Chat</a></li>
                     </ul>
                 </div>
                 <div class="panel-body">
@@ -136,34 +135,6 @@
                                     <h5>Upload Here</h5>
                                     <asp:FileUpload ID="FileUpload1" runat="server" />
                                     <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Save" OnClick="Button1_Click" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- panel three -->
-                        <div role="tabpanel" class="tab-pane" id="LiveChat">
-                            <div class="panel panel-default chat-panel-main">
-                                <div id='Conversation' class='panel panel-default chat-panel'>
-                                    <div class="head">
-                                        <div class='panel-heading' id='chat-panel-heading'>
-                                            <div class='panel-title'>Service Closed</div>
-                                        </div>
-                                    </div>
-                                    <div id="slide-wrapper">
-                                        <div id='boardMessages' class='panel-body'>
-                                        </div>
-                                        <div class='panel-footer'>
-                                            <div class='form-inline'>
-                                                <div class='form-group' id="input">
-                                                    <div class='input-group'>
-                                                        <textarea id='chatI' class='form-control' rows='1'></textarea>
-                                                    </div>
-                                                    <div class='input-group-addon'>
-                                                        <a id='sendBtn' href='#'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
