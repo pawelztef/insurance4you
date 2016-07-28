@@ -53,11 +53,11 @@ namespace Insurance4You.Account
                 // Determine the sections to render
                 if (HasPassword(manager))
                 {
-                    ChangePassword.Visible = true;
+                    ChangePassword.Visible = false;
                 }
                 else
                 {
-                    CreatePassword.Visible = true;
+                    CreatePassword.Visible = false;
                     ChangePassword.Visible = false;
                 }
 

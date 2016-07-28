@@ -10,14 +10,15 @@
 }
 
 #Button1 {
-    margin-top:12px;
+    margin-top: 12px;
     font-size: 1em;
     margin-left: 20px;
     margin-right: 20px;
 }
+
 footer {
-  
 }
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -75,42 +76,61 @@ input[type="select"] {
             margin: 10px;
             float: left;
         }
-        #head1{
-           margin-top: 50px;
+
+        #head1 {
+            margin-top: 50px;
         }
-        #head2{
-           margin-top: 6px !important;
+
+        #head2 {
+            margin-top: 6px !important;
         }
-        p{
+
+        p {
             margin-top: 23px;
             margin-bottom: 0px;
+
             a {
                 float: right;
                 margin-right: 30px;
                 color: #b6c308;
+
                 &:hover {
                     color: rgba(0,0,0,0.29);
                 }
             }
         }
-
     }
 }
+
 .register {
     margin-top: 100px;
-   label{
-       padding-top: 25px;
-   }
-   .form-horizontal {
-       margin-top: -15px;
-   }
-    h3{
+
+    label {
+        padding-top: 25px;
+    }
+
+    .form-horizontal {
+        margin-top: -15px;
+    }
+
+    h3 {
         margin-bottom: 35px;
         margin-left: 25px;
     }
+
     input {
         margin-top: 15px;
         margin-bottom: 10px;
+    }
+}
+
+.password {
+    margin-top: 50px;
+
+    .form-group {
+        label {
+            padding-top: 20px;
+        }
     }
 }
 /* Responsive: Portrait tablets and up */
